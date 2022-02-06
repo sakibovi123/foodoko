@@ -1,0 +1,166 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap");
+body {
+  background-color: var(--lite-white);
+}
+.first____class {
+  background-color: var(--white);
+  width: 17%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.second____class {
+  background-color: black;
+  width: 55%;
+}
+.third____class {
+  background-color: blue;
+  width: 19%;
+}
+.main______class {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* first class title */
+.title {
+  font-family: "Merriweather", serif;
+}
+.underTitle____content p,
+.last____title____content p {
+  margin-block-end: 0;
+  margin-block-start: 0;
+}
+.first____class____wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dashborad {
+  background-color: var(--orange);
+  padding: 0.5rem;
+  border-radius: 5px;
+  transition: 0.2s all ease-in-out;
+}
+.dashborad:hover {
+  transform: scale(1.1);
+}
+.rest____sidebar___link {
+  color: var(--ash);
+  transition: 0.2s all ease-in-out;
+}
+.rest____sidebar___link:hover {
+  color: var(--orange) !important;
+}
+.underTitle____content p {
+  margin-top: 1.5rem;
+}
+.side___icon {
+  margin-right: 0.25rem;
+}
+.upgradeBtn {
+  border: 2px solid var(--white);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background: var(--white);
+  transition: 0.2s all ease-in-out;
+  font-weight: 700;
+}
+.upgradeBtn:hover {
+  border: 2px solid var(--white);
+  background-color: var(--orange);
+  color: var(--white);
+}
+.last____title____content {
+  background-color: var(--orange);
+  padding: 1rem;
+  border-radius: 8px;
+  transition: 0.2s all ease-in-out;
+}
+.dot {
+  color: var(---orange);
+}
+.last____title____content:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+/* main content style */
+.hello {
+  position: relative;
+  left: 20%;
+  width: 80%;
+}
+.search____bar {
+  color: var(--orange);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.search_____bar input {
+  border: none;
+  outline: none;
+  margin-left: 10px;
+}
+.search_____bar p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.search_____bar {
+  display: flex;
+  align-items: center;
+  background: var(--white);
+  width: 35%;
+  border-radius: 10px;
+  padding: 6px;
+}
+.main_____header____search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.main_____content {
+  width: 70%;
+}
+.category_____part p {
+  margin-block-end: 0;
+  margin-block-start: 0;
+}
+.view____all {
+  color: var(--orange) !important;
+}
+.category_____part {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.food____name {
+  color: var(--ash) !important;
+}
+.all____category a p {
+  margin-block-end: 0;
+  margin-block-start: 0;
+}
+.all____category {
+  background-color: var(--white);
+  width: 7rem;
+  border-radius: 8px;
+  padding: 21px;
+  transition: 0.2s all ease-in-out;
+}
+.all____category:hover {
+  transform: scale(1.1);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.all____category:hover .food____name {
+  color: var(--orange) !important;
+}
+.food____icon {
+  font-size: 1.5rem;
+}
+.extended____category {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
