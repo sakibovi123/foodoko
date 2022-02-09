@@ -2,6 +2,48 @@
 body {
   background-color: var(--lite-white);
 }
+
+/* mobile nav style */
+.main_____mobile___menu{
+  display: none !important;
+}
+.mobo{
+  color: var(--black) !important;
+  transition: .2s all ease-in-out;
+  font-size: 42px;
+  cursor: pointer;
+}
+.mobotitle{
+  color: var(--black) !important;
+  transition: .2s all ease-in-out;
+}
+.mobotitle:hover{
+  color: var(--orange) !important;
+}
+.mobo:hover{
+  color: var(--orange) !important;
+  transform: scale(1.1);
+}
+
+
+.first____class::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.first____class::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.first____class::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.first____class::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 .first____class {
   background-color: var(--white);
   width: 17%;
@@ -9,18 +51,47 @@ body {
   position: fixed;
   top: 0;
   left: 0;
+  transition: 0.5s all ease-in-out;
+  overflow-y: auto;
+  padding-bottom: 1rem;
 }
-.second____class {
-  background-color: black;
-  width: 55%;
+.close___icon{
+  position: absolute;
+  top: 0;
+  cursor: pointer;
+  font-size: 30px;
+  right: 0;
+  font-weight: 600;
+  transition: .2s all ease-in-out;
+  display: none;
 }
-.third____class {
-  background-color: blue;
-  width: 19%;
+
+.closeIcon{
+  font-size: 35px;
+  cursor: pointer;
+  transition: .2s all ease-in-out;
+  display: none;
+}
+.closeIcon:hover{
+  transform: scale(1.1);
+  color: var(--orange);
 }
 .main______class {
   display: flex;
   justify-content: space-between;
+}
+
+.navClass{
+  position: fixed !important;
+  top: 0 !important;
+  z-index: 10000000;
+  left: 0 !important;
+}
+.navClass1{
+  position: fixed !important;
+  top: 0 !important;
+  z-index: 10000000;
+  right: 0 !important;
 }
 
 /* first class title */
@@ -31,6 +102,53 @@ body {
 .last____title____content p {
   margin-block-end: 0;
   margin-block-start: 0;
+}
+.admin____overlay {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+.admin____overlayyyy{
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+.admin____overlayyyy{
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+.admin____overlayyyy.show__adminOverlayyy {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+ 
+}
+.admin____overlay.show__adminOverlay {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+ 
 }
 .first____class____wrap {
   display: flex;
@@ -164,7 +282,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  gap: 10px;
 }
 /* popular dishes card */
 .individual____dishes img {
@@ -288,7 +406,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  gap: 10px;
 }
 
 /* banner part style */
@@ -320,9 +438,37 @@ body {
 }
 
 /* right content style */
+/* scroll bar css */
+/* width */
+.right_____content::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.right_____content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.right_____content::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.right_____content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 .right_____content {
-  width: 28%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 23%;
   background-color: var(--white);
+  height: 100vh;
+  overflow-y: auto;
+  padding-bottom: 1rem;
+  transition: 0.5s all ease-in-out;
 }
 
 .account___part p {
@@ -507,13 +653,458 @@ body {
   padding: 7px 0;
   font-weight: 600;
 }
-.checkoutBTN button:hover{
+.checkoutBTN button:hover {
   border: 1px solid var(--orange);
   background: var(--white);
   color: var(--orange);
-  transition: .2s all ease-in-out;
+  transition: 0.2s all ease-in-out;
 }
 .checkoutBTN {
   width: 70%;
   margin: 0 auto;
+}
+
+/* Media queryy */
+@media (max-width: 1482px) {
+  .first___inner___div {
+    padding: 0.1rem 0.9rem;
+  }
+  .first____icon {
+    padding: 2px 7px;
+  }
+  .balance____overlay {
+    left: 6%;
+  }
+  .first____top {
+    margin: 0 !important;
+  }
+  .change___btn button {
+    font-size: 16px;
+  }
+  .details_____note button {
+    font-size: 16px;
+  }
+  .order_____menu p {
+    font-size: 16px;
+  }
+}
+@media (max-width: 1300px) {
+  .balance_____class {
+    font-size: 16px !important;
+  }
+  .first___inner___div {
+    padding: 0rem 0.7rem;
+  }
+  .first____icon {
+    padding: 0 5px;
+  }
+  .balance____overlay {
+    top: 49%;
+  }
+  .hello {
+    left: 20%;
+    width: 80%;
+  }
+  .main_____content {
+    width: 65%;
+  }
+  .right_____content {
+    width: 25%;
+  }
+  .first____class {
+    width: 18%;
+  }
+}
+@media (max-width: 1200px) {
+  .first____class {
+    width: 20%;
+  }
+  .hello {
+    left: 22%;
+    width: 78%;
+  }
+}
+@media (max-width: 1428px) {
+  .search_____bar input {
+    width: 50%;
+  }
+}
+@media (max-width: 1314px) {
+  .extended____category {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 1724px) {
+  .individual____dishes {
+    width: 15rem;
+    height: 16rem;
+  }
+  .individual____dishes img {
+    width: 8rem;
+    height: 8rem;
+    object-fit: cover;
+  }
+}
+@media (max-width: 1610px) {
+  .individual____dishes {
+    width: 13rem;
+  }
+  .individual____dishes img {
+    width: 7rem;
+    height: 7rem;
+  }
+  .add____btn___div {
+    position: absolute;
+    top: 35px;
+    left: 181%;
+  }
+  .hart___icon {
+    position: absolute;
+    top: -1%;
+    left: 82%;
+  }
+}
+@media (max-width: 1403px) {
+  .individual____dishes {
+    width: 12rem;
+    height: 14rem;
+  }
+  .individual____dishes img {
+    width: 6rem;
+    height: 6rem;
+  }
+  .popular____card_____details {
+    position: absolute;
+    top: 62%;
+    left: 6%;
+  }
+}
+@media (max-width: 1301px) {
+  .individual____dishes {
+    width: 14rem;
+    height: 15rem;
+  }
+  .individual____dishes img {
+    width: 7rem;
+    height: 7rem;
+  }
+  .popular____card_____details {
+    position: absolute;
+    top: 62%;
+    left: 6%;
+  }
+  .add____btn___div {
+    position: absolute;
+    left: 154%;
+  }
+  .hart___icon {
+    position: absolute;
+    top: -1%;
+    left: 79%;
+  }
+}
+@media (max-width: 1211px) {
+  .add____btn___div {
+    position: absolute;
+    left: 208%;
+  }
+  .hart___icon {
+    position: absolute;
+    top: -1%;
+    left: 75%;
+  }
+  .popular_____dishes {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}
+@media (max-width: 1371px) {
+  .popular____card_____details___recent {
+    position: absolute;
+    top: 71%;
+    left: 24%;
+  }
+}
+@media (max-width: 1298px) {
+  .popular____card_____details___recent {
+    position: absolute;
+    top: 71%;
+    left: 25%;
+  }
+}
+@media (max-width: 1141px){
+  .individual____dishes{
+    width: 12rem;
+  }
+  .add____btn___div{
+    position: absolute;
+    left: 174%;
+  }
+}
+@media (max-width: 1092px) {
+  .first____class {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 33%;
+  }
+  .right_____content {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 30%;
+  }
+  .main_____content{
+    width: 100%;
+    padding: 10px;
+  }
+  .hello{
+    position: relative;
+    left: 0;
+    width: 100%;
+  }
+  .popular_____dishes {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+  }
+  .individual____dishes img {
+    width: 9rem;
+    height: 9rem;
+    object-fit: cover;
+    position: absolute;
+    left: 22.5%;
+    top: 9%;
+    border-radius: 7px;
+  }
+  .closeIcon{
+    display: flex;
+  }
+  .individual____dishes {
+    transition: 0.2s all ease-in-out;
+    background: var(--white);
+    width: 16rem;
+    height: 17rem;
+    position: relative;
+    border-radius: 5px;
+  }
+  .hart___icon {
+    position: absolute;
+    top: -1%;
+    left: 83%;
+    font-size: 28px;
+  }
+  .add____btn___div {
+    position: absolute;
+    top: 35px;
+    left: 234%;
+  }
+  .popular____card_____details {
+    position: absolute;
+    top: 67%;
+    left: 10%;
+  }
+  .popular____card_____details___recent {
+    position: absolute;
+    top: 71%;
+    left: 29%;
+  }
+  .main_____mobile___menu{
+    display: flex !important;
+  }
+  .close___icon{
+    display: block;
+  }
+}
+@media (max-width: 874px){
+.first____class {
+    width: 36%;
+}
+}
+@media (max-width: 750px){
+.first____class {
+    width: 42%;
+}
+}
+@media (max-width: 600px){
+  .first____class {
+      width: 100%;
+  }
+  }
+@media (max-width: 942px){
+  .right_____content{
+    width: 38%;
+  }
+} 
+@media (max-width: 785px){
+  .right_____content{
+    width: 42%;
+  }
+} 
+@media (max-width: 700px){
+  .right_____content{
+    width: 47%;
+  }
+} 
+@media (max-width: 600px){
+  .right_____content{
+    width: 100%;
+  }
+  .balance____part {
+    padding: 0 16px;
+    position: relative;
+    width: 100%;
+  }
+  .balance____part img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  .balance____overlay {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 36%;
+    left: 10%;
+  }
+  .first___inner___div {
+    background: var(--white);
+    padding: 0.6rem 0.9rem;
+    border-radius: 14px;
+  }
+  .first____icon {
+    display: inline-block;
+    background: var(--white);
+    padding: 5px 10px;
+    border-radius: 7px;
+  }
+}
+
+@media (max-width: 988px){
+  .individual____dishes{
+    width: 15rem;
+  }
+  .popular_____dishes{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+  }
+  .add____btn___div {
+    position: absolute;
+    left: 193%;
+}
+}
+@media (max-width: 828px){
+  .individual____dishes img{
+    width: 7rem;
+    height: 7rem;
+    left: 19.5%;
+  }
+  .individual____dishes{
+    width: 12rem;
+  }
+  .add____btn___div{
+    left: 166%;
+  }
+  .popular____card_____details___recent{
+    left: 23%;
+  }
+}
+@media (max-width: 710px){
+  .popular_____dishes{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+  }
+  
+}
+@media (max-width: 520px){
+  .individual____dishes {
+    width: 90%;
+}
+.individual____dishes img {
+  width: 58%;
+  height: 10rem;
+  left: 20.5%;
+}
+.add____btn___div {
+  left: 327%;
+}
+.popular____card_____details {
+  position: absolute;
+  top: 71%;
+  left: 10%;
+}
+.popular_____dishes{
+  display: flex;
+  justify-content: center;
+}
+.popular____card_____details___recent{
+  position: absolute;
+  top: 73%;
+  left: 34%;
+}
+}
+@media (max-width: 494px){
+  .add____btn___div {
+    left: 301%;
+}
+}
+@media (max-width: 446px){
+  .add____btn___div {
+    left: 281%;
+}
+}
+@media (max-width: 414px){
+  .add____btn___div {
+    left: 262%;
+}
+}
+@media (max-width: 390px){
+  .add____btn___div {
+    left: 238%;
+}
+}
+@media (max-width: 362px){
+  .add____btn___div {
+    left: 221%;
+}
+}
+@media (max-width: 336px){
+  .add____btn___div {
+    left: 239%;
+}
+.individual____dishes{
+  width: 100%;
+}
+}
+@media (max-width: 328px){
+  .add____btn___div {
+    left: 222%;
+}
+}
+@media (max-width: 308px){
+  .add____btn___div {
+    left: 208%;
+}
+}
+@media (max-width: 292px){
+  .add____btn___div {
+    left: 197%;
+}
+}
+@media (max-width: 520px){
+.popular____card_____details___recent {
+    position: absolute;
+    top: 73%;
+    left: 30%;
+}
 }
