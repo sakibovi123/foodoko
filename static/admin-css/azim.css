@@ -1,0 +1,29 @@
+.main____table{
+    background-color: #fff;
+    padding: 12px;
+}
+.main____dept____table{
+    background: #fff;
+    border-radius: 6px;
+}
+.cross____icon{
+    font-size: 25px;
+    transition: .2s all ease-in-out;
+}
+.cross____icon:hover{
+    transform: scale(1.1);
+    color: #2E59D9;
+}
+.upload_____img input {
+    visibility: hidden;
+  }
+  
+  .upload_____img label {
+    cursor: pointer;
+    border: 1px solid #2E59D8;
+    background: #fff;
+    color: #2E59D8;
+    padding: 8px 20px;
+    border-radius: 5px;
+    text-align: center;
+  }

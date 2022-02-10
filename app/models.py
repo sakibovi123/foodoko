@@ -48,3 +48,7 @@ class Order(models.Model):
 
     def __str__(self):
         return self.invoice_no
+
+
+class FavoriteRestaurants(models.Model):
+    created_at = models.DateField(default=date.today)

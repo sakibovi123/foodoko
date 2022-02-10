@@ -9,6 +9,7 @@ class VendorProfile(models.Model):
     shop_logo = models.ImageField(upload_to="images/")
     contact_number = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
+    total_sale = models.DecimalField(decimal_places=2, max_digits=19, default=0.00)
 
     class Meta:
         ordering = ["-id"]
@@ -25,7 +26,9 @@ class DriverProfile(models.Model):
     photo = models.ImageField(upload_to="images/")
     driving_license_photo = models.ImageField(upload_to="images/", null=True, blank=True)
     address = models.CharField(max_length=255)
-
+    total_earning = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
+    total_paid = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
+    
     class Meta:
         ordering = ["-id"]
         verbose_name = "Driver Profile"

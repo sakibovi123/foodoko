@@ -6,7 +6,7 @@ from authentication.models import *
 class Category(models.Model):
     title = models.CharField(max_length=255)
     vendor = models.ForeignKey(VendorProfile, on_delete=models.CASCADE)
-    cateogory_img = models.ImageField(upload_to="images/")
+    category_img = models.ImageField(upload_to="images/")
 
     class Meta:
         ordering = ["-id"]
@@ -21,11 +21,15 @@ class Product(models.Model):
         ("Active", "Active"),
         ("Deactive", "Deactive")
     )
+    STOCK_STATUS = (
+        ("Yes", "Yes"),
+        ("No", "No")
+    )
     title = models.CharField(max_length=255)
     product_image = models.ImageField(upload_to="images/")
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     vendor = models.ForeignKey(VendorProfile, on_delete=models.CASCADE)
-    is_out_stock = models.IntegerField(null=True, blank=True)
+    is_out_stock = models.CharField(max_length=255, null=True, blank=True, default="No")
     stock_qty = models.PositiveIntegerField(null=True, blank=True)
     status = models.CharField(max_length=255, choices=STATUS_CHOICE)
     regular_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)

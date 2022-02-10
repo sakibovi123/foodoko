@@ -147,10 +147,10 @@ def checkout(self, request):
         )
 
         order.save()
-        grand_total = 0
+        total = 0
         for p in cart_products:
             quantity = cart.get(str(p.id))
-            grand_total += p.regular_price * quantity
+            total += p.regular_price * quantity
 
             cartItems = CartItems(
                 product=p,
@@ -158,7 +158,9 @@ def checkout(self, request):
             )
             cartItems.save()
             Order.items.add(cartItems)
-        order.grand_total = grand_total
+        order.total = total
+        order.vendor.total_sale += total
+        order.vendor.save()
         order.save()
         request.session.cart = {}
         return redirect(f"/")

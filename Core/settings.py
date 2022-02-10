@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     "app",
     "authentication",
     "vendorside",
-    "driverside"
+    "driverside",
+    "Dashboard"
 ]
 
 MIDDLEWARE = [
