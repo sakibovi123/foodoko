@@ -43,7 +43,18 @@ urlpatterns = [
     # Penalty path
     path("penalty/", Penalty.as_view(), name="penaltyview"),
     path("add-penalty/", AddPenalty.as_view(), name="addPenalty"),
-    path("edit-penalty/", EditPenalty.as_view(), name="editPenalty"),
+    path("edit-penalty/<int:pen_id>/", EditPenalty.as_view(), name="editPenalty"),
     path("delete-penalty/", deletePenalty, name="deletePenalty"),
+
+    #vehicles types path
+    path("vehicles/", VehicleTypes.as_view(), name="vehicleView"),
+    path("add-vehicle/", AddVehicle.as_view(), name="addVehicle"),
+    path("edit-vehicle/", EditVehicle.as_view(), name="editVehicle"),
+    # Delete method
+
+    # coupon path
+    path("coupons/", Coupons.as_view(), name="coupons"),
+    path("add-coupon/", AddCoupon.as_view(), name="addCoupon"),
+    path("edit-coupon/<int:coupon_id>/", EditCoupon.as_view(), name="editCoupon"),
 
 ]

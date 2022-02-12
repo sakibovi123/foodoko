@@ -1,0 +1,131 @@
+{% load static %}
+{% include 'base.html' %}
+
+<!-- Page level plugins -->
+<script src="{% static 'admin-vendor/chart.js/Chart.min.js' %}" defer></script>
+
+<!-- Page level custom scripts -->
+<script src="{% static 'admin-js/demo/chart-area-demo.js' %}" defer></script>
+<script src="{% static 'admin-js/demo/chart-area-demo.js' %}" defer></script>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- sidebar -->
+        
+        {% include 'admin-sidebar.html' %}
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+               {% include 'admin-nav.html' %}
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Edit Vendor</h1>
+                        <a href="{% url 'VendorView' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Go Back</a>
+                    </div>
+
+                    <form>
+                    <div class="add___cat___form">
+                        <div class="mb-3">
+                            <label for="ven-title" class="form-label">Vendor Title</label>
+                            <input type="text" class="form-control" id="ven-title" aria-describedby="ven-title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="shop-title" class="form-label">Shop Name</label>
+                        <input type="text" class="form-control" id="shop-title" aria-describedby="shop-title">
+                </div>
+                <div class="mb-3">
+                    <label for="ven-contact" class="form-label">Contact</label>
+                    <input type="tel" class="form-control" id="ven-contact" aria-describedby="ven-contact">
+            </div>
+            <div class="form-floating mt-2">
+                <label for="address">Address</label>
+                <textarea class="form-control" placeholder="Your Address.." id="address"></textarea>
+              </div>
+              <div class="mt-2">
+                <label for="total_sale" class="form-label">Total Sale</label>
+                <input type="number" class="form-control" id="total_sale" aria-describedby="total_sale">
+        </div>
+                        <div class="upload_____img mt-3">
+                            <label for="createuploadImg" class="fw-bold">Upload Shop Logo</label>
+                            <input
+                              type="file"
+                              id="createuploadImg"
+                              name="uploadImg"
+                              onchange="forupload(this)"
+                              name="item_img"
+                              accept="image/*"
+                            />
+                            <div class="my-2">
+                              <img id="product__img" style="width: 5rem; height: 5rem; object-fit: cover" src="" alt="" />
+                            </div>
+                         
+                          </div>
+                      </div>
+                </div>
+                    
+
+                </form>
+                    
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const image = document.getElementById("product__img")
+  image.style.display = "none"
+
+  function forupload(e) {
+    let fileVal = e.files[0];
+
+    if (fileVal) {
+      document.querySelector("#product__img").src = URL.createObjectURL(fileVal);
+      image.style.display = "block"
+    }
+  }
+        </script>
+</body>

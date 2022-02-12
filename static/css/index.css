@@ -3,6 +3,14 @@ body {
   background-color: var(--lite-white);
 }
 
+
+.view____all___icon{
+  transition: .4s all ease-in-out;
+}
+.view:hover .view____all___icon{
+  transform: rotate(180deg);
+}
+
 /* mobile nav style */
 .main_____mobile___menu{
   display: none !important;
@@ -515,6 +523,14 @@ body {
 .coupon p {
   margin-block-end: 0;
   margin-block-start: 0;
+}
+.coupon____btn{
+  border: none;
+  background: transparent;
+  transition: .2s all ease-in-out;
+}
+.coupon____btn:hover{
+  transform: scale(1.1);
 }
 .first___inner___div {
   background: var(--white);

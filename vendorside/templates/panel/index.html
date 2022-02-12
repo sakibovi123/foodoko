@@ -1,48 +1,44 @@
-{% include 'panel/base.html' %}
-  <body>
-    {% include 'panel/sidebar.html' %}
-    <section id="interface">
-        {% include 'panel/navbar.html' %}
-        <h3 class="i-name">Vendor Panel</h3>
+{% include 'panel/sidebar.html' %}
+{% include 'panel/navbar.html' %}
 
-        <div class="values">
-            {% comment %} box 1 {% endcomment %}
-            <div class="val-box">
-                <i class="fas fa-user"></i>
-                <div>
-                    <h3>Sales</h3>
-                    <span>New Sales!</span>
-                </div>
-            </div>
-            {% comment %} box 2 {% endcomment %}
-            <div class="val-box">
-                <i class="fas fa-user"></i>
-                <div>
-                    <h3>Sales</h3>
-                    <span>New Sales!</span>
-                </div>
-            </div>
-            {% comment %} box 3  {% endcomment %}
-            <div class="val-box">
-                <i class="fas fa-user"></i>
-                <div>
-                    <h3>Sales</h3>
-                    <span>New Sales!</span>
-                </div>
-            </div>
-            {% comment %} box 4  {% endcomment %}
-            <div class="val-box">
-                <i class="fas fa-user"></i>
-                <div>
-                    <h3>Sales</h3>
-                    <span>New Sales!</span>
-                </div>
-            </div>
-        </div>
-        <div class="board">
-            {% comment %} table {% endcomment %}
-        </div>
-    </section>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  </body>
-</html>
+<div class="main___content">
+    <div>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
+
+
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+  crossorigin="anonymous"
+></script>

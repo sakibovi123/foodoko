@@ -8,7 +8,7 @@ class VendorProfile(models.Model):
     shop_name = models.CharField(max_length=255, unique=True)
     shop_logo = models.ImageField(upload_to="images/")
     contact_number = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
+    address = models.TextField(null=True)
     total_sale = models.DecimalField(decimal_places=2, max_digits=19, default=0.00)
 
     class Meta:

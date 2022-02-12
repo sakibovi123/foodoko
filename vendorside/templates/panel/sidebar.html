@@ -1,3 +1,4 @@
+{% load static %}
 {% include 'panel/base.html' %}
 <section id="menu">
     <div class="logo">
@@ -5,10 +6,15 @@
         <h2>SHOP NAME</h2>
     </div>
     <div class="items">
-        <li><i class="fas fa-user"></i><a href="">Dashboard</a></li>
-        <li><i class="fas fa-user"></i><a href="">Dashboard</a></li>
-        <li><i class="fas fa-user"></i><a href="">Dashboard</a></li>
-        <li><i class="fas fa-user"></i><a href="">Dashboard</a></li>
-        <li><i class="fas fa-user"></i><a href="">Dashboard</a></li>
+        <li><i><span class="iconify fs-3 mb-1" data-icon="mdi:chart-arc"></span></i><a href="">Dashboard</a></li>
+        <li><i><span class="iconify fs-3 mb-1" data-icon="mdi:shape-outline"></span></i><a href="{% url 'vendorCategory' vendorId.id %}">Category Management</a></li>
+        <li><i><span class="iconify fs-3 mb-1" data-icon="mdi:archive-settings"></span></i><a href="">Product Management</a></li>
+        {% comment %} <li><i><span class="iconify fs-3 mb-1" data-icon="mdi:account-check"></span></i><a href="">Role Management</a></li> {% endcomment %}
+        <li><i><span class="iconify fs-3 mb-1" data-icon="mdi:point-of-sale"></span></i><a href="">All Sales</a></li>
+        <hr class="dag">
+        <li><i><span class="iconify fs-3 mb-1" data-icon="mdi:cog-box"></span></i><a href="">Settings</a></li>
+        <li><i><span class="iconify fs-3 mb-1" data-icon="mdi:folder-plus"></span></i><a href="">Addons</a></li>
+        <li><i><span class="iconify fs-3 mb-1" data-icon="mdi:account-box"></span></i><a href="">Contact Admin</a></li>
+        <li><i><span class="iconify fs-3 mb-1" data-icon="mdi:logout"></span></i><a href="">Logout</a></li>
     </div>
 </section>

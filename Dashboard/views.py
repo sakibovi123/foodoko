@@ -80,7 +80,7 @@ class ProductView(View):
 
 
 class AddProduct(View):
-    template_name = "product/add_product.html"
+    template_name = "product/add-product.html"
 
     def get(self, request):
         args = {}
@@ -194,7 +194,7 @@ class PermissionsView(View):
 
 
 class AddPermissions(View):
-    template_name = "permissions/add-permission.html"
+    template_name = "permission/add_permission.html"
     def get(self, request):
         args = {}
         return render(request, self.template_name, args)
@@ -311,7 +311,8 @@ class AddDriver(View):
     template_name = "store/add_driver.html"
     
     def get(self, request):
-        pass
+        args = {}
+        return render(request, self.template_name, args)
 
 
 class EditDriver(View):
@@ -360,7 +361,7 @@ class AddPenalty(View):
 
 
 class EditPenalty(View):
-    template_name = "penalty/"
+    template_name = "penalty/edit_penalty.html"
     def get(self, request, pen_id):
         penId = Penalty.objects.get(pk=pen_id)
         args = {
@@ -422,3 +423,51 @@ def deleteVendor(request, ven_id):
     vendorId.delete()
     return redirect()
 
+
+
+class VehicleTypes(View):
+    template_name = "vehicles/vehicles.html"
+
+    def get(self, request):
+        args = {}
+        return render(request, self.template_name, args)
+
+
+class AddVehicle(View):
+    template_name = "vehicles/add_vehicle.html"
+
+    def get(self, request):
+        args = {}
+        return render(request, self.template_name, args)
+
+
+class EditVehicle(View):
+    template_name = "vehicles/edit_vehicle.html"
+
+    def get(self, request):
+        args = {}
+        return render(request, self.template_name, args)
+
+
+class Coupons(View):
+    template_name = "coupons/coupons.html"
+
+    def get(self, request):
+        args = {}
+        return render(request, self.template_name, args)
+
+
+class AddCoupon(View):
+    template_name = "coupons/add_coupon.html"
+
+    def get(self, request):
+        args = {}
+        return render(request, self.template_name, args)
+
+
+class EditCoupon(View):
+    template_name = "coupons/edit_coupon.html"
+
+    def get(self, request, coupon_id):
+        args = {}
+        return render(request, self.template_name, args)
