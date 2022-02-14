@@ -12,7 +12,9 @@ class HomePageView(View):
         all_prods = Product.objects.all()
 
         # Wallet
-        balance = Wallet.objects.get(user=request.user)
+        balance = None
+        if request.user.is_authenticated:
+            balance = Wallet.objects.get(user=request.user)
 
         # Cart View
         cart = request.session.get("cart", None)

@@ -35,6 +35,7 @@
                     </div>
 
                     <div class="main____dept____table table-responsive">
+                      {% if products %}
                         <table class="table">
                           <thead class="table_____head">
                             <tr>
@@ -49,26 +50,41 @@
                             </tr>
                           </thead>
                           <tbody class="catgory__table">
-                        
+                            
+                            {% for p in products %}
                             <tr>
-                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">Foood</a></td>
-                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">Foood</a></td>
-                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">Foood</a></td>
-                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">Foood</a></td>
-                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">Foood</a></td>
-                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">Foood</a></td>
-                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">Foood</a></td>
+                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">{{p.title}}</a></td>
+                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">{{ p.category.title }}</a></td>
+                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">{{ p.vendor }}</a></td>
+                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">{{ p.is_out_stock }}</a></td>
+                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">{{ p.stock_qty }}</a></td>
+                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">{{ p.status }}</a></td>
+                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">{{ p.regular_price }}</a></td>
+                             
+                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">
+                                {% if p.sale_price %}
+                                {{ p.sale_price }}
+                                {% else %} 0.00 {% endif %}
+                              </a></td>
                               <td class="d-flex align-items-center">
-                                <a href="#" class="w-100 d-flex text-dark">NO Vendor Name</a>
+                                
                                 <form method="POST" action="">
                                 
                                   <button class="border-0 bg-white" type="submit"><i class="fas fa-times-circle cross____icon"></i></button>
                                 </form>
+                                <a href="{% url 'editProduct' p.id %}"><i class="fas fa-edit cross____icon"></i></a>
                               </td>
                             </tr>
+                            {% endfor %}
+                            
                            
                           </tbody>
                         </table>
+                        {% else %}
+                            <div class="alert alert-danger text-center" role="alert">
+                              No Products Found!
+                            </div>
+                            {% endif %}
                       </div>
 
                 </div>

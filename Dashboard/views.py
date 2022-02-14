@@ -1,4 +1,6 @@
+from itertools import product
 from turtle import title
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views import View
 from authentication.models import VendorProfile
@@ -33,7 +35,10 @@ class AddCategory(View):
     template_name = "category/add_category.html"
 
     def get(self, request):
-        args = {}
+        vendors = VendorProfile.objects.all()
+        args = {
+            "vendors": vendors,
+        }
         return render(request, self.template_name, args)
     
     def post(self, request):
@@ -42,40 +47,61 @@ class AddCategory(View):
             vendor = request.POST.get("vendor")
             category_img = request.FILES.get("category_img")
 
-            Category.objecs.create(
+            Category.objects.create(
                 title = title,
                 vendor = VendorProfile.objects.get(id=vendor),
                 category_img = category_img
             )
+            return redirect("categoryView")
 
 # Actions
-def deleteCategory(request, cat_id):
-    catId = get_object_or_404(Category, pk=cat_id)
-    catId.delete()
-    return redirect("")
+def deleteCategory(request):
+    if request.method == "POST":
+        catId = request.POST.get("catId")
+        category = Category.objects.get(id=catId)
+        category.delete()
+        return redirect("categoryView")
+    else:
+        return HttpResponse("Server Error")
 
 
 class EditCategory(View):
     template_name = "category/edit_category.html"
     def get(self, request, cat_id):
-        args = {}
+        catId = get_object_or_404(Category, pk=cat_id)
+        vendors = VendorProfile.objects.all()
+        args = {
+            "catId": catId,
+            "vendors": vendors
+        }
         return render(request, self.template_name, args)
 
     def post(self, request, cat_id):
         catId = get_object_or_404(Category, pk=cat_id)
-        catId.title = request.POST.get("title")
-        catId.vendor = request.POST.get("vendor")
-        catId.category_img = request.FILES.get("category_img")
+        title = request.POST.get("title")
+        vendor = request.POST.get("vendor")
+        category_img = request.FILES.get("category_img")
+
+
+        catId.title = title
+        catId.vendor = VendorProfile.objects.get(id=vendor)
+        if category_img is not None:
+            catId.category_img = category_img
+        else:
+            catId.category_img = catId.category_img
 
         catId.save()
-        return redirect("")
+        return redirect("categoryView")
 
 
 class ProductView(View):
     template_name = "product/products.html"
 
     def get(self, request):
-        args = {}
+        products = Product.objects.all()
+        args = {
+            "products": products,
+        }
         return render(request, self.template_name, args)
 
 
@@ -83,7 +109,12 @@ class AddProduct(View):
     template_name = "product/add-product.html"
 
     def get(self, request):
-        args = {}
+        category = Category.objects.all()
+        vendors = VendorProfile.objects.all()
+        args = {
+            "category": category,
+            "vendors": vendors,
+        }
         return render(request, self.template_name, args)
 
     def post(self ,request):
@@ -133,21 +164,30 @@ class AddProduct(View):
                     recently_viewed=False,
                 )
                 product.save()
-                return redirect("")
+                return redirect("productView")
 
 
 # Delete Method
-def deleteProduct(request, product_id):
-    productId = get_object_or_404(Product, pk=product_id)
-    productId.delete()
-    return redirect("")
+def deleteProduct(request):
+    if request.method == "POST":
+        productId = request.POST.get("productId")
+        product = Product.objects.get(id=productId)
+        product.delete()
+        return redirect("productView")
 
 
 
 class EditProduct(View):
     template_name = "product/edit-product.html"
     def get(self, request, product_id):
-        args = {}
+        productId = get_object_or_404(Product, pk=product_id)
+        category = Category.objects.all()
+        vendors = VendorProfile.objects.all()
+        args = {
+            "productId": productId,
+            "category": category,
+            "vendors": vendors,
+        }
         return render(request, self.template_name, args)
 
     def post(self, request, product_id):
@@ -165,7 +205,13 @@ class EditProduct(View):
         recently_viewed = request.POST.get("recently_viewed")
 
         productId.title = title
-        productId.product_image = product_image
+
+        if product_image is not None:
+            productId.product_image = product_image
+        else:
+            productId.product_image = productId.product_image
+        
+
         productId.category = Category.objects.get(id=category)
         productId.vendor = VendorProfile.objects.get(id=vendor)
         productId.is_out_stock = is_out_stock
@@ -182,13 +228,16 @@ class EditProduct(View):
         else:
             productId.recently_viewed = False
         productId.save()
-        return redirect("")
+        return redirect("productView")
 
 
 class PermissionsView(View):
     template_name = "permission/permissions.html"
     def get(self, request):
-        args = {}
+        permissions = Permission.objects.all()
+        args = {
+            "permissions": permissions,
+        }
         return render(request, self.template_name, args)
 
 
@@ -206,30 +255,41 @@ class AddPermissions(View):
                 title=title
             )
             permission.save()
-            return redirect()
+            return redirect("permissionsView")
 
 # Delete Method
-def deletePermission(request, p_id):
-    permissionId = get_object_or_404(Permission, pk=p_id)
-    permissionId.delete()
-    return redirect("")
+def deletePermission(request):
+    if request.method == "POST":
+        permission_id = request.POST.get("permission_id")
+        if permission_id is not None:
+            permission = Permission.objects.get(id=permission_id)
+            permission.delete()
+            return redirect("permissionsView")
+        else:
+            return HttpResponse("Field id expected a number but got null value!!")
 
 
 class EditPermission(View):
-    template_name = "permission/permissions.html"
-    def get(self, request):
-        args = {}
+    template_name = "permission/edit_permission.html"
+    def get(self, request, p_id):
+        permissionId = get_object_or_404(Permission, id=p_id)
+        args = {
+            "permissionId": permissionId,
+        }
         return render(request, self.template_name, args)
 
     def post(self, request, p_id):
         permissionId = get_object_or_404(Permission, pk=p_id)
         title = request.POST.get("title")
-        if title != "":
-            permissionId.title = title
-            permissionId.save()
-            return redirect("")
+        if request.method == "POST":
+            if title != "":
+                permissionId.title = title
+                permissionId.save()
+                return redirect("permissionsView")
+            else:
+                return redirect("Title is empty")
         else:
-            return redirect("failed")
+            return HttpResponse("method not found")
 
 
 class RoleView(View):

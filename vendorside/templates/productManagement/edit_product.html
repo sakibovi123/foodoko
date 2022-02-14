@@ -1,0 +1,178 @@
+{% load static %}
+{% include 'panel/base.html' %}
+
+<!-- Page level plugins -->
+<script src="{% static 'admin-vendor/chart.js/Chart.min.js' %}" defer></script>
+
+<!-- Page level custom scripts -->
+<script src="{% static 'admin-js/demo/chart-area-demo.js' %}" defer></script>
+<script src="{% static 'admin-js/demo/chart-area-demo.js' %}" defer></script>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- sidebar -->
+        
+        {% include 'panel/sidebar.html' %}
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+               {% include 'panel/navbar.html' %}
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Edit Product</h1>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Go Back</a>
+                    </div>
+
+                    <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="add___cat___form">
+                        <div class="mb-3">
+                            <label for="pro-title" class="form-label">Product Title</label>
+                            <input type="text" name="title" value="{{ productId.title }}" class="form-control" id="pro-title" aria-describedby="product">
+                    </div>
+                    <div>
+                    <label for="pro_cat">Select Category</label>
+                    <select class="form-control" id="pro_cat" name="category">
+                      {% for c in category %}
+                        <option value="{{ c.id }}">{{ c.title }}</option>
+                      {% endfor %}
+                      </select>
+                    </div>
+                    <div class="mt-2">
+                      <label for="pro_vendor">Select Vendor</label>
+                      <select class="form-control" id="pro_vendor" name="vendor">
+                        {% for v in vendors %}
+                          <option value="{{ v.id }}">{{ v.vendor_name }}</option>
+                        {% endfor %}
+                          
+                        </select>
+                    </div>
+                    <div class="mt-2">
+                        <label for="stock">Stock Availability</label>
+                        <select class="form-control" id="stock" name="is_out_stock">
+                            <option value="YES">Yes</option>
+                            <option value="NO">No</option>
+                          
+                          </select>
+                      </div>
+                      <div class="mt-2">
+                        <label for="stock-qty" class="form-label">Stock Quantity</label>
+                        <input type="number" name="stock_qty" class="form-control" id="stock-qty" aria-describedby="stock-qty">
+                </div>
+                <div class="mt-2">
+                    <label for="status">Status</label>
+                    <select class="form-control" id="status" name="status">
+                        <option>Active</option>
+                        <option>Inactive</option>
+                      
+                      </select>
+                  </div>
+                  <div class="mt-2">
+                    <label for="reg-price" class="form-label">Regular Price</label>
+                    <input type="number" name="regular_price" class="form-control" id="reg-price" aria-describedby="reg-price">
+            </div>
+            <div class="mt-2">
+                <label for="sell-price" class="form-label">Selling Price</label>
+                <input type="number" name="sale_price" class="form-control" id="sell-price" aria-describedby="sell-price">
+        </div>
+        <div class="form-check mt-2">
+            <input class="form-check-input" type="checkbox" value="False" id="popular">
+            <label class="form-check-label" for="popular">
+              Is Popular
+            </label>
+          </div>
+          <div class="form-check mt-2">
+            <input class="form-check-input" type="checkbox" value="False" id="view">
+            <label class="form-check-label" for="view">
+              Recently Viewed
+            </label>
+          </div>
+                        <div class="upload_____img mt-3">
+                            <label for="createuploadImg" class="fw-bold">Upload Image</label>
+                            <input
+                              type="file"
+                              id="createuploadImg"
+                              name="uploadImg"
+                              onchange="forupload(this)"
+                              name="item_img"
+                              accept="image/*"
+                            />
+                            <div class="my-2">
+                              <img id="product__img" style="width: 5rem; height: 5rem; object-fit: cover" src="" alt="" />
+                            </div>
+                         
+                          </div>
+                      </div>
+
+                      <div class="mt-2">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    
+                                            </div>
+                </div>
+                    
+
+                </form>
+                    
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const image = document.getElementById("product__img")
+  image.style.display = "none"
+
+  function forupload(e) {
+    let fileVal = e.files[0];
+
+    if (fileVal) {
+      document.querySelector("#product__img").src = URL.createObjectURL(fileVal);
+      image.style.display = "block"
+    }
+  }
+        </script>
+</body>

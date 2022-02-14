@@ -7,7 +7,7 @@ urlpatterns = [
     # Category
     path("category/", CategoryView.as_view(), name="categoryView"),
     path("add-category/", AddCategory.as_view(), name="addCategory"),
-    path("delete-category/<int:cat_id>/", deleteCategory, name="deleteCategory"),
+    path("delete-category/", deleteCategory, name="deleteCategory"),
     path("edit-category/<int:cat_id>/", EditCategory.as_view(), name="editCategory"),
 
     # Product Path
@@ -25,7 +25,7 @@ urlpatterns = [
     # Permission Path
     path("permissions/", PermissionsView.as_view(), name="permissionsView"),
     path("add-permission/", AddPermissions.as_view(), name="addPermission"),
-    path("delete-permission/<int:p_id>", deletePermission, name="deletePermission"),
+    path("delete-permission/", deletePermission, name="deletePermission"),
     path("edit-permission/<int:p_id>/", EditPermission.as_view(), name="editPermission"),
 
     # role path

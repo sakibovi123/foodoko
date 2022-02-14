@@ -34,34 +34,36 @@
                         <a href="{% url 'categoryView' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Go Back</a>
                     </div>
 
-                    <form>
+                    <form method="POST" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
                     <div class="add___cat___form">
                         <div class="mb-3">
                             <label for="cat-title" class="form-label">Category Title</label>
-                            <input type="text" class="form-control" id="cat-title" aria-describedby="category">
+                            <input type="text" name="title" value="{{  catId.title}}" class="form-control" id="cat-title" aria-describedby="category">
                     </div>
                     <label for="sel1">Select Vendor</label>
                     <select class="form-control" id="vendor" name="vendor">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
+                        {% for v in vendors %}
+                            <option value="{{ v.id }}">{{ v.vendor_name }}</option>
+                        {% endfor %}
                       </select>
                         <div class="upload_____img mt-3">
                             <label for="createuploadImg" class="fw-bold">Upload Image</label>
                             <input
                               type="file"
                               id="createuploadImg"
-                              name="uploadImg"
+                              name="category_img"
                               onchange="forupload(this)"
                               name="item_img"
                               accept="image/*"
                             />
                             <div class="my-2">
-                              <img id="product__img" style="width: 5rem; height: 5rem; object-fit: cover" src="" alt="" />
+                              <img id="product__img" style="width: 5rem; height: 5rem; object-fit: cover" src="{{ catId.category_img.url }}" alt="" />
                             </div>
                          
                           </div>
+                    <button class="btn btn-primary" type="submit">Save</button>
+
                       </div>
                 </div>
                     

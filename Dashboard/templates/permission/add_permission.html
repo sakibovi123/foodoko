@@ -34,12 +34,17 @@
                         <a href="{% url 'permissionsView' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Go Back</a>
                     </div>
 
-                    <form>
+                    <form method="POST">
+                    {% csrf_token %}
                     <div class="add___cat___form">
                         <div class="mb-3">
-                            <label for="cat-title" class="form-label">Category Title</label>
-                            <input type="text" class="form-control" id="cat-title" aria-describedby="category">
+                            <label for="cat-title" class="form-label">Permission Title</label>
+                            <input type="text" name="title" class="form-control" id="cat-title" aria-describedby="category">
                     </div>
+                    
+                      </div>
+                      <div class="mt-2">
+                        <button type="submit" class="btn btn-primary">Save</button>
                     
                       </div>
                 </div>

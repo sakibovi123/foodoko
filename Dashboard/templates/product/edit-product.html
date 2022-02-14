@@ -34,45 +34,46 @@
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Go Back</a>
                     </div>
 
-                    <form>
+                    <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
                     <div class="add___cat___form">
                         <div class="mb-3">
                             <label for="pro-title" class="form-label">Product Title</label>
-                            <input type="text" class="form-control" id="pro-title" aria-describedby="product">
+                            <input type="text" name="title" value="{{ productId.title }}" class="form-control" id="pro-title" aria-describedby="product">
                     </div>
                     <div>
                     <label for="pro_cat">Select Category</label>
-                    <select class="form-control" id="pro_cat" name="pro_cat">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
+                    <select class="form-control" id="pro_cat" name="category">
+                      {% for c in category %}
+                        <option value="{{ c.id }}">{{ c.title }}</option>
+                      {% endfor %}
                       </select>
                     </div>
                     <div class="mt-2">
                       <label for="pro_vendor">Select Vendor</label>
-                      <select class="form-control" id="pro_vendor" name="pro_vendor">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
+                      <select class="form-control" id="pro_vendor" name="vendor">
+                      {% for v in vendors %}
+                          <option value="{{ v.id }}">{{ v.vendor_name }}</option>
+                      {% endfor %}
                         </select>
                     </div>
                     <div class="mt-2">
                         <label for="stock">Stock Availability</label>
                         <select class="form-control" id="stock" name="stock">
-                            <option>Yes</option>
-                            <option>No</option>
+                            <option>Selected: {{ productId.is_out_stock }}</option>
+                            <option value="YES">Yes</option>
+                            <option value="NO">No</option>
                           
                           </select>
                       </div>
                       <div class="mt-2">
                         <label for="stock-qty" class="form-label">Stock Quantity</label>
-                        <input type="number" class="form-control" id="stock-qty" aria-describedby="stock-qty">
+                        <input type="number" name="stock_qty" value="{{ productId.stock_qty }}" class="form-control" id="stock-qty" aria-describedby="stock-qty">
                 </div>
                 <div class="mt-2">
                     <label for="status">Status</label>
                     <select class="form-control" id="status" name="status">
+                        <option>Selected: {{ productId.status }}</option>
                         <option>Active</option>
                         <option>Inactive</option>
                       
@@ -80,40 +81,52 @@
                   </div>
                   <div class="mt-2">
                     <label for="reg-price" class="form-label">Regular Price</label>
-                    <input type="number" class="form-control" id="reg-price" aria-describedby="reg-price">
+                    <input type="number" name="regular_price" value="{{ productId.regular_price }}" class="form-control" id="reg-price" aria-describedby="reg-price">
             </div>
             <div class="mt-2">
                 <label for="sell-price" class="form-label">Selling Price</label>
-                <input type="number" class="form-control" id="sell-price" aria-describedby="sell-price">
+                <input type="number" name="sale_price" value="{{ productId.sale_price }}" class="form-control" id="sell-price" aria-describedby="sell-price">
         </div>
         <div class="form-check mt-2">
-            <input class="form-check-input" type="checkbox" value="" id="popular">
+          {% if productId.is_popular == True %}
+            <input class="form-check-input" type="checkbox" name="is_popular" value="True" id="popular" checked>
+          {% else %}<input class="form-check-input" type="checkbox" name="is_popular" value="True" id="popular" checked>{% endif %}
             <label class="form-check-label" for="popular">
               Is Popular
             </label>
           </div>
           <div class="form-check mt-2">
-            <input class="form-check-input" type="checkbox" value="" id="view">
+            <input class="form-check-input" type="checkbox" name="recenlty_viewed" value="True" id="view">
             <label class="form-check-label" for="view">
               Recently Viewed
             </label>
           </div>
-                        <div class="upload_____img mt-3">
-                            <label for="createuploadImg" class="fw-bold">Upload Image</label>
-                            <input
-                              type="file"
-                              id="createuploadImg"
-                              name="uploadImg"
-                              onchange="forupload(this)"
-                              name="item_img"
-                              accept="image/*"
-                            />
-                            <div class="my-2">
-                              <img id="product__img" style="width: 5rem; height: 5rem; object-fit: cover" src="" alt="" />
-                            </div>
-                         
-                          </div>
-                      </div>
+          {% if productId.product_image.url %}
+          <div class="my-2">
+            <img id="" style="width: 5rem; height: 5rem; object-fit: cover" src="{{ productId.product_image.url }}" alt="" />
+          </div>
+          
+          <div class="upload_____img mt-3">
+              <label for="createuploadImg" class="fw-bold">Upload Image</label>
+              <input
+                type="file"
+                id="createuploadImg"
+                name="product_image"
+                onchange="forupload(this)"
+                name="item_img"
+                accept="image/*"
+              />
+              <div class="my-2">
+                <img id="product__img" style="width: 5rem; height: 5rem; object-fit: cover" src="" alt="" />
+              </div>
+            
+            </div>
+            {% endif %}
+        </div>
+        <div class="mt-2">
+          <button type="submit" class="btn btn-primary">Save</button>
+      
+        </div>
                 </div>
                     
 

@@ -43,18 +43,31 @@
                             </tr>
                           </thead>
                           <tbody class="catgory__table">
-                        
+                            {% if cats %}
+                            {% for c in cats %}
                             <tr>
-                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">Foood</a></td>
+                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">{{ c.title }}</a></td>
                               <td class="d-flex align-items-center">
-                                <a href="#" class="w-100 d-flex text-dark">NO Vendor Name</a>
-                                <form method="POST" action="">
-                                
+                                <a href="{% url 'editCategory' c.id %}" class="w-100 d-flex text-dark">{{ c.vendor }}</a>
+                                <form method="POST" action="{% url 'deleteCategory' %}">
+                                  {% csrf_token %}
+                                  <input type="hidden" name="catId" value="{{ c.id }}">
                                   <button class="border-0 bg-white" type="submit"><i class="fas fa-times-circle cross____icon"></i></button>
                                 </form>
+                                
+                                  
+                                  
+                                <a class="border-0 bg-white" href="{% url 'editCategory' c.id %}"><i class="fas fa-edit cross____icon"></i></a>
+                                
                               </td>
+                               
                             </tr>
-                           
+                            {% endfor %}
+                          {% else %}
+                          <div class="alert alert-warning" role="alert">
+                            No Category Found!
+                          </div>
+                           {% endif %}
                           </tbody>
                         </table>
                       </div>

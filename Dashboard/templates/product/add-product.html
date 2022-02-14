@@ -34,41 +34,41 @@
                         <a href="{% url 'productView' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Go Back</a>
                     </div>
 
-                    <form>
+                    <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
                     <div class="add___cat___form">
                         <div class="mb-3">
                             <label for="pro-title" class="form-label">Product Title</label>
-                            <input type="text" class="form-control" id="pro-title" aria-describedby="product">
+                            <input type="text" name="title" class="form-control" id="pro-title" aria-describedby="product">
                     </div>
                     <div>
                     <label for="pro_cat">Select Category</label>
-                    <select class="form-control" id="pro_cat" name="pro_cat">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
+                    <select class="form-control" id="pro_cat" name="category">
+                      {% for c in category %}
+                        <option value="{{ c.id }}">{{ c.title }}</option>
+                      {% endfor %}
                       </select>
                     </div>
                     <div class="mt-2">
                       <label for="pro_vendor">Select Vendor</label>
-                      <select class="form-control" id="pro_vendor" name="pro_vendor">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
+                      <select class="form-control" id="pro_vendor" name="vendor">
+                        {% for v in vendors %}
+                          <option value="{{ v.id }}">{{ v.vendor_name }}</option>
+                        {% endfor %}
+                          
                         </select>
                     </div>
                     <div class="mt-2">
                         <label for="stock">Stock Availability</label>
-                        <select class="form-control" id="stock" name="stock">
-                            <option>Yes</option>
-                            <option>No</option>
+                        <select class="form-control" id="stock" name="is_out_stock">
+                            <option value="YES">Yes</option>
+                            <option value="NO">No</option>
                           
                           </select>
                       </div>
                       <div class="mt-2">
                         <label for="stock-qty" class="form-label">Stock Quantity</label>
-                        <input type="number" class="form-control" id="stock-qty" aria-describedby="stock-qty">
+                        <input type="number" name="stock_qty" class="form-control" id="stock-qty" aria-describedby="stock-qty">
                 </div>
                 <div class="mt-2">
                     <label for="status">Status</label>
@@ -80,20 +80,20 @@
                   </div>
                   <div class="mt-2">
                     <label for="reg-price" class="form-label">Regular Price</label>
-                    <input type="number" class="form-control" id="reg-price" aria-describedby="reg-price">
+                    <input type="number" name="regular_price" class="form-control" id="reg-price" aria-describedby="reg-price">
             </div>
             <div class="mt-2">
                 <label for="sell-price" class="form-label">Selling Price</label>
-                <input type="number" class="form-control" id="sell-price" aria-describedby="sell-price">
+                <input type="number" name="sale_price" class="form-control" id="sell-price" aria-describedby="sell-price">
         </div>
         <div class="form-check mt-2">
-            <input class="form-check-input" type="checkbox" value="" id="popular">
+            <input class="form-check-input" type="checkbox" value="False" id="popular">
             <label class="form-check-label" for="popular">
               Is Popular
             </label>
           </div>
           <div class="form-check mt-2">
-            <input class="form-check-input" type="checkbox" value="" id="view">
+            <input class="form-check-input" type="checkbox" value="False" id="view">
             <label class="form-check-label" for="view">
               Recently Viewed
             </label>
@@ -114,6 +114,11 @@
                          
                           </div>
                       </div>
+
+                      <div class="mt-2">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    
+                                            </div>
                 </div>
                     
 

@@ -1,4 +1,6 @@
 from django.contrib import admin
+
+from vendorside.models import Category, Product
 from .models import *
 # Register your models here.
 
@@ -6,5 +8,7 @@ from .models import *
 admin.site.register([
     Permission,
     Role,
-    Driver
+    Driver,
+    Category,
+    Product
 ])

@@ -35,6 +35,7 @@
                     </div>
 
                     <div class="main____dept____table table-responsive">
+                      {% if permissions %}
                         <table class="table">
                           <thead class="table_____head">
                             <tr>
@@ -44,22 +45,31 @@
                             </tr>
                           </thead>
                           <tbody class="catgory__table">
-                        
+                            {% for p in permissions %}
                             <tr>
-                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">Foood</a></td>
+                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">{{ p.created_at }}</a></td>
                               
 
                               <td class="d-flex align-items-center">
-                                <a href="#" class="w-100 d-flex text-dark">NO Vendor Name</a>
-                                <form method="POST" action="">
-                                
+                                <a href="#" class="w-100 d-flex text-dark">{{ p.title }}</a>
+
+                                <form method="POST" action="{% url 'deletePermission' %}">  
+                                  {% csrf_token %}
+                                  <input type="hidden" value="{{ p.id }}" name="permission_id">                           
                                   <button class="border-0 bg-white" type="submit"><i class="fas fa-times-circle cross____icon"></i></button>
                                 </form>
+                                <a href= "{% url 'editPermission' p.id %}"class="border-0 bg-white"><i class="fas fa-edit cross____icon"></i></a>
                               </td>
                             </tr>
+                            {% endfor %}
                            
                           </tbody>
                         </table>
+                        {% else %}
+                            <div class="alert alert-danger text-center" role="alert">
+                             No Permissions Added
+                            </div>
+                            {% endif %}
                       </div>
 
                 </div>

@@ -39,7 +39,9 @@ class AddCategory(View):
         if vendorId.user != request.user:
             return HttpResponse("Error")
         else:
-            args = {}
+            args = {
+                "vendorId": vendorId,
+            }
             return render(request, self.template_name, args)
 
     def post(self, request, vendor_id):
@@ -248,7 +250,11 @@ class VendorAllSales(View):
     template_name = "panel/allSales/all_sale.html"
 
     def get(self, request, vendor_id):
-        pass
+        vendorId = get_object_or_404(VendorProfile, pk=vendor_id)
+        args = {
+            "vendorId": vendorId,
+        }
+        return render(request, self.template_name, args)
 
 
 

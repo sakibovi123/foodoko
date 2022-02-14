@@ -1,0 +1,56 @@
+.sale-title{
+    font-weight: 600;
+    font-size: 35px;
+    margin-block-end: 0;
+    margin-block-start: 0;
+}
+.individual____card p{
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+.innner____div{
+    font-size: 25px;
+    font-weight: 600;
+}
+.individual____card{
+    background-color: #fff;
+}
+
+.header____card{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px
+}
+.individual____card{
+    padding: 1rem 2.5rem;
+    border-radius: 0.5rem;
+    transition: .2s all ease-in-out;
+}
+.individual____card:hover{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    transform: scale(1.1);
+    border: 1px solid #4A6FDC;
+}
+.table-responsive{
+    margin-top: 30px;
+    padding: 12px;
+    background-color: #fff;
+}
+.table-responsive:hover{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: .5rem;
+}
+.pagination____div{
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 492px){
+    .header____card{
+        display: flex;
+        justify-content: center;
+    }
+}
