@@ -34,23 +34,33 @@
                         <a href="{% url 'VendorView' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Go Back</a>
                     </div>
 
-                    <form>
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
                     <div class="add___cat___form">
                         <div class="mb-3">
                             <label for="ven-title" class="form-label">Vendor Title</label>
-                            <input type="text" class="form-control" id="ven-title" aria-describedby="ven-title">
+                            <input type="text" name="vendor_name" class="form-control" id="ven-title" aria-describedby="ven-title">
+                    </div>
+                    <div class="add___cat___form">
+                        <div class="mb-3">
+                            <label for="ven-title" class="form-label">Vendor Title</label>
+                            <select class="form-control" name="user">
+                                {% for u in users %}
+                                    <option value="{{ u.id }}">{{ u.username }}</option>
+                                {% endfor %}
+                            </select>
                     </div>
                     <div class="mb-3">
                         <label for="shop-title" class="form-label">Shop Name</label>
-                        <input type="text" class="form-control" id="shop-title" aria-describedby="shop-title">
+                        <input type="text" name="shop_name" class="form-control" id="shop-title" aria-describedby="shop-title">
                 </div>
                 <div class="mb-3">
                     <label for="ven-contact" class="form-label">Contact</label>
-                    <input type="tel" class="form-control" id="ven-contact" aria-describedby="ven-contact">
+                    <input type="tel" name="contact_number" class="form-control" id="ven-contact" aria-describedby="ven-contact">
             </div>
             <div class="form-floating mt-2">
                 <label for="address">Address</label>
-                <textarea class="form-control" placeholder="Your Address.." id="address"></textarea>
+                <textarea name="address" class="form-control" placeholder="Your Address.." id="address"></textarea>
               </div>
               <div class="mt-2">
                 <label for="total_sale" class="form-label">Total Sale</label>

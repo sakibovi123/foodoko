@@ -238,7 +238,7 @@ class EditVendorProduct(View):
     
 def deleteVendorProduct(request, vendor_id, product_id):
     vendorId = get_object_or_404(VendorProfile, pk=vendor_id)
-    productId = get_object_or_404(Product, pk=product_id)
+    productId = get_object_or_404(Product, id=vendorId)
     if request.method == "POST":
         productId.delete()
         return redirect("")

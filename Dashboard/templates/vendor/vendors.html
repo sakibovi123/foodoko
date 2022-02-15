@@ -35,9 +35,11 @@
                     </div>
 
                     <div class="main____dept____table table-responsive">
+                      {% if vendors %}
                         <table class="table">
                           <thead class="table_____head">
                             <tr>
+                              <th scope="col">Logo</th>
                               <th scope="col">User</th>
                               <th scope="col">Vendor Name</th>
                               <th scope="col">Shop Name</th>
@@ -47,24 +49,33 @@
                             </tr>
                           </thead>
                           <tbody class="catgory__table">
-                        
+                          {% for v in vendors %}
                             <tr>
-                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">Foood</a></td>
-                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">Foood</a></td>
-                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">Foood</a></td>
-                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">Foood</a></td>
-                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">Foood</a></td>
+                              <td class="category__data"><img src="{{ v.shop_logo.url }}" alt="" style="height: 40px;"></td>
+                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">{{ v.user.username }}</a></td>
+                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">{{ v.vendor_name }}</a></td>
+                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">{{ v.shop_name }}</a></td>
+                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">{{ v.contact_number }}</a></td>
+                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">{{ v.address }}</a></td>
+                              
                               <td class="d-flex align-items-center">
-                                <a href="#" class="w-100 d-flex text-dark">NO Vendor Name</a>
-                                <form method="POST" action="">
-                                
+                                {% if v.total_sale %}
+                                <a href="#" class="w-100 d-flex text-dark">{{ v.total_sale }}</a>
+                                {% else %}
+                                <a href="#" class="w-100 d-flex text-dark">$ 0.00</a>
+                                {% endif %}
+                                <form method="POST" action="{% url 'deleteVendor' %}">
+                                  {% csrf_token %}
+                                  <input type="hidden" name="vendor_id" value="{{ v.id }}">
                                   <button class="border-0 bg-white" type="submit"><i class="fas fa-times-circle cross____icon"></i></button>
                                 </form>
+                                  <a href="{% url 'editVendor' v.id %}" class="border-0 bg-white" type="submit"><i class="fas fa-edit cross____icon"></i></a>
                               </td>
                             </tr>
-                           
+                           {% endfor %}
                           </tbody>
                         </table>
+                        {% endif %}
                       </div>
 
                 </div>

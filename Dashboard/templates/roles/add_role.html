@@ -34,22 +34,25 @@
                         <a href="{% url 'roleview' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Go Back</a>
                     </div>
 
-                    <form>
+                    <form action="" method="POST">
+                      {% csrf_token %}
                     <div class="add___cat___form">
                         <div class="mb-3">
                             <label for="roles-title" class="form-label">Roles Title</label>
-                            <input type="text" class="form-control" id="roles-title" aria-describedby="roles">
+                            <input type="text" name="role_title" class="form-control" id="roles-title" aria-describedby="roles">
                     </div>
 
                     <div>
                         <div class="all____check">
+                          {% for p in permissions %}
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="che1">
+                                <input name="{{ p.title }}" class="form-check-input" type="checkbox" value="{{ p.id }}" id="che1">
                                 <label class="form-check-label" for="che1">
-                                   checkbox One
+                                   {{ p.title }}
                                 </label>
-                              </div>
-                              <div class="form-check">
+                            </div>
+                          {% endfor %}
+                              {% comment %} <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="che2">
                                 <label class="form-check-label" for="che2">
                                    checkbox One
@@ -84,7 +87,7 @@
                                 <label class="form-check-label" for="che7">
                                    checkbox One
                                 </label>
-                              </div>
+                              </div> {% endcomment %}
                         </div>
                     </div>
                    

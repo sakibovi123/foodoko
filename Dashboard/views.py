@@ -302,16 +302,23 @@ class RoleView(View):
         return render(request, self.template_name, args)
 
 # delete method
-def deleteRole(request, r_id):
-    roleId = get_object_or_404(Role, pk="r_id")
-    roleId.delete()
-    return redirect("")
+def deleteRole(request):
+    if request.method == "POST":
+        role_id = request.POST.get("role_id")
+        roleId = get_object_or_404(Role, id=role_id)
+        roleId.delete()
+        return redirect("roleview")
+    else:
+        return HttpResponse("Server Error")
 
 
 class AddRole(View):
     template_name = "roles/add_role.html"
     def get(self, request):
-        args = {}
+        permissions = Permission.objects.all()
+        args = {
+            "permissions": permissions,
+        }
         return render(request, self.template_name, args)
 
     def post(self, request):
@@ -319,20 +326,24 @@ class AddRole(View):
         ids = [x.title for x in Permission.objects.all()]
         permission_ids = []
         for x in ids:
-            permission_ids.append(int(request.POST.get(x))) if request.POST.get(x) else print("ERROR")
+            permission_ids.append(int(request.POST.get(x))) if request.POST.get(x) else print(f"Erroor=>Error")
         role = Role.objects.create(
             role_title=role_title
         )
         for x in permission_ids:
             role.permissions.add(Permission.objects.get(id=x))
-
+        return redirect("roleview")
 
 
 class EditRole(View):
     template_name = "roles/edit_roles.html"
     def get(self, request, r_id):
         roleId = get_object_or_404(Role, pk=r_id)
-        args = {}
+        permissions = Permission.objects.all()
+        args = {
+            "roleId": roleId,
+            "permissions": permissions,
+        }
         return render(request, self.template_name, args)
 
     def post(self, request, r_id):
@@ -340,11 +351,16 @@ class EditRole(View):
         role_title = request.POST.get("role_title")
 
         roleId.role_title = role_title
-        for x in roleId.permissions:
-            roleId.permissions.add(x)
+        ids = [x.title for x in Permission.objects.all()]
+        permission_ids = []
+        for x in ids:
+            permission_ids.append(int(request.POST.get(x))) if request.POST.get(x) else print(f"Erroor=>Error")
+        roleId.title = role_title
+        for x in permission_ids:
+            roleId.permissions.add(Permission.objects.get(id=x))
 
         roleId.save()
-        return redirect("")
+        return redirect("roleview")
 
 
 
@@ -453,7 +469,10 @@ class VendorView(View):
     template_name = "vendor/vendors.html"
 
     def get(self, request):
-        args = {}
+        vendors = VendorProfile.objects.all()
+        args = {
+            "vendors": vendors,
+        }
         return render(request, self.template_name, args)
 
 
@@ -461,27 +480,56 @@ class AddVendor(View):
     template_name = "vendor/add_vendor.html"
 
     def get(self, request):
-        args = {}
+        users = User.objects.all()
+        args = {
+            "users": users,
+        }
         return render(request, self.template_name, args)
 
     def post(self, request):
-        pass
+        if request.method == "POST":
+            user = request.POST.get("user")
+            vendor_name = request.POST.get("vendor_name")
+            shop_name = request.POST.get("shop_name")
+            shop_logo = request.FILES.get("uploadImg")
+            contact_number = request.POST.get("contact_number")
+            address = request.POST.get("address")
+
+            if user is not None:
+                VendorProfile.objects.create(
+                    user=User.objects.get(id=user),
+                    vendor_name=vendor_name,
+                    shop_logo=shop_logo,
+                    shop_name=shop_name,
+                    contact_number=contact_number,
+                    address=address
+                )
+                return redirect("VendorView")
+            else:
+                return HttpResponse("something Went Wrong")
 
 
 class EditVendor(View):
     template_name = "vendor/edit_vendor.html"
 
-    def get(self, request):
-        args = {}
+    def get(self, request, vendor_id):
+        vendorId = get_object_or_404(VendorProfile, id=vendor_id)
+        args = {
+            "vendorId": vendorId,
+        }
         return render(request, self.template_name, args)
 
-    def post(self, request):
+    def post(self, request, vendor_id):
         pass
 
-def deleteVendor(request, ven_id):
-    vendorId = get_object_or_404(VendorProfile, pk=ven_id)
-    vendorId.delete()
-    return redirect()
+def deleteVendor(request):
+    if request.method == "POST":
+        vendor_id = request.POST.get("vendor_id")
+        vendorId = get_object_or_404(VendorProfile, id=vendor_id)
+        vendorId.delete()
+        return redirect("VendorView")
+    else:
+        return HttpResponse("Server Error")
 
 
 
@@ -531,3 +579,11 @@ class EditCoupon(View):
     def get(self, request, coupon_id):
         args = {}
         return render(request, self.template_name, args)
+
+
+class Settings(View):
+    template_name = "settings/settings.html"
+    def get(self, request):
+        args = {}
+        return render(request, self.template_name, args)
+        

@@ -19,7 +19,7 @@ urlpatterns = [
     # Vendor path
     path("vendors/", VendorView.as_view(), name="VendorView"),
     path("add-vendor/", AddVendor.as_view(), name="AddVendor"),
-    path("edit-vendor/", EditVendor.as_view(), name="editVendor"),
+    path("edit-vendor/<int:vendor_id>/", EditVendor.as_view(), name="editVendor"),
     path("delete-vendor/", deleteVendor, name="deleteVendor"),
 
     # Permission Path
@@ -31,7 +31,7 @@ urlpatterns = [
     # role path
     path("roles/", RoleView.as_view(), name="roleview"),
     path("add-role/", AddRole.as_view(), name="addRole"),
-    path("delete-role/<int:r_id>/", deleteRole, name="roleDelete"),
+    path("delete-role/", deleteRole, name="roleDelete"),
     path("edit-role/<int:r_id>/", EditRole.as_view(), name="editRole"),
 
     # Driver path
@@ -56,5 +56,8 @@ urlpatterns = [
     path("coupons/", Coupons.as_view(), name="coupons"),
     path("add-coupon/", AddCoupon.as_view(), name="addCoupon"),
     path("edit-coupon/<int:coupon_id>/", EditCoupon.as_view(), name="editCoupon"),
+
+    # Settings path
+    path("settings/", Settings.as_view(), name="settingsView"),
 
 ]

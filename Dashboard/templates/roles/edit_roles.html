@@ -34,66 +34,43 @@
                         <a href="{% url 'roleview' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Go Back</a>
                     </div>
 
-                    <form>
+                    <form action="" method="POST">
+                    {% csrf_token %}
                     <div class="add___cat___form">
                         <div class="mb-3">
                             <label for="roles-title" class="form-label">Roles Title</label>
-                            <input type="text" class="form-control" id="roles-title" aria-describedby="roles">
+                            <input type="text" name="role_title" value="{{ roleId.role_title }}" class="form-control" id="roles-title" aria-describedby="roles">
                     </div>
-
+                    <div>
+                      <div class="all____check">
+                        <h5>Selected Permissions</h5>
+                        {% for p in roleId.permissions.all %}
+                          <div class="form-check">
+                              {% comment %} <input name="{{ p.title }}" class="form-check-input" type="checkbox" value="" id="che1"> {% endcomment %}
+                              <label class="form-check-label" for="che1">
+                                 {{ p.title }}
+                              </label>
+                           </div>
+                        {% endfor %} 
+                      </div>
+                  </div>
+                  <hr>
                     <div>
                         <div class="all____check">
+                          {% for p in permissions %}
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="che1">
+                                <input name="{{ p.title }}" class="form-check-input" type="checkbox" value="{{ p.id }}" id="che1">
                                 <label class="form-check-label" for="che1">
-                                   checkbox One
+                                   {{ p.title }}
                                 </label>
-                              </div>
-                              <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="che2">
-                                <label class="form-check-label" for="che2">
-                                   checkbox One
-                                </label>
-                              </div>
-                              <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="che3">
-                                <label class="form-check-label" for="che3">
-                                   checkbox One
-                                </label>
-                              </div>
-                              <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="che4">
-                                <label class="form-check-label" for="che4">
-                                   checkbox One
-                                </label>
-                              </div>
-                              <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="che5">
-                                <label class="form-check-label" for="che5">
-                                   checkbox One
-                                </label>
-                              </div>
-                              <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="che6">
-                                <label class="form-check-label" for="che6">
-                                   checkbox One
-                                </label>
-                              </div>
-                              <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="che7">
-                                <label class="form-check-label" for="che7">
-                                   checkbox One
-                                </label>
-                              </div>
+                            </div>
+                          {% endfor %}
                         </div>
                     </div>
-                   
-                         
                           </div>
-                          <div class="mt-2">
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        
-                                                </div>
+                      <div class="mt-2">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                      </div>
                       </div>
                 </div>
                     

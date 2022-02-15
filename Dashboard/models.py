@@ -18,6 +18,7 @@ class Permission(models.Model):
 
 
 class Role(models.Model):
+    created_at = models.DateField(default=date.today, null=True)
     role_title = models.CharField(max_length=255, unique=True)
     permissions = models.ManyToManyField(Permission)
 
