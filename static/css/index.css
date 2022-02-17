@@ -680,6 +680,86 @@ body {
   margin: 0 auto;
 }
 
+/* modal and map css */
+#map{
+  height: 400px;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 15px;
+}
+
+.main___container{
+  position: relative;
+}
+.controls{
+  width: 26%;
+  margin-top: 10px;
+  height: 10%;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.controls::input-placeholder{
+  font-size: 15px;
+}
+.main___map___icon{
+  cursor: pointer;
+  background-color: #fff;
+  padding: 0.5rem;
+  z-index: 1;
+  position: absolute;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  top: 6%;
+  left: 89%;
+  border-radius: 5px;
+}
+
+/* modal */
+/* The Modal (background) */
+.main____modal .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.main____modal .modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 70%;
+}
+
+/* The Close Button */
+.main____modal .close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.main____modal .close:hover,
+.main____modal .close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+
 /* Media queryy */
 @media (max-width: 1482px) {
   .first___inner___div {
@@ -1004,6 +1084,26 @@ body {
   }
 }
 
+/* setting page */
+.nav-item button{
+  font-size: 15px !important;
+  letter-spacing: 2px !important;
+}
+
+.tab____ul{
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+}
+.main____style{
+  padding: 0 3rem;
+}
+.switch____man{
+  padding-left: 2.25rem !important;
+}
+
+
 @media (max-width: 988px){
   .individual____dishes{
     width: 15rem;
@@ -1123,4 +1223,45 @@ body {
     top: 73%;
     left: 30%;
 }
+}
+@media (max-width: 1480px){
+  .main___map___icon{
+    top: 5%;
+    left: 77%;
+  }
+}
+@media (max-width: 736px){
+  .main___map___icon{
+    top: 18%;
+    left: 86%;
+
+  }
+}
+@media (max-width: 668px){
+  .main___map___icon{
+    top: 18%;
+    left: 27px;
+  }
+}
+@media (max-width: 408px){
+  .main___map___icon{
+    top: 25%;
+    left: 27px;
+  }
+}
+@media (max-width: 668px){
+  #searchInput{
+      position: absolute !important;
+
+    top: 28% !important; 
+    left: 12px !important;
+  }
+}
+@media (max-width: 408px){
+  #searchInput{
+      position: absolute !important;
+
+    top: 35% !important; 
+    left: 12px !important;
+  }
 }

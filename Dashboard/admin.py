@@ -10,5 +10,6 @@ admin.site.register([
     Role,
     Driver,
     Category,
-    Product
+    Product,
+    SiteSettings,
 ])

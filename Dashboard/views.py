@@ -584,6 +584,94 @@ class EditCoupon(View):
 class Settings(View):
     template_name = "settings/settings.html"
     def get(self, request):
-        args = {}
+        payment_methods = PaymentMethods.objects.all()
+        payout_methods = PayoutMethod.objects.all()
+        args = {
+            "payment_methods": payment_methods,
+            "payout_methods": payout_methods,
+        }
         return render(request, self.template_name, args)
-        
+
+    def post(self, request):
+        if request.method == "POST":
+            user = request.user
+            site_name = request.POST.get("site_name")
+            site_logo = request.FILES.get("site_logo")
+            site_fav_icon = request.FILES.get("site_fav_icon")
+            support_phone = request.POST.get("support_phone")
+            currency = request.POST.get("currency")
+            contact_less_delivery = request.POST.get("contact_less_delivery")
+            store_kilo = request.POST.get("store_kilo")
+            driver_kilo = request.POST.get("driver_kilo")
+            max_delivery = request.POST.get("max_delivery")
+            preparation_time = request.POST.get("preparation_time")
+            multiple_delivery = request.POST.get("multiple_delivery")
+            otp_verification = request.POST.get("otp_verification")
+            copyright_year = request.POST.get("copyright_year")
+            copyright_url = request.POST.get("copyright_url")
+            google_api_key = request.POST.get("google_api_key")
+            google_client_id = request.POST.get("google_client_id")
+            google_client_secret = request.POST.get("google_client_secret")
+            paypal_access_token = request.POST.get("paypal_access_token")
+            paypal_client = request.POST.get("paypal_client")
+            paypal_secret = request.POST.get("paypal_secret")
+            driver_email = request.POST.get("driver_email")
+            email_host = request.POST.get("email_host")
+            email_port = request.POST.get("email_port")
+            email_from = request.POST.get("email_from")
+            delivery_fee_type = request.POST.get("delivery_fee_type")
+            delivery_fee = request.POST.get("delivery_fee")
+            booking_fee = request.POST.get("booking_fee")
+            store_comission = request.POST.get("store_comission")
+            driver_comission = request.POST.get("driver_comission")
+
+            payment_methods = request.POST.get("payment_methods")
+            payout_methods = request.POST.get("payout_methods")
+            
+            settings = SiteSettings(
+                user=user,
+                site_name=site_name,
+                site_logo=site_logo,
+                site_fav_icon=site_fav_icon,
+                support_phone=support_phone,
+                currency=currency,
+                contact_less_delivery=contact_less_delivery,
+                store_kilo=store_kilo,
+                driver_kilo=driver_kilo,
+                max_delivery=max_delivery,
+                preparation_time=preparation_time,
+                multiple_delivery=multiple_delivery,
+                otp_verification=otp_verification,
+                copyright_year=copyright_year,
+                copyright_url=copyright_url,
+                google_api_key=google_api_key,
+                google_client_id=google_client_id,
+                google_client_secret=google_client_secret,
+                paypal_access_token=paypal_access_token,
+                paypal_client=paypal_client,
+                paypal_secret=paypal_secret,
+                driver_email=driver_email,
+                email_host=email_host,
+                email_port=email_port,
+                email_from=email_from,
+                delivery_fee_type=delivery_fee_type,
+                delivery_fee=delivery_fee,
+                booking_fee=booking_fee,
+                store_comission=store_comission,
+                driver_comission=driver_comission,
+            )
+
+            # settings.save()
+
+            for pm in payment_methods:
+                payment_obj = PaymentMethods.objects.get(id=pm)
+                settings.payment_methods.add(payment_obj)
+            
+            for po in payout_methods:
+                payout_obj = PayoutMethod.objects.get(id=po)
+                settings.payout_methods.add(payout_obj)
+            
+            settings.save()
+            return redirect("settingsView")
+        else:
+            return HttpResponse("Something went Wrong!")

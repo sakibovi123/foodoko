@@ -507,8 +507,43 @@
           <p class="fw-bold" style="font-size: 17px">Elm Street, 23</p>
         </div>
         <div class="change___btn">
-          <button>Change</button>
+          <button id="myBtn">Change</button>
         </div>
+        <!-- The Modal -->
+<div class="main____modal">
+  <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="container main___container">
+        <!-- Search input -->
+        <div class="all____class__search">
+          <input
+          id="searchInput"
+          class="controls"
+          type="text"
+          placeholder="Enter a location"
+        />
+       <p id="map-icon" class="main___map___icon"> <span class="iconify map____icon" data-icon="el:map-marker-alt"></span></p>
+        </div>
+  
+        <!-- Google map -->
+        <div id="map"></div>
+  
+        <!-- Display geolocation data -->
+        <!-- <ul class="geo-data">
+          <li>Full Address: <span id="location"></span></li>
+          <li>Postal Code: <span id="postal_code"></span></li>
+          <li>Country: <span id="country"></span></li>
+          <li>Latitude: <span id="lat"></span></li>
+          <li>Longitude: <span id="lon"></span></li>
+        </ul> -->
+      </div>
+    </div>
+  
+  </div>
+</div>
       </div>
       <p class="address______details mt-1">
         orem ipsum dolor sit amet, consectetur adipisicing elit. Qui dicta minus
@@ -606,7 +641,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script
+src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCruA3SL5gsz0B3O6N9PyStxcpRqd0tWMo&callback=initMap"
+async
+defer
+></script>
 
+<script src="{% static 'js/mapInteg.js' %}"></script>
 <script src="{% static 'js/index-nav.js' %}"></script>
 <script src="{% static 'js/index-nav-right.js' %}"></script>
 <script src="{% static 'js/index.js' %}"></script>

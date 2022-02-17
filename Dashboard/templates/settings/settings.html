@@ -1,0 +1,382 @@
+{% load static %} {% include 'base.html' %}
+
+<link rel="stylesheet" href="{% static 'css/index.css' %}" />
+
+<!-- Page level plugins -->
+<script src="{% static 'admin-vendor/chart.js/Chart.min.js' %}" defer></script>
+
+<!-- Page level custom scripts -->
+<script src="{% static 'admin-js/demo/chart-area-demo.js' %}" defer></script>
+<script src="{% static 'admin-js/demo/chart-area-demo.js' %}" defer></script>
+
+<body id="page-top">
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+    <!-- sidebar -->
+
+    {% include 'admin-sidebar.html' %}
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+      <!-- Main Content -->
+      <div id="content">
+        {% include 'admin-nav.html' %}
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+          <!-- Page Heading -->
+          <div
+            class="d-sm-flex align-items-center justify-content-between mb-4"
+          >
+            <h1 class="h3 mb-0 text-gray-800">Settings</h1>
+          </div>
+
+          <div class="main____tab___view">
+            <ul
+              class="nav nav-pills tab____ul mt-2"
+              id="pills-tab"
+              role="tablist"
+            >
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link active"
+                  id="pills-site-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#pills-site"
+                  type="button"
+                  role="tab"
+                  aria-controls="pills-site"
+                  aria-selected="true"
+                >
+                  SITE SETTING
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="pills-image-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#pills-image"
+                  type="button"
+                  role="tab"
+                  aria-controls="pills-image"
+                  aria-selected="false"
+                >
+                  SITE IMAGES
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="pills-api-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#pills-api"
+                  type="button"
+                  role="tab"
+                  aria-controls="pills-api"
+                  aria-selected="false"
+                >
+                  API CREDENTIAL
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="pills-payment-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#pills-payment"
+                  type="button"
+                  role="tab"
+                  aria-controls="pills-payment"
+                  aria-selected="false"
+                >
+                  PAYMENT GATEWAY
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="pills-email-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#pills-email"
+                  type="button"
+                  role="tab"
+                  aria-controls="pills-email"
+                  aria-selected="false"
+                >
+                  EMAIL SETTINGS
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="pills-fees-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#pills-fees"
+                  type="button"
+                  role="tab"
+                  aria-controls="pills-fees"
+                  aria-selected="false"
+                >
+                  FEES
+                </button>
+              </li>
+            </ul>
+            <form>
+            <div class="tab-content" id="pills-tabContent">
+              
+                <div
+                  class="tab-pane fade show active"
+                  id="pills-site"
+                  role="tabpanel"
+                  aria-labelledby="pills-site-tab"
+                >
+                  <div class="all____site__settings main____style">
+                    <div class="mt-2">
+                      <label for="site-name" class="form-label"
+                        >Site Name</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="site-name"
+                        id="site-name"
+                        aria-describedby="site-name"
+                      />
+                    </div>
+                    <div class="mt-2">
+                      <label for="site-phone" class="form-label"
+                        >Site Support Phone</label
+                      >
+                      <input
+                        type="tel"
+                        class="form-control"
+                        name="site-phone"
+                        id="site-phone"
+                        aria-describedby="site-phone"
+                      />
+                    </div>
+                    <div class="mt-2">
+                      <label for="site-address" class="form-label"
+                        >Add Code To The ( Head ) (For Tracking Codes Such As
+                        Google Analytics)</label
+                      >
+                      <div class="form-floating">
+                        <textarea
+                          class="form-control"
+                          placeholder="Address"
+                          id="floatingTextarea2"
+                          style="height: 100px"
+                        ></textarea>
+                      </div>
+                    </div>
+                    <div class="mt-2">
+                      <label for="currency">Payment Currency</label>
+                      <select
+                        class="form-control"
+                        id="currency"
+                        name="currency"
+                      >
+                        <option value="1">USD</option>
+                        <option value="2">2</option>
+                      </select>
+                    </div>
+                    <div class="mt-2">
+                        <label for="currency">Default Currency Code</label>
+                        <select
+                          class="form-control"
+                          id="Code"
+                          name="Code"
+                        >
+                          <option value="1">USD</option>
+                          <option value="2">2</option>
+                        </select>
+                      </div>
+                      <div class="mt-2">
+                        <label for="mode">Maintenance Mode</label>
+                        <select
+                          class="form-control"
+                          id="mode"
+                          name="mode"
+                        >
+                          <option value="1">Yes</option>
+                          <option value="2">No</option>
+                        </select>
+                      </div>
+                      <div class="mt-2">
+                        <label for="contact-lesss">Contact Less Delivery </label>
+                        <select
+                          class="form-control"
+                          id="contact-less"
+                          name="contact-less"
+                        >
+                          <option value="1">Yes</option>
+                          <option value="2">No</option>
+                        </select>
+                      </div>
+                      <div class="mt-2">
+                        <label for="site-store" class="form-label"
+                          >Store Kilometer</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="site-store"
+                          id="site-store"
+                          aria-describedby="site-store"
+                        />
+                      </div>
+                      <div class="mt-2">
+                        <label for="site-driver" class="form-label"
+                          >Driver Kilometer</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="site-driver"
+                          id="site-driver"
+                          aria-describedby="site-driver"
+                        />
+                      </div>
+                      <div class="mt-2">
+                        <label for="site-max" class="form-label"
+                          >Maximum Number Of Delivery Per Driver</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="site-max"
+                          id="site-max"
+                          aria-describedby="site-max"
+                        />
+                      </div>
+                      <div class="mt-2">
+                        <label for="site-radius" class="form-label"
+                          >Multiple Delivery Radius</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="site-radius"
+                          id="site-radius"
+                          aria-describedby="site-radius"
+                        />
+                      </div>
+                      <div class="mt-2">
+                        <label for="site-assignment" class="form-label"
+                          >Preparation Time Interval For Mulitple Delivery Assignment</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="site-assignment"
+                          id="site-assignment"
+                          aria-describedby="site-assignment"
+                        />
+                      </div>
+                      <div class="mt-2">
+                        <div class="form-check switch____man form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="multi-delliver" checked>
+                            <label class="form-check-label" for="multi-delliver">Multiple Delivery</label>
+                          </div>
+                      </div>
+                      <div class="mt-2">
+                        <div class="form-check switch____man form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="multi-otp" checked>
+                            <label class="form-check-label" for="multi-otp">Otp Verification</label>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="pills-image"
+                  role="tabpanel"
+                  aria-labelledby="pills-image-tab"
+                >
+                  profile
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="pills-api"
+                  role="tabpanel"
+                  aria-labelledby="pills-api-tab"
+                >
+                  contact
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="pills-payment"
+                  role="tabpanel"
+                  aria-labelledby="pills-payment-tab"
+                >
+                  profile
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="pills-email"
+                  role="tabpanel"
+                  aria-labelledby="pills-email-tab"
+                >
+                  contact
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="pills-fees"
+                  role="tabpanel"
+                  aria-labelledby="pills-fees-tab"
+                >
+                  profile
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+      </div>
+      <!-- End of Main Content -->
+    </div>
+    <!-- End of Content Wrapper -->
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div
+    class="modal fade"
+    id="logoutModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Select "Logout" below if you are ready to end your current session.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">
+            Cancel
+          </button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
