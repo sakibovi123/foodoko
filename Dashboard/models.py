@@ -161,3 +161,6 @@ class SiteSettings(models.Model):
     booking_fee = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
     store_comission = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
     driver_comission = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
+
+    def __str__(self):
+        return str(self.id)

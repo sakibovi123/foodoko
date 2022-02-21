@@ -34,16 +34,30 @@ class CartItems(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField()
 
+    class Meta:
+        ordering = ["-id"]
+
+    def __str__(self):
+        return f"{self.product.product_name}"
+
 
 class Order(models.Model):
+    STATUS_CHOICES = (
+        ("Restaurant accepted your order", "Restaurant accepted your order"),
+        ("Restaurant is preparing your food", "Restaurant is preparing your food"),
+        ("Driver has picked your order", "Driver has picked your order"),
+        ("Delivered", "Delivered"),
+        ("Cancelled", "Cancelled"),
+        ("Restaurant rejected your order", "Restaurant rejected your order")
+    )
     invoice_no = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     vendor = models.ForeignKey(VendorProfile, on_delete=models.CASCADE)
     address = models.CharField(max_length=255)
     total = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
     driver = models.ForeignKey(DriverProfile, on_delete=models.DO_NOTHING, null=True, blank=True)
-
     add_coupon = models.CharField(max_length=255, null=True, blank=True)
+    status = models.CharField(max_length=255, null=True, default="Restaurant accepted your order")
 
     class Meta:
         ordering = ["-id"]
@@ -51,6 +65,7 @@ class Order(models.Model):
 
     def __str__(self):
         return self.invoice_no
+
 
 
 class FavoriteRestaurants(models.Model):

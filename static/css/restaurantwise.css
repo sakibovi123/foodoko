@@ -1,0 +1,29 @@
+.main_____content p{
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+.search____button button{
+    background: var(--orange);
+    color: var(--white);
+}
+.search____content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.new____drop{
+    background: var(--orange);
+    border-radius: 5px;
+}
+.box_____shadow{
+    box-shadow: none !important;
+}
+
+@media (max-width: 658px){
+    .search____content{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+}

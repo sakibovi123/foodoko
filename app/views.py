@@ -35,6 +35,20 @@ class HomePageView(View):
         return render(request, self.template_name, args)
 
 
+class RestaurantWiseProduct(View):
+    template_name = "restaurant/restaurant_wise.html"
+    def get(self, request):
+        args = {}
+        return render(request, self.template_name, args)
+
+
+class CategorywiseProduct(View):
+    template_name = ""
+    def get(self, request):
+        args = {}
+        return render(request, self.template_name, args)
+
+
 class SettingsView(View):
     template_name = "main/settings.html"
     def get(self, request, user_id):

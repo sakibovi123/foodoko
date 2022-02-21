@@ -12,96 +12,8 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
 />
 
-<!-- mobile menu navbar start -->
-<div class="main_____mobile___menu d-flex justify-content-between align-items-center p-2">
-  <p id="burger____menu"><span class="iconify mobo" data-icon="mdi-light:hamburger"></span></p>
-  <p class="title fs-4 fw-bold"><a class="mobotitle" href="#">GoMeal<span class="dot">.</span></a></p>
-  <p id="cartIcon"><span class="iconify mobo" data-icon="bi:cart-check"></span></p>
-</div>
-<!-- mobile menu navbar end -->
 
-<div class="first____class" id="first-side">
-  <div class="first____class____wrap">
-    <div class="close___icon" id="close">
-    <p><span class="iconify" data-icon="ei:close-o"></span></p>
-    </div>
-    <div class="nav____title">
-      <p class="title fs-4 mt-4">GoMeal<span class="dot">.</span></p>
-    </div>
-
-    <div class="underTitle____content">
-      <p class="dashborad">
-        <a class="text-white" href="#"
-          ><span
-            class="iconify side___icon"
-            data-icon="clarity:dashboard-outline-badged"
-          ></span>
-          Dashboard</a
-        >
-      </p>
-      <p>
-        <a class="rest____sidebar___link" href="#"
-          ><span class="iconify side___icon" data-icon="ep:food"></span> Food
-          Center
-        </a>
-      </p>
-      <p>
-        <a class="rest____sidebar___link" href="#"
-          ><span
-            class="iconify side___icon"
-            data-icon="gis:poi-favorite-o"
-          ></span
-          >Favorite
-        </a>
-      </p>
-      <p>
-        <a class="rest____sidebar___link" href="#"
-          ><span
-            class="iconify side___icon"
-            data-icon="bpmn:intermediate-event-catch-message"
-          ></span>
-          Message
-        </a>
-      </p>
-      <p>
-        <a class="rest____sidebar___link" href="#"
-          ><span
-            class="iconify side___icon"
-            data-icon="ic:outline-history-toggle-off"
-          ></span>
-          Order History
-        </a>
-      </p>
-      <p>
-        <a class="rest____sidebar___link" href="#"
-          ><span
-            class="iconify side___icon"
-            data-icon="healthicons:bills-outline"
-          ></span>
-          Bills
-        </a>
-      </p>
-      <p>
-        <a class="rest____sidebar___link" href="#"
-          ><span class="iconify side___icon" data-icon="ep:setting"></span>
-          Setting
-        </a>
-      </p>
-    </div>
-
-    <div class="last____title____content mt-5">
-      <p class="text-white">asdadas asdasdas</p>
-      <p class="text-white">asdadas asdasdas</p>
-      <p class="text-white">asdadas asdasdas</p>
-      <div class="d-flex justify-content-center mt-3">
-        <button class="upgradeBtn">Upgrade</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="admin____overlay"></div>
-
-
+{% include 'main/leftsidebar.html' %}
 <div class="hello" id="hello1">
   <div class="main_____content">
     <div class="main_____header____search mt-2">
@@ -352,7 +264,195 @@
           </div>
         </div>
       </div>
+      <div class="individual____dishes">
+        <img src="{% static 'images/kacchi.jpeg' %}" />
+        <div class="discount_____offer">
+          <p class="discounttt fw-bold">15% off</p>
+        </div>
+        <div class="hart___icon">
+          <form>
+            <p>
+              <button type="submit">
+                <span
+                  class="iconify main_____heart___icon"
+                  data-icon="clarity:heart-solid"
+                ></span>
+              </button>
+            </p>
+          </form>
+        </div>
+        <div class="popular____card_____details">
+          <p class="card____star">
+            <span class="iconify" data-icon="emojione:star"></span
+            ><span class="iconify" data-icon="emojione:star"></span
+            ><span class="iconify" data-icon="emojione:star"></span
+            ><span class="iconify" data-icon="emojione:star"></span
+            ><span class="iconify" data-icon="emojione:star"></span>
+          </p>
+          <div class="card____price">
+            <div>
+              <p class="fw-bold" style="font-size: 16px">Fish Burger</p>
+              <p style="font-size: 16px" class="fw-bold all____price">
+                <span class="dollar">$</span>100
+              </p>
+            </div>
+            <div class="add____btn___div">
+              <button class="add_____btn">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="individual____dishes">
+        <img src="{% static 'images/kacchi.jpeg' %}" />
+        <div class="discount_____offer">
+          <p class="discounttt fw-bold">15% off</p>
+        </div>
+        <div class="hart___icon">
+          <form>
+            <p>
+              <button type="submit">
+                <span
+                  class="iconify main_____heart___icon"
+                  data-icon="clarity:heart-solid"
+                ></span>
+              </button>
+            </p>
+          </form>
+        </div>
+        <div class="popular____card_____details">
+          <p class="card____star">
+            <span class="iconify" data-icon="emojione:star"></span
+            ><span class="iconify" data-icon="emojione:star"></span
+            ><span class="iconify" data-icon="emojione:star"></span
+            ><span class="iconify" data-icon="emojione:star"></span
+            ><span class="iconify" data-icon="emojione:star"></span>
+          </p>
+          <div class="card____price">
+            <div>
+              <p class="fw-bold" style="font-size: 16px">Fish Burger</p>
+              <p style="font-size: 16px" class="fw-bold all____price">
+                <span class="dollar">$</span>100
+              </p>
+            </div>
+            <div class="add____btn___div">
+              <button class="add_____btn">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="individual____dishes">
+        <img src="{% static 'images/kacchi.jpeg' %}" />
+        <div class="discount_____offer">
+          <p class="discounttt fw-bold">15% off</p>
+        </div>
+        <div class="hart___icon">
+          <form>
+            <p>
+              <button type="submit">
+                <span
+                  class="iconify main_____heart___icon"
+                  data-icon="clarity:heart-solid"
+                ></span>
+              </button>
+            </p>
+          </form>
+        </div>
+        <div class="popular____card_____details">
+          <p class="card____star">
+            <span class="iconify" data-icon="emojione:star"></span
+            ><span class="iconify" data-icon="emojione:star"></span
+            ><span class="iconify" data-icon="emojione:star"></span
+            ><span class="iconify" data-icon="emojione:star"></span
+            ><span class="iconify" data-icon="emojione:star"></span>
+          </p>
+          <div class="card____price">
+            <div>
+              <p class="fw-bold" style="font-size: 16px">Fish Burger</p>
+              <p style="font-size: 16px" class="fw-bold all____price">
+                <span class="dollar">$</span>100
+              </p>
+            </div>
+            <div class="add____btn___div">
+              <button class="add_____btn">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+
+    <!-- all restaurant  -->
+    <div class="category_____part">
+      <p class="fw-bold">All Restaurant</p>
+      <p class="view">
+        <a class="view____all" href="#"
+          >View All
+          <span class="iconify view____all___icon" data-icon="akar-icons:triangle-right"></span
+        ></a>
+      </p>
+    </div>
+
+    <!-- all restaurant card start -->
+    <div class="main____all____rest mt-2">
+      
+        <div class="restaurant____card">
+          <div class="hart___icon">
+            <form>
+              <p>
+                <button type="submit">
+                  <span
+                    class="iconify main_____heart___icon"
+                    data-icon="clarity:heart-solid"
+                  ></span>
+                </button>
+              </p>
+            </form>
+          </div>
+          <a href="#"><img src="{% static 'images/kacchi.jpeg' %}" /></a>
+          <div class="rest____details mt-3">
+            <p class="text-center fw-bold text-dark">Restaurant Name</p>
+            <p class="text-center">
+              <span class="iconify" data-icon="emojione:star"></span
+              ><span class="iconify" data-icon="emojione:star"></span
+              ><span class="iconify" data-icon="emojione:star"></span
+              ><span class="iconify" data-icon="emojione:star"></span
+              ><span class="iconify" data-icon="emojione:star"></span>
+            </p>
+          </div>
+        </div>
+        <div class="restaurant____card">
+          <div class="hart___icon">
+            <form>
+              <p>
+                <button type="submit">
+                  <span
+                    class="iconify main_____heart___icon"
+                    data-icon="clarity:heart-solid"
+                  ></span>
+                </button>
+              </p>
+            </form>
+          </div>
+          <a href="#"><img src="{% static 'images/kacchi.jpeg' %}" /></a>
+
+          <div class="rest____details mt-3">
+            <p class="text-center fw-bold text-dark">Restaurant Name</p>
+            <p class="text-center">
+              <span class="iconify" data-icon="emojione:star"></span
+              ><span class="iconify" data-icon="emojione:star"></span
+              ><span class="iconify" data-icon="emojione:star"></span
+              ><span class="iconify" data-icon="emojione:star"></span
+              ><span class="iconify" data-icon="emojione:star"></span>
+            </p>
+          </div>
+        </div>
+        
+      
+      
+    </div>
+    <!-- all restaurant card end -->
+
+
 
     <!-- recect order  -->
 
@@ -430,211 +530,7 @@
     </div>
   </div>
 
-  <div class="right_____content" id="right-side">
-    <div class="account___part d-flex justify-content-between align-items-center">
-      <div class="d-flex">
-        <p class="me-3 fs-4 closeIcon" id="closeIconForCart"><span class="iconify" data-icon="ei:close-o"></span></p>
-        <a href="#"
-          ><p class="me-3 fs-4">
-            <span class="iconify" data-icon="carbon:notification"></span></p
-        ></a>
-        <a href="#"
-          ><p class="me-3 fs-4">
-            <span class="iconify" data-icon="akar-icons:alarm"></span></p
-        ></a>
-        <a href="#"
-          ><p class="me-3 fs-4">
-            <span class="iconify" data-icon="carbon:user-settings"></span></p
-        ></a>
-      </div>
-      <div>
-        <a href="#"
-          ><p class="ms-3 fs-2">
-            <span class="iconify" data-icon="carbon:user-avatar"></span></p
-        ></a>
-      </div>
-    </div>
-
-
-    <!-- your balance  start-->
-
-    <div class="mt-3 balance____part">
-      <p class="fw-bold">Your Balance</p>
-      <img src="{% static 'images/bg-1.jpeg' %}" />
-      <div class="balance____overlay">
-        <div class="first___inner___div m-1">
-          <p class="fw-bold" style="font-size: 16px">Balance</p>
-          <p class="fw-bold fs-4 balance_____class">${{ balance.balance }}</p>
-        </div>
-        <div class="top_____balance">
-          <form>
-            <div class="first____top m-1">
-              <button>
-                <p class="first____icon">
-                  <span class="iconify" data-icon="bx:bx-transfer"></span>
-                </p>
-              </button>
-              <p class="text-white" style="font-size: 16px">Transfer</p>
-            </div>
-          </form>
-          <form>
-            <div class="first____top m-1">
-              <button>
-                <p class="first____icon">
-                  <span class="iconify" data-icon="bi:arrow-up-circle"></span>
-                </p>
-              </button>
-              <p class="text-white" style="font-size: 16px">Top Up</p>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- your balance  end-->
-
-    <!-- address start -->
-    <div class="main____address mt-3">
-      <p class="address____title">Your Address</p>
-      <div class="address____details">
-        <div class="address____icon">
-          <p>
-            <span
-              class="iconify iconicon"
-              data-icon="carbon:location-star-filled"
-            ></span>
-          </p>
-          <p class="fw-bold" style="font-size: 17px">Elm Street, 23</p>
-        </div>
-        <div class="change___btn">
-          <button id="myBtn">Change</button>
-        </div>
-        <!-- The Modal -->
-<div class="main____modal">
-  <div id="myModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <div class="container main___container">
-        <!-- Search input -->
-        <div class="all____class__search">
-          <input
-          id="searchInput"
-          class="controls"
-          type="text"
-          placeholder="Enter a location"
-        />
-       <p id="map-icon" class="main___map___icon"> <span class="iconify map____icon" data-icon="el:map-marker-alt"></span></p>
-        </div>
-  
-        <!-- Google map -->
-        <div id="map"></div>
-  
-        <!-- Display geolocation data -->
-        <!-- <ul class="geo-data">
-          <li>Full Address: <span id="location"></span></li>
-          <li>Postal Code: <span id="postal_code"></span></li>
-          <li>Country: <span id="country"></span></li>
-          <li>Latitude: <span id="lat"></span></li>
-          <li>Longitude: <span id="lon"></span></li>
-        </ul> -->
-      </div>
-    </div>
-  
-  </div>
-</div>
-      </div>
-      <p class="address______details mt-1">
-        orem ipsum dolor sit amet, consectetur adipisicing elit. Qui dicta minus
-      </p>
-
-      <div class="details_____note mt-2">
-        <button>Add Details</button>
-        <button>Add Note</button>
-      </div>
-    </div>
-    <!-- address end -->
-
-    <!-- order menu start -->
-    <div class="main____order___menu___container mt-3">
-      <p class="fw-bold fs-5">Order Menu</p>
-      <div class="main____order___menu mt-2">
-        <div class="d-flex order___menu__img">
-          <img src="{% static 'images/kacchi.jpeg' %}" />
-          <div class="order___menu__price ms-2">
-            <p style="font-size: 16px">Pepperoni Pizza</p>
-            <p>x1</p>
-          </div>
-        </div>
-        <div class="order_____menu">
-          <p class="fw-bold">+ <span class="dollar">$</span>5.599</p>
-        </div>
-      </div>
-      <div class="main____order___menu mt-2">
-        <div class="d-flex order___menu__img">
-          <img src="{% static 'images/kacchi.jpeg' %}" />
-          <div class="order___menu__price ms-2">
-            <p style="font-size: 16px">Pepperoni Pizza</p>
-            <p>x1</p>
-          </div>
-        </div>
-        <div class="order_____menu">
-          <p class="fw-bold">+ <span class="dollar">$</span>5.599</p>
-        </div>
-      </div>
-      <div class="main____order___menu mt-2">
-        <div class="d-flex order___menu__img">
-          <img src="{% static 'images/kacchi.jpeg' %}" />
-          <div class="order___menu__price ms-2">
-            <p style="font-size: 16px">Pepperoni Pizza</p>
-            <p>x1</p>
-          </div>
-        </div>
-        <div class="order_____menu">
-          <p class="fw-bold">+ <span class="dollar">$</span>5.599</p>
-        </div>
-      </div>
-    </div>
-    <!-- order menu end -->
-
-    <!-- service and total start -->
-    <div class="service_____container mt-3">
-      <div
-        class="local____Service d-flex justify-content-between align-items-center"
-      >
-        <p class="service">Service</p>
-        <p>+<span class="dollar">$</span>1.0000</p>
-      </div>
-      <div
-        class="local____Service d-flex justify-content-between align-items-center"
-      >
-        <p class="fw-bold">Total</p>
-        <p style="font-size: 21px" class="fw-bold">
-          +<span class="dollar">$</span>1.0000
-        </p>
-      </div>
-    </div>
-    <!-- service and total end -->
-
-    <!-- checkout btn start -->
-    <div class="checkout_____container mt-5">
-      
-        <div class="coupon d-flex align-items-center">
-          <form>
-          <button class="coupon____btn"><span class="iconify dollar" data-icon="carbon:add-alt"></span></button>
-          </form>
-          <input class="ms-3" type="text" placeholder="Have a coupon code?" />
-        </div>
-        <form>
-        <div class="checkoutBTN d-flex justify-content-center mt-3">
-          <button>CHECKOUT</button>
-        </div>
-      </form>
-    </div>
-    <!-- checkout btn end -->
-  </div>
-  <div class="admin____overlayyyy"></div>
+  {% include 'main/rightsidebar.html' %}
 
 </div>
 

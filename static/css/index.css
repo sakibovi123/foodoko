@@ -3,36 +3,34 @@ body {
   background-color: var(--lite-white);
 }
 
-
-.view____all___icon{
-  transition: .4s all ease-in-out;
+.view____all___icon {
+  transition: 0.4s all ease-in-out;
 }
-.view:hover .view____all___icon{
+.view:hover .view____all___icon {
   transform: rotate(180deg);
 }
 
 /* mobile nav style */
-.main_____mobile___menu{
+.main_____mobile___menu {
   display: none !important;
 }
-.mobo{
+.mobo {
   color: var(--black) !important;
-  transition: .2s all ease-in-out;
+  transition: 0.2s all ease-in-out;
   font-size: 42px;
   cursor: pointer;
 }
-.mobotitle{
+.mobotitle {
   color: var(--black) !important;
-  transition: .2s all ease-in-out;
+  transition: 0.2s all ease-in-out;
 }
-.mobotitle:hover{
+.mobotitle:hover {
   color: var(--orange) !important;
 }
-.mobo:hover{
+.mobo:hover {
   color: var(--orange) !important;
   transform: scale(1.1);
 }
-
 
 .first____class::-webkit-scrollbar {
   width: 5px;
@@ -63,24 +61,24 @@ body {
   overflow-y: auto;
   padding-bottom: 1rem;
 }
-.close___icon{
+.close___icon {
   position: absolute;
   top: 0;
   cursor: pointer;
   font-size: 30px;
   right: 0;
   font-weight: 600;
-  transition: .2s all ease-in-out;
+  transition: 0.2s all ease-in-out;
   display: none;
 }
 
-.closeIcon{
+.closeIcon {
   font-size: 35px;
   cursor: pointer;
-  transition: .2s all ease-in-out;
+  transition: 0.2s all ease-in-out;
   display: none;
 }
-.closeIcon:hover{
+.closeIcon:hover {
   transform: scale(1.1);
   color: var(--orange);
 }
@@ -89,13 +87,13 @@ body {
   justify-content: space-between;
 }
 
-.navClass{
+.navClass {
   position: fixed !important;
   top: 0 !important;
   z-index: 10000000;
   left: 0 !important;
 }
-.navClass1{
+.navClass1 {
   position: fixed !important;
   top: 0 !important;
   z-index: 10000000;
@@ -122,7 +120,7 @@ body {
   height: 100%;
   z-index: 100;
 }
-.admin____overlayyyy{
+.admin____overlayyyy {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -133,7 +131,7 @@ body {
   height: 100%;
   z-index: 100;
 }
-.admin____overlayyyy{
+.admin____overlayyyy {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -149,14 +147,12 @@ body {
   visibility: visible;
   pointer-events: auto;
   background-color: rgba(0, 0, 0, 0.5);
- 
 }
 .admin____overlay.show__adminOverlay {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
   background-color: rgba(0, 0, 0, 0.5);
- 
 }
 .first____class____wrap {
   display: flex;
@@ -412,9 +408,37 @@ body {
 }
 .popular_____dishes {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
+}
+
+/* all restaur style */
+.restaurant____card {
+  width: 16rem;
+  height: 19rem;
+  background-color: var(--white);
+  position: relative;
+}
+.restaurant____card:hover{
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.restaurant____card img {
+  width: 100%;
+  height: 223px;
+  object-fit: cover;
+}
+.main____all____rest {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.rest____details p {
+  margin-block-end: 0;
+  margin-block-start: 0;
 }
 
 /* banner part style */
@@ -524,12 +548,12 @@ body {
   margin-block-end: 0;
   margin-block-start: 0;
 }
-.coupon____btn{
+.coupon____btn {
   border: none;
   background: transparent;
-  transition: .2s all ease-in-out;
+  transition: 0.2s all ease-in-out;
 }
-.coupon____btn:hover{
+.coupon____btn:hover {
   transform: scale(1.1);
 }
 .first___inner___div {
@@ -681,17 +705,17 @@ body {
 }
 
 /* modal and map css */
-#map{
+#map {
   height: 400px;
   width: 100%;
   margin-bottom: 20px;
   margin-top: 15px;
 }
 
-.main___container{
+.main___container {
   position: relative;
 }
-.controls{
+.controls {
   width: 26%;
   margin-top: 10px;
   height: 10%;
@@ -701,10 +725,10 @@ body {
   padding: 10px;
 }
 
-.controls::input-placeholder{
+.controls::input-placeholder {
   font-size: 15px;
 }
-.main___map___icon{
+.main___map___icon {
   cursor: pointer;
   background-color: #fff;
   padding: 0.5rem;
@@ -729,8 +753,8 @@ body {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 /* Modal Content */
@@ -757,10 +781,25 @@ body {
   cursor: pointer;
 }
 
-
-
-
 /* Media queryy */
+@media (max-width: 2880px) {
+  .main____all____rest, .popular_____dishes {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+@media (max-width: 2295px) {
+  .main____all____rest, .popular_____dishes{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
 @media (max-width: 1482px) {
   .first___inner___div {
     padding: 0.1rem 0.9rem;
@@ -837,6 +876,10 @@ body {
     width: 15rem;
     height: 16rem;
   }
+  .restaurant____card {
+    width: 15rem;
+    height: 16rem;
+  }
   .individual____dishes img {
     width: 8rem;
     height: 8rem;
@@ -845,6 +888,9 @@ body {
 }
 @media (max-width: 1610px) {
   .individual____dishes {
+    width: 13rem;
+  }
+  .restaurant____card {
     width: 13rem;
   }
   .individual____dishes img {
@@ -863,9 +909,13 @@ body {
   }
 }
 @media (max-width: 1403px) {
-  .individual____dishes {
+  .individual____dishes{
     width: 12rem;
     height: 14rem;
+  }
+  .restaurant____card{
+    width: 12rem;
+    height: 15rem;
   }
   .individual____dishes img {
     width: 6rem;
@@ -879,6 +929,10 @@ body {
 }
 @media (max-width: 1301px) {
   .individual____dishes {
+    width: 14rem;
+    height: 15rem;
+  }
+  .restaurant____card {
     width: 14rem;
     height: 15rem;
   }
@@ -918,6 +972,13 @@ body {
     flex-wrap: wrap;
     gap: 20px;
   }
+  .main____all____rest {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
 }
 @media (max-width: 1371px) {
   .popular____card_____details___recent {
@@ -933,11 +994,14 @@ body {
     left: 25%;
   }
 }
-@media (max-width: 1141px){
-  .individual____dishes{
+@media (max-width: 1141px) {
+  .individual____dishes {
     width: 12rem;
   }
-  .add____btn___div{
+  .restaurant____card {
+    width: 12rem;
+  }
+  .add____btn___div {
     position: absolute;
     left: 174%;
   }
@@ -955,16 +1019,22 @@ body {
     right: -100%;
     width: 30%;
   }
-  .main_____content{
+  .main_____content {
     width: 100%;
     padding: 10px;
   }
-  .hello{
+  .hello {
     position: relative;
     left: 0;
     width: 100%;
   }
   .popular_____dishes {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+  }
+  .main____all____rest {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -979,7 +1049,7 @@ body {
     top: 9%;
     border-radius: 7px;
   }
-  .closeIcon{
+  .closeIcon {
     display: flex;
   }
   .individual____dishes {
@@ -989,6 +1059,10 @@ body {
     height: 17rem;
     position: relative;
     border-radius: 5px;
+  }
+  .restaurant____card {
+    width: 16rem;
+    height: 17rem;
   }
   .hart___icon {
     position: absolute;
@@ -1011,45 +1085,45 @@ body {
     top: 71%;
     left: 29%;
   }
-  .main_____mobile___menu{
+  .main_____mobile___menu {
     display: flex !important;
   }
-  .close___icon{
+  .close___icon {
     display: block;
   }
 }
-@media (max-width: 874px){
-.first____class {
-    width: 36%;
-}
-}
-@media (max-width: 750px){
-.first____class {
-    width: 42%;
-}
-}
-@media (max-width: 600px){
+@media (max-width: 874px) {
   .first____class {
-      width: 100%;
+    width: 36%;
   }
+}
+@media (max-width: 750px) {
+  .first____class {
+    width: 42%;
   }
-@media (max-width: 942px){
-  .right_____content{
+}
+@media (max-width: 600px) {
+  .first____class {
+    width: 100%;
+  }
+}
+@media (max-width: 942px) {
+  .right_____content {
     width: 38%;
   }
-} 
-@media (max-width: 785px){
-  .right_____content{
+}
+@media (max-width: 785px) {
+  .right_____content {
     width: 42%;
   }
-} 
-@media (max-width: 700px){
-  .right_____content{
+}
+@media (max-width: 700px) {
+  .right_____content {
     width: 47%;
   }
-} 
-@media (max-width: 600px){
-  .right_____content{
+}
+@media (max-width: 600px) {
+  .right_____content {
     width: 100%;
   }
   .balance____part {
@@ -1085,183 +1159,216 @@ body {
 }
 
 /* setting page */
-.nav-item button{
+.nav-item button {
   font-size: 15px !important;
   letter-spacing: 2px !important;
 }
 
-.tab____ul{
+.tab____ul {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
   flex-wrap: wrap !important;
 }
-.main____style{
+.main____style {
   padding: 0 3rem;
 }
-.switch____man{
+.switch____man {
   padding-left: 2.25rem !important;
 }
 
-
-@media (max-width: 988px){
-  .individual____dishes{
+@media (max-width: 988px) {
+  .individual____dishes {
     width: 15rem;
   }
-  .popular_____dishes{
+  .restaurant____card {
+    width: 15rem;
+  }
+  .popular_____dishes {
     display: flex;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  .main____all____rest {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
   }
   .add____btn___div {
     position: absolute;
     left: 193%;
+  }
 }
-}
-@media (max-width: 828px){
-  .individual____dishes img{
+@media (max-width: 828px) {
+  .individual____dishes img {
     width: 7rem;
     height: 7rem;
     left: 19.5%;
   }
-  .individual____dishes{
+  .individual____dishes {
     width: 12rem;
   }
-  .add____btn___div{
+  .restaurant____card {
+    width: 12rem;
+  }
+  .add____btn___div {
     left: 166%;
   }
-  .popular____card_____details___recent{
+  .popular____card_____details___recent {
     left: 23%;
   }
 }
-@media (max-width: 710px){
-  .popular_____dishes{
+@media (max-width: 710px) {
+  .popular_____dishes {
     display: flex;
     flex-wrap: wrap;
     gap: 22px;
   }
-  
+  .main____all____rest {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+  }
 }
-@media (max-width: 520px){
+@media (max-width: 520px) {
   .individual____dishes {
     width: 90%;
+  }
+  .restaurant____card {
+    width: 90%;
+  }
+  .individual____dishes img {
+    width: 58%;
+    height: 10rem;
+    left: 20.5%;
+  }
+  .add____btn___div {
+    left: 327%;
+  }
+  .popular____card_____details {
+    position: absolute;
+    top: 71%;
+    left: 10%;
+  }
+  .popular_____dishes {
+    display: flex;
+    justify-content: center;
+  }
+  .main____all____rest {
+    display: flex;
+    justify-content: center;
+  }
+  .popular____card_____details___recent {
+    position: absolute;
+    top: 73%;
+    left: 34%;
+  }
 }
-.individual____dishes img {
-  width: 58%;
-  height: 10rem;
-  left: 20.5%;
-}
-.add____btn___div {
-  left: 327%;
-}
-.popular____card_____details {
-  position: absolute;
-  top: 71%;
-  left: 10%;
-}
-.popular_____dishes{
-  display: flex;
-  justify-content: center;
-}
-.popular____card_____details___recent{
-  position: absolute;
-  top: 73%;
-  left: 34%;
-}
-}
-@media (max-width: 494px){
+@media (max-width: 494px) {
   .add____btn___div {
     left: 301%;
+  }
 }
-}
-@media (max-width: 446px){
+@media (max-width: 446px) {
   .add____btn___div {
     left: 281%;
+  }
 }
-}
-@media (max-width: 414px){
+@media (max-width: 414px) {
   .add____btn___div {
     left: 262%;
+  }
 }
-}
-@media (max-width: 390px){
+@media (max-width: 390px) {
   .add____btn___div {
     left: 238%;
+  }
 }
-}
-@media (max-width: 362px){
+@media (max-width: 362px) {
   .add____btn___div {
     left: 221%;
+  }
 }
-}
-@media (max-width: 336px){
+@media (max-width: 336px) {
   .add____btn___div {
     left: 239%;
+  }
+  .individual____dishes {
+    width: 100%;
+  }
+  .restaurant____card {
+    width: 100%;
+  }
 }
-.individual____dishes{
-  width: 100%;
-}
-}
-@media (max-width: 328px){
+@media (max-width: 328px) {
   .add____btn___div {
     left: 222%;
+  }
 }
-}
-@media (max-width: 308px){
+@media (max-width: 308px) {
   .add____btn___div {
     left: 208%;
+  }
 }
-}
-@media (max-width: 292px){
+@media (max-width: 292px) {
   .add____btn___div {
     left: 197%;
+  }
 }
-}
-@media (max-width: 520px){
-.popular____card_____details___recent {
+@media (max-width: 520px) {
+  .popular____card_____details___recent {
     position: absolute;
     top: 73%;
     left: 30%;
+  }
 }
-}
-@media (max-width: 1480px){
-  .main___map___icon{
+@media (max-width: 1480px) {
+  .main___map___icon {
     top: 5%;
     left: 77%;
   }
 }
-@media (max-width: 736px){
-  .main___map___icon{
+@media (max-width: 736px) {
+  .main___map___icon {
     top: 18%;
     left: 86%;
-
   }
 }
-@media (max-width: 668px){
-  .main___map___icon{
+@media (max-width: 668px) {
+  .main___map___icon {
     top: 18%;
     left: 27px;
   }
 }
-@media (max-width: 408px){
-  .main___map___icon{
+@media (max-width: 408px) {
+  .main___map___icon {
     top: 25%;
     left: 27px;
   }
 }
-@media (max-width: 668px){
-  #searchInput{
-      position: absolute !important;
+@media (max-width: 668px) {
+  #searchInput {
+    position: absolute !important;
 
-    top: 28% !important; 
+    top: 28% !important;
     left: 12px !important;
   }
 }
-@media (max-width: 408px){
-  #searchInput{
-      position: absolute !important;
+@media (max-width: 408px) {
+  #searchInput {
+    position: absolute !important;
 
-    top: 35% !important; 
+    top: 35% !important;
     left: 12px !important;
+  }
+}
+@media (max-width: 1450px) {
+  .rest____details {
+    margin-top: 6px !important;
+  }
+}
+@media (max-width: 1092px) {
+  .rest____details {
+    margin-top: 25px !important;
   }
 }

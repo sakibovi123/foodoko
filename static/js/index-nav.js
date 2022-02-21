@@ -13,7 +13,7 @@ function menuFunc() {
     .querySelector(".admin____overlay")
     .classList.add("show__adminOverlay");
 
-  total.style.zIndex = "-1";
+  // total.style.zIndex = "-1";
 }
 
 function closeIocn() {
@@ -22,7 +22,7 @@ function closeIocn() {
     .querySelector(".admin____overlay")
     .classList.remove("show__adminOverlay");
 
-  total.style.zIndex = "-1";
+  // total.style.zIndex = "-1";
 }
 
 document.addEventListener("click", (event) => {
@@ -34,6 +34,6 @@ document.addEventListener("click", (event) => {
       .querySelector(".admin____overlay")
       .classList.remove("show__adminOverlay");
     firstSide.classList.remove("navClass");
-    total.style.zIndex = "-1";
+    // total.style.zIndex = "-1";
   }
 });

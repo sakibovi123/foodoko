@@ -19,7 +19,7 @@ function cartCloseIcon() {
   document
     .querySelector(".admin____overlayyyy")
     .classList.remove("show__adminOverlayyy");
-    mobileMenu.style.zIndex = "-100";
+    // mobileMenu.style.zIndex = "-100";
 
 }
 
@@ -32,7 +32,7 @@ document.addEventListener("click", (event) => {
       .querySelector(".admin____overlayyyy")
       .classList.remove("show__adminOverlayyy");
       right.classList.remove("navClass1");
-    mobileMenu.style.zIndex = "-100";
+    // mobileMenu.style.zIndex = "-100";
 
 
 
