@@ -79,6 +79,8 @@
           <p class="fw-bold" style="font-size: 17px">Elm Street, 23</p>
         </div>
         <div class="change___btn">
+          <!-- Get address from here -->
+          <input type="hidden" id="user__address" />
           <button id="myBtn">Change</button>
         </div>
         <!-- The Modal -->
@@ -97,7 +99,7 @@
           type="text"
           placeholder="Enter a location"
         />
-       <p id="map-icon" class="main___map___icon"> <span class="iconify map____icon" data-icon="el:map-marker-alt"></span></p>
+       <!-- <p id="map-icon" class="main___map___icon"> <span class="iconify map____icon" data-icon="el:map-marker-alt"></span></p> -->
         </div>
   
         <!-- Google map -->
@@ -118,7 +120,7 @@
 </div>
       </div>
       <p class="address______details mt-1">
-        orem ipsum dolor sit amet, consectetur adipisicing elit. Qui dicta minus
+        <p id="user__addressVal" class="d-none"></p>
       </p>
 
       <div class="details_____note mt-2">

@@ -1,6 +1,7 @@
 {% load static %} {% include 'base.html' %}
 
 <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+<link rel="stylesheet" href="{% static 'css/adminpanel/admin-settings.css' %}" />
 
 <!-- Page level plugins -->
 <script src="{% static 'admin-vendor/chart.js/Chart.min.js' %}" defer></script>
@@ -286,6 +287,57 @@
                             <label class="form-check-label" for="multi-otp">Otp Verification</label>
                           </div>
                       </div>
+                      <div class="mt-2">
+                        <label for="site-admin" class="form-label"
+                          >Admin Prefix</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="site-admin"
+                          id="site-admin"
+                          aria-describedby="site-admin"
+                        />
+                      </div>
+                      <div class="mt-2">
+                        <label for="site-version" class="form-label"
+                          >Version</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="site-version"
+                          id="site-version"
+                          aria-describedby="site-version"
+                        />
+                      </div>
+                      <div class="mt-2">
+                        <label for="site-copy" class="form-label"
+                          >Copyright Year</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="site-copy"
+                          id="site-copy"
+                          aria-describedby="site-copy"
+                        />
+                      </div>
+                      <div class="mt-2">
+                        <label for="site-copy-name" class="form-label"
+                          >Copyright Name</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="site-copy-name"
+                          id="site-copy-name"
+                          aria-describedby="site-copy-name"
+                        />
+                      </div>
+                      <div class="mt-2 mb-2">
+                       <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
                   </div>
                 </div>
                 <div
@@ -294,7 +346,80 @@
                   role="tabpanel"
                   aria-labelledby="pills-image-tab"
                 >
-                  profile
+                <div class="all____site__settings main____style">
+                  <div>
+                    <div class="upload_____section mt-2">
+                      <p>Site Logo</p>
+                      <img class="main-images-pro" src="{% static 'images/kacchi.jpeg' %}">
+                      <img id="product__img" class="after___new___upload" src="" alt="" />
+                    </div>
+                    <div id="two-btn" class="mt-3 two____btn" style="margin-left: 5.2rem;">
+                      <div class="upload_____img">
+                        <label for="createuploadImgChange" class="fw-bold">Change</label>
+                        <input
+                          type="file"
+                          id="createuploadImgChange"
+                          name="uploadImgchange"
+                          onchange="foruploadchange(this)"
+                          name="item_img_change"
+                          accept="image/*"
+                        />
+                      </div>
+                      <div class="cancel____btn">
+                        <p id="cancel" class="btn btn-danger cancel____btn__pro">Cancel</p>
+                      </div>
+                    </div>
+                    <div id="select-image" class="upload_____img final____select mt-3" style="margin-left: 5.2rem;">
+                      <label for="createuploadImg" class="fw-bold">Select Image</label>
+                      <input
+                        type="file"
+                        id="createuploadImg"
+                        name="uploadImg"
+                        onchange="forupload(this)"
+                        name="item_img"
+                        accept="image/*"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div class="upload_____img mt-3">
+                      <div class="upload_____section mt-2">
+                      <p>Site Favicon</p>
+                      <img id="main-images-fav" class="main-images-pro" src="{% static 'images/kacchi.jpeg' %}">
+                      <img id="product__img-drive" class="fav-logo" src="" alt="" />
+                    </div>
+
+
+                    <div id="two-btn-fav" class="mt-3 two____btn___fav" style="margin-left: 5.2rem;">
+                      <div class="upload_____img">
+                        <label for="createuploadImgChangeFav" class="fw-bold">Change</label>
+                        <input
+                          type="file"
+                          id="createuploadImgChangeFav"
+                          name="uploadImgchange"
+                          onchange="foruploadchangeFav(this)"
+                          accept="image/*"
+                        />
+                      </div>
+                      <div class="cancel____btn">
+                        <p class="btn btn-danger cancel____btn__pro fav-cancel">Cancel</p>
+                      </div>
+                    </div>
+
+                      <div id="fav-select-image">
+                      <label for="createuploadImgdrive" class="fw-bold mt-3" style="margin-left: 5.2rem;"style="margin-left: 5.2rem;">Select Image</label>
+                      <input
+                        type="file"
+                        id="createuploadImgdrive"
+                        name="uploadImgdrive"
+                        onchange="foruploaddrive(this)"
+                        accept="image/*"
+                      />
+                      </div>
+                   
+                  </div>
+                
+                </div>
                 </div>
                 <div
                   class="tab-pane fade"
@@ -379,4 +504,6 @@
       </div>
     </div>
   </div>
+<script src="{% static 'js/adminpanel/admin-settings.js' %}"></script>
+
 </body>

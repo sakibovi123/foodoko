@@ -43,7 +43,7 @@ class RestaurantWiseProduct(View):
 
 
 class CategorywiseProduct(View):
-    template_name = ""
+    template_name = "restaurant/category_wise.html"
     def get(self, request):
         args = {}
         return render(request, self.template_name, args)

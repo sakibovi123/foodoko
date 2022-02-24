@@ -1,6 +1,7 @@
 const mapIcon = document.getElementById("map-icon");
 
-mapIcon.addEventListener("click", userLocation);
+let userAddress = document.getElementById("user__address");
+let userAddressVal = document.getElementById("user__addressVal");
 
 function initMap() {
     var mapFirst = new google.maps.Map(document.getElementById('map'), {
@@ -73,34 +74,55 @@ function initMap() {
 }
 
 
-function userLocation(event){
-    event.preventDefault()
-    x = navigator.geolocation;
+function userLocation(){
+    const loc = navigator.geolocation;
+    loc.getCurrentPosition(success, failure);
 
-  		x.getCurrentPosition(success, failure);
+    function success(position) {
+      let userLat = position.coords.latitude;
+      let userLong = position.coords.longitude;
 
-  		function success(position)
+      console.log(userLat, userLong);
+      let coords = new google.maps.LatLng(userLat, userLong);
 
-  		{
-  			var myLat = position.coords.latitude;
-  			var myLong = position.coords.longitude;
+      let mapOptions = {
+        zoom: 18,
+        center: coords,
+        draggable: true,
+      }
 
-  			//alert(myLat);
+      let map = new google.maps.Map(document.getElementById("map"), mapOptions);
+      let marker = new google.maps.Marker({map: map, position: mapOptions.center, draggable: true});
 
-  			var coords = new google.maps.LatLng(myLat,myLong);
+      let geocoder = new google.maps.Geocoder();
+      geocoder.geocode({latLng: marker.getPosition()}, function(result, status) {
+        // console.log(result);
+        if (status === "OK") {
+          // console.log(result[0].formatted_address); // --> Formatted address
+          userAddress.value = result[0].formatted_address;
+          userAddressVal.innerText = result[0].formatted_address;
+          userAddressVal.classList.remove("d-none");
+        }
+      })
+      // --> Draggable marker event
+      google.maps.event.addListener(marker, "dragend", function() {
+        // console.log(marker.getPosition().lat());
+        // console.log(marker.getPosition().lng());
+        geocoder.geocode({latLng: marker.getPosition()}, function(result, status) {
+          // console.log(result);
+          if (status === "OK") {
+            // console.log(result[0].formatted_address); // --> Formatted address
+            userAddress.value = result[0].formatted_address;
+            userAddressVal.innerText = result[0].formatted_address;
+            userAddressVal.classList.remove("d-none");
+          }
+        })
+      })
+    }
 
-  			var mapOptions = {
-
-  				zoom:18,
-  				center: coords,
-  				mapTypeId: google.maps.MapTypeId.ROADMAP
-  			}
-
-  			var mapMain = new google.maps.Map(document.getElementById("map"), mapOptions);
-  			var markerOne = new google.maps.Marker({map:mapMain, position:coords});	
-  		}
-
-  		function failure(){ }
+    function failure() {
+      console.error("Cannot detect your location! Please try again...");
+    }
 }
 
 
@@ -109,7 +131,8 @@ function userLocation(event){
 var modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+// var btn = document.getElementById("myBtn");
+let btn = document.getElementById("myBtn"); // Edit
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
@@ -117,6 +140,7 @@ var span = document.getElementsByClassName("close")[0];
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
   modal.style.display = "block";
+  userLocation();
 }
 
 // When the user clicks on <span> (x), close the modal
