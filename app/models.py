@@ -22,7 +22,7 @@ class Coupon(models.Model):
 
 
 class Wallet(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     balance = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
 
     def __str__(self):
@@ -39,6 +39,16 @@ class CartItems(models.Model):
 
     def __str__(self):
         return f"{self.product.product_name}"
+
+
+class PaymentMethod(models.Model):
+    payment_title = models.CharField(max_length=255)
+
+    class Meta:
+        ordering = ("payment_title",)
+
+    def __str__(self):
+        return f"Payment Title => {self.payment_title}"
 
 
 class Order(models.Model):
@@ -58,6 +68,8 @@ class Order(models.Model):
     driver = models.ForeignKey(DriverProfile, on_delete=models.DO_NOTHING, null=True, blank=True)
     add_coupon = models.CharField(max_length=255, null=True, blank=True)
     status = models.CharField(max_length=255, null=True, default="Restaurant accepted your order")
+
+    paymentmethod = models.ForeignKey(PaymentMethod, on_delete=models.CASCADE, null=True)
 
     class Meta:
         ordering = ["-id"]

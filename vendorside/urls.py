@@ -19,4 +19,9 @@ urlpatterns = [
 
     # All Saled path
     path("all-saled/<int:vendor_id>/", VendorAllSales.as_view(), name="allSales"),
+    
+    # roles path
+    path("role-management/<int:vendor_id>/", RoleManagement.as_view(), name="RoleManagement"),
+    path("add-role/<int:vendor_id>/", AddRole.as_view(), name="AddRole"),
+    path("edit-role/<int:vendor_id>/", EditRole.as_view(), name="EditRole"),
 ]

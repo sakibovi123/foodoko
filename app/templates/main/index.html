@@ -70,74 +70,18 @@
     </div>
 
     <div class="extended____category mt-2">
+      {% if all_category %}
+      {% for c in all_category %}
       <div class="all____category">
-        <a class="cat____link" href="#">
-          <p class="text-center">
-            <span
-              class="iconify food____icon"
-              data-icon="emojione:pot-of-food"
-            ></span>
-          </p>
-          <p class="food____name text-center">Bakery</p>
+        <a class="cat____link" href="{% url 'CategoryWiseItem' c.title %}">
+          <img src="{{ c.category_img.url }}" />
+          <p class="food____name text-center mt-1">{{ c.title }}</p>
         </a>
       </div>
-      <div class="all____category">
-        <a class="cat____link" href="#">
-          <p class="text-center">
-            <span
-              class="iconify food____icon"
-              data-icon="emojione-v1:pot-of-food"
-            ></span>
-          </p>
-          <p class="food____name text-center">Bakery</p>
-        </a>
-      </div>
-      <div class="all____category">
-        <a class="cat____link" href="#">
-          <p class="text-center">
-            <span
-              class="iconify food____icon"
-              data-icon="emojione:pot-of-food"
-            ></span>
-          </p>
-          <p class="food____name text-center">Bakery</p>
-        </a>
-      </div>
-      <div class="all____category">
-        <a class="cat____link" href="#">
-          <p class="text-center">
-            <span
-              class="iconify food____icon"
-              data-icon="emojione-v1:pot-of-food"
-            ></span>
-          </p>
-          <p class="food____name text-center">Bakery</p>
-        </a>
-      </div>
-      <div class="all____category">
-        <a class="cat____link" href="#">
-          <p class="text-center">
-            <span
-              class="iconify food____icon"
-              data-icon="emojione:pot-of-food"
-            ></span>
-          </p>
-          <p class="food____name text-center">Bakery</p>
-        </a>
-      </div>
-      <div class="all____category">
-        <a class="cat____link" href="#">
-          <p class="text-center">
-            <span
-              class="iconify food____icon"
-              data-icon="emojione-v1:pot-of-food"
-            ></span>
-          </p>
-          <p class="food____name text-center">Bakery</p>
-        </a>
-      </div>
+      {% endfor %}
+      {% endif %}
     </div>
-
+{% if pop_prods %}
     <div class="category_____part">
       <p class="fw-bold">Popular Dishes</p>
       <p class="view">
@@ -150,13 +94,15 @@
 
     <!-- dishes card -->
     <div class="popular_____dishes mt-2">
+      {% for pop in pop_prods %}
       <div class="individual____dishes">
-        <img src="{% static 'images/kacchi.jpeg' %}" />
+        <img src="{{ pop.product_image.url }}" />
         <div class="discount_____offer">
           <p class="discounttt fw-bold">15% off</p>
         </div>
         <div class="hart___icon">
-          <form>
+          <form action="" method="POST">
+            {% csrf_token %}
             <p>
               <button type="submit">
                 <span
@@ -177,209 +123,24 @@
           </p>
           <div class="card____price">
             <div>
-              <p class="fw-bold" style="font-size: 16px">Fish Burger</p>
+              <p class="fw-bold" style="font-size: 16px">{{ pop.title }}</p>
               <p style="font-size: 16px" class="fw-bold all____price">
-                <span class="dollar">$</span>100
+                <span class="dollar">$</span>{{ pop.regular_price }}
               </p>
             </div>
-            <div class="add____btn___div">
-              <button class="add_____btn">+</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="individual____dishes">
-        <img src="{% static 'images/kacchi.jpeg' %}" />
-        <div class="discount_____offer">
-          <p class="discounttt fw-bold">15% off</p>
-        </div>
-        <div class="hart___icon">
-          <form>
-            <p>
-              <button type="submit">
-                <span
-                  class="iconify main_____heart___icon"
-                  data-icon="clarity:heart-solid"
-                ></span>
-              </button>
-            </p>
+            <form action="{% url 'addTocart' %}" method="POST">
+                {% csrf_token %}
+              <div class="add____btn___div">
+                <input type="hidden" name="product_id" value="{{ pop.id }}">
+                <button type="submit" class="add_____btn">+</button>
+              </div>
           </form>
-        </div>
-        <div class="popular____card_____details">
-          <p class="card____star">
-            <span class="iconify" data-icon="emojione:star"></span
-            ><span class="iconify" data-icon="emojione:star"></span
-            ><span class="iconify" data-icon="emojione:star"></span
-            ><span class="iconify" data-icon="emojione:star"></span
-            ><span class="iconify" data-icon="emojione:star"></span>
-          </p>
-          <div class="card____price">
-            <div>
-              <p class="fw-bold" style="font-size: 16px">Fish Burger</p>
-              <p style="font-size: 16px" class="fw-bold all____price">
-                <span class="dollar">$</span>100
-              </p>
-            </div>
-            <div class="add____btn___div">
-              <button class="add_____btn">+</button>
-            </div>
           </div>
         </div>
       </div>
-      <div class="individual____dishes">
-        <img src="{% static 'images/kacchi.jpeg' %}" />
-        <div class="discount_____offer">
-          <p class="discounttt fw-bold">15% off</p>
-        </div>
-        <div class="hart___icon">
-          <form>
-            <p>
-              <button type="submit">
-                <span
-                  class="iconify main_____heart___icon"
-                  data-icon="clarity:heart-solid"
-                ></span>
-              </button>
-            </p>
-          </form>
-        </div>
-        <div class="popular____card_____details">
-          <p class="card____star">
-            <span class="iconify" data-icon="emojione:star"></span
-            ><span class="iconify" data-icon="emojione:star"></span
-            ><span class="iconify" data-icon="emojione:star"></span
-            ><span class="iconify" data-icon="emojione:star"></span
-            ><span class="iconify" data-icon="emojione:star"></span>
-          </p>
-          <div class="card____price">
-            <div>
-              <p class="fw-bold" style="font-size: 16px">Fish Burger</p>
-              <p style="font-size: 16px" class="fw-bold all____price">
-                <span class="dollar">$</span>100
-              </p>
-            </div>
-            <div class="add____btn___div">
-              <button class="add_____btn">+</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="individual____dishes">
-        <img src="{% static 'images/kacchi.jpeg' %}" />
-        <div class="discount_____offer">
-          <p class="discounttt fw-bold">15% off</p>
-        </div>
-        <div class="hart___icon">
-          <form>
-            <p>
-              <button type="submit">
-                <span
-                  class="iconify main_____heart___icon"
-                  data-icon="clarity:heart-solid"
-                ></span>
-              </button>
-            </p>
-          </form>
-        </div>
-        <div class="popular____card_____details">
-          <p class="card____star">
-            <span class="iconify" data-icon="emojione:star"></span
-            ><span class="iconify" data-icon="emojione:star"></span
-            ><span class="iconify" data-icon="emojione:star"></span
-            ><span class="iconify" data-icon="emojione:star"></span
-            ><span class="iconify" data-icon="emojione:star"></span>
-          </p>
-          <div class="card____price">
-            <div>
-              <p class="fw-bold" style="font-size: 16px">Fish Burger</p>
-              <p style="font-size: 16px" class="fw-bold all____price">
-                <span class="dollar">$</span>100
-              </p>
-            </div>
-            <div class="add____btn___div">
-              <button class="add_____btn">+</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="individual____dishes">
-        <img src="{% static 'images/kacchi.jpeg' %}" />
-        <div class="discount_____offer">
-          <p class="discounttt fw-bold">15% off</p>
-        </div>
-        <div class="hart___icon">
-          <form>
-            <p>
-              <button type="submit">
-                <span
-                  class="iconify main_____heart___icon"
-                  data-icon="clarity:heart-solid"
-                ></span>
-              </button>
-            </p>
-          </form>
-        </div>
-        <div class="popular____card_____details">
-          <p class="card____star">
-            <span class="iconify" data-icon="emojione:star"></span
-            ><span class="iconify" data-icon="emojione:star"></span
-            ><span class="iconify" data-icon="emojione:star"></span
-            ><span class="iconify" data-icon="emojione:star"></span
-            ><span class="iconify" data-icon="emojione:star"></span>
-          </p>
-          <div class="card____price">
-            <div>
-              <p class="fw-bold" style="font-size: 16px">Fish Burger</p>
-              <p style="font-size: 16px" class="fw-bold all____price">
-                <span class="dollar">$</span>100
-              </p>
-            </div>
-            <div class="add____btn___div">
-              <button class="add_____btn">+</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="individual____dishes">
-        <img src="{% static 'images/kacchi.jpeg' %}" />
-        <div class="discount_____offer">
-          <p class="discounttt fw-bold">15% off</p>
-        </div>
-        <div class="hart___icon">
-          <form>
-            <p>
-              <button type="submit">
-                <span
-                  class="iconify main_____heart___icon"
-                  data-icon="clarity:heart-solid"
-                ></span>
-              </button>
-            </p>
-          </form>
-        </div>
-        <div class="popular____card_____details">
-          <p class="card____star">
-            <span class="iconify" data-icon="emojione:star"></span
-            ><span class="iconify" data-icon="emojione:star"></span
-            ><span class="iconify" data-icon="emojione:star"></span
-            ><span class="iconify" data-icon="emojione:star"></span
-            ><span class="iconify" data-icon="emojione:star"></span>
-          </p>
-          <div class="card____price">
-            <div>
-              <p class="fw-bold" style="font-size: 16px">Fish Burger</p>
-              <p style="font-size: 16px" class="fw-bold all____price">
-                <span class="dollar">$</span>100
-              </p>
-            </div>
-            <div class="add____btn___div">
-              <button class="add_____btn">+</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
-
+{% endif %}
 
     <!-- all restaurant  -->
     <div class="category_____part">
@@ -394,58 +155,38 @@
 
     <!-- all restaurant card start -->
     <div class="main____all____rest mt-2">
+      {% if restaurants %}
+      {% for r in restaurants %}
+        <div class="restaurant____card">
+          <div class="hart___icon">
+            <form>
+              <p>
+                <button type="submit">
+                  <span
+                    class="iconify main_____heart___icon"
+                    data-icon="clarity:heart-solid"
+                  ></span>
+                </button>
+              </p>
+            </form>
+          </div>
+          <a href="{% url 'RestaurantWiseItem' r.vendor_name %}"><img src="{{ r.shop_logo.url }}" /></a>
+          <div class="rest____details mt-3">
+            <p class="text-center fw-bold text-dark">{{ r.shop_name }}</p>
+            <p class="text-center">
+              <span class="iconify" data-icon="emojione:star"></span
+              ><span class="iconify" data-icon="emojione:star"></span
+              ><span class="iconify" data-icon="emojione:star"></span
+              ><span class="iconify" data-icon="emojione:star"></span
+              ><span class="iconify" data-icon="emojione:star"></span>
+            </p>
+          </div>
+        </div>
+        {% endfor %}
+        {% else %}
+          No Restaurants Found
+        {% endif %}
       
-        <div class="restaurant____card">
-          <div class="hart___icon">
-            <form>
-              <p>
-                <button type="submit">
-                  <span
-                    class="iconify main_____heart___icon"
-                    data-icon="clarity:heart-solid"
-                  ></span>
-                </button>
-              </p>
-            </form>
-          </div>
-          <a href="#"><img src="{% static 'images/kacchi.jpeg' %}" /></a>
-          <div class="rest____details mt-3">
-            <p class="text-center fw-bold text-dark">Restaurant Name</p>
-            <p class="text-center">
-              <span class="iconify" data-icon="emojione:star"></span
-              ><span class="iconify" data-icon="emojione:star"></span
-              ><span class="iconify" data-icon="emojione:star"></span
-              ><span class="iconify" data-icon="emojione:star"></span
-              ><span class="iconify" data-icon="emojione:star"></span>
-            </p>
-          </div>
-        </div>
-        <div class="restaurant____card">
-          <div class="hart___icon">
-            <form>
-              <p>
-                <button type="submit">
-                  <span
-                    class="iconify main_____heart___icon"
-                    data-icon="clarity:heart-solid"
-                  ></span>
-                </button>
-              </p>
-            </form>
-          </div>
-          <a href="#"><img src="{% static 'images/kacchi.jpeg' %}" /></a>
-
-          <div class="rest____details mt-3">
-            <p class="text-center fw-bold text-dark">Restaurant Name</p>
-            <p class="text-center">
-              <span class="iconify" data-icon="emojione:star"></span
-              ><span class="iconify" data-icon="emojione:star"></span
-              ><span class="iconify" data-icon="emojione:star"></span
-              ><span class="iconify" data-icon="emojione:star"></span
-              ><span class="iconify" data-icon="emojione:star"></span>
-            </p>
-          </div>
-        </div>
         
       
       
@@ -455,7 +196,7 @@
 
 
     <!-- recect order  -->
-
+    {% if rec_ord_prods %}
     <div class="category_____part">
       <p class="fw-bold">Recent Order</p>
       <p class="view">
@@ -467,66 +208,25 @@
     </div>
 
     <div class="popular_____dishes mt-2">
+     
+      {% for rec in rec_ord_prods %}
       <div class="individual____dishes">
-        <img src="{% static 'images/kacchi.jpeg' %}" />
-        <div class="hart___icon">
-          <p>
-            <span
-              class="iconify main_____heart___icon___ash"
-              data-icon="clarity:heart-solid"
-            ></span>
-          </p>
-        </div>
+        <img src="{{ rec.product_image.url }}" />
         <div class="popular____card_____details___recent">
           <div class="card____price____order">
-            <p class="fw-bold" style="font-size: 16px">Fish Burger</p>
-            <p style="font-size: 16px" class="fw-bold all____price">
-              <span class="dollar">$</span>100
+            <p class="fw-bold" style="font-size: 16px">
+              {{ rec.title }}
             </p>
-            <p class="order______details">4.88 km &nbsp; &nbsp; 21 min</p>
+            <p style="font-size: 16px" class="fw-bold all____price">
+              <span class="dollar">$</span>{{ rec.regular_price }}
+            </p>
+            {% comment %} <p class="order______details">4.88 km &nbsp; &nbsp; 21 min</p> {% endcomment %}
           </div>
         </div>
       </div>
-      <div class="individual____dishes">
-        <img src="{% static 'images/kacchi.jpeg' %}" />
-        <div class="hart___icon">
-          <p>
-            <span
-              class="iconify main_____heart___icon___ash"
-              data-icon="clarity:heart-solid"
-            ></span>
-          </p>
-        </div>
-        <div class="popular____card_____details___recent">
-          <div class="card____price____order">
-            <p class="fw-bold" style="font-size: 16px">Fish Burger</p>
-            <p style="font-size: 16px" class="fw-bold all____price">
-              <span class="dollar">$</span>100
-            </p>
-            <p class="order______details">4.88 km &nbsp; &nbsp; 21 min</p>
-          </div>
-        </div>
-      </div>
-      <div class="individual____dishes">
-        <img src="{% static 'images/kacchi.jpeg' %}" />
-        <div class="hart___icon">
-          <p>
-            <span
-              class="iconify main_____heart___icon___ash"
-              data-icon="clarity:heart-solid"
-            ></span>
-          </p>
-        </div>
-        <div class="popular____card_____details___recent">
-          <div class="card____price____order">
-            <p class="fw-bold" style="font-size: 16px">Fish Burger</p>
-            <p style="font-size: 16px" class="fw-bold all____price">
-              <span class="dollar">$</span>100
-            </p>
-            <p class="order______details">4.88 km &nbsp; &nbsp; 21 min</p>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
+      {% endif %}
+     
     </div>
   </div>
 
@@ -537,14 +237,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-<script
-src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCruA3SL5gsz0B3O6N9PyStxcpRqd0tWMo&callback=initMap"
-async
-defer
-></script>
 
 <script src="{% static 'js/mapInteg.js' %}"></script>
+<script
+src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCruA3SL5gsz0B3O6N9PyStxcpRqd0tWMo" async defer
+></script>
+
+
 <script src="{% static 'js/index-nav.js' %}"></script>
 <script src="{% static 'js/index-nav-right.js' %}"></script>
 <script src="{% static 'js/index.js' %}"></script>
+
+
 

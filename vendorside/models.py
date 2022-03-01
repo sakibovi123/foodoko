@@ -38,6 +38,8 @@ class Product(models.Model):
     is_popular = models.BooleanField(default=False)
     recently_viewed = models.BooleanField(default=False)
 
+    recently_ordered = models.BooleanField(default=False)
+
     class Meta:
         ordering = ["-id"]
         verbose_name = "Product"

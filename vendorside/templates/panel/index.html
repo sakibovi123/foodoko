@@ -19,7 +19,6 @@
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
             <!-- Main Content -->
             <div id="content">
 
@@ -31,7 +30,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm side____color"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
 
@@ -114,4 +113,14 @@
             </div>
         </div>
     </div>
+
+    <!-- Google map -->
+    <div id="vendor__map" style="width: 50vw; height: 50vh; display: block; margin: 0 auto;"></div>
+    <p id="orderedUser__addressVal"></p>
+    <input id="orderedUser__address" type="hidden" />
 </body>
+
+<script src="{% static 'js/vendor/vendorPanel.js' %}"></script>
+<script
+src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places&key=AIzaSyCruA3SL5gsz0B3O6N9PyStxcpRqd0tWMo" async defer
+></script>

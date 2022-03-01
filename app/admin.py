@@ -7,5 +7,6 @@ admin.site.register([
     Coupon,
     Wallet,
     CartItems,
+    PaymentMethod,
     Order,
 ])

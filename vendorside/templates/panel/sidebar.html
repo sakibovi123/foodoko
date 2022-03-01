@@ -6,7 +6,7 @@
 
 
   <!-- Sidebar -->
-  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion side____color" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -56,17 +56,17 @@
             <span>Category Management</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{% url 'vendorProduct' vendorId.id %}">
             <i class="fab fa-product-hunt"></i>
             <span>Product Management</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{% url 'allSales' vendorId.id %}">
             <i class="fas fa-balance-scale"></i>
             <span>All Sales</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{% url 'RoleManagement' vendorId.id %}">
             <i class="fas fa-user"></i>
             <span>Roles Management</span></a>
     </li>

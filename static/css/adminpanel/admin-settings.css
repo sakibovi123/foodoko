@@ -16,16 +16,26 @@
   margin-left: 5.2rem;
   margin-top: -21px;
 }
-.after___new___upload, .fav-logo {
+.after___new___upload, .fav-logo, .store-logo, .em-logo, .dri-logo {
   width: 250px !important;
   object-fit: cover;
   height: auto !important;
 }
-.two____btn, .two____btn___fav{
+.two____btn, .two____btn___fav, .two____btn___store, .two____btn___em, .two____btn___dri{
     display: flex;
     align-items: center;
 }
 .cancel____btn{
     margin-left: -20rem;
     margin-top: 8px;
+}
+.select______file{
+  border: 1px solid blue;
+  padding: 8px;
+  border-radius: 4px;
+  background: var(--white);
+  cursor: pointer;
+}
+.new____check{
+  padding-left: 2.25rem !important;
 }

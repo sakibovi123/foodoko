@@ -1,4 +1,5 @@
 {% load static %} 
+{% load custom_filter %}
 {% include 'main/base.html' %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}" />
 
@@ -76,11 +77,11 @@
               data-icon="carbon:location-star-filled"
             ></span>
           </p>
-          <p class="fw-bold" style="font-size: 17px">Elm Street, 23</p>
+          <p class="fw-bold" style="font-size: 17px">Address</p>
         </div>
         <div class="change___btn">
           <!-- Get address from here -->
-          <input type="hidden" id="user__address" />
+          <input type="hidden" id="user__address" name="address" value="" />
           <button id="myBtn">Change</button>
         </div>
         <!-- The Modal -->
@@ -93,26 +94,21 @@
       <div class="container main___container">
         <!-- Search input -->
         <div class="all____class__search">
-          <input
+          <!-- <input
           id="searchInput"
           class="controls"
           type="text"
           placeholder="Enter a location"
-        />
+        /> -->
        <!-- <p id="map-icon" class="main___map___icon"> <span class="iconify map____icon" data-icon="el:map-marker-alt"></span></p> -->
         </div>
+
+        <!-- <div id="map__searchInput">
+          <input id="map__input" type="text" placeholder="Enter a location..." />
+        </div> -->
   
         <!-- Google map -->
         <div id="map"></div>
-  
-        <!-- Display geolocation data -->
-        <!-- <ul class="geo-data">
-          <li>Full Address: <span id="location"></span></li>
-          <li>Postal Code: <span id="postal_code"></span></li>
-          <li>Country: <span id="country"></span></li>
-          <li>Latitude: <span id="lat"></span></li>
-          <li>Longitude: <span id="lon"></span></li>
-        </ul> -->
       </div>
     </div>
   
@@ -132,43 +128,29 @@
 
     <!-- order menu start -->
     <div class="main____order___menu___container mt-3">
-      <p class="fw-bold fs-5">Order Menu</p>
+      <p class="fw-bold fs-5">Cart</p>
+      {% if request.session.cart %}
+      {% for c in cart_products %}
       <div class="main____order___menu mt-2">
         <div class="d-flex order___menu__img">
-          <img src="{% static 'images/kacchi.jpeg' %}" />
+          <img src="{{ c.product_image.url }}" />
           <div class="order___menu__price ms-2">
-            <p style="font-size: 16px">Pepperoni Pizza</p>
-            <p>x1</p>
+            <p style="font-size: 16px">{{ c.title }}</p>
+            <p>x{{ c|cart_quantity:request.session.cart }}</p>
           </div>
         </div>
         <div class="order_____menu">
-          <p class="fw-bold">+ <span class="dollar">$</span>5.599</p>
+          {% if c.sale_price %}
+          <p class="fw-bold">+ <span class="dollar">$</span>{{ c.sale_price }}</p>
+          {% else %}<p class="fw-bold">+ <span class="dollar">$</span>{{ c.regular_price }}</p>{% endif %}
         </div>
       </div>
-      <div class="main____order___menu mt-2">
-        <div class="d-flex order___menu__img">
-          <img src="{% static 'images/kacchi.jpeg' %}" />
-          <div class="order___menu__price ms-2">
-            <p style="font-size: 16px">Pepperoni Pizza</p>
-            <p>x1</p>
-          </div>
+      {% endfor %}
+      {% else %}
+        <div class="alert alert-warning" role="alert">
+          No Products Added
         </div>
-        <div class="order_____menu">
-          <p class="fw-bold">+ <span class="dollar">$</span>5.599</p>
-        </div>
-      </div>
-      <div class="main____order___menu mt-2">
-        <div class="d-flex order___menu__img">
-          <img src="{% static 'images/kacchi.jpeg' %}" />
-          <div class="order___menu__price ms-2">
-            <p style="font-size: 16px">Pepperoni Pizza</p>
-            <p>x1</p>
-          </div>
-        </div>
-        <div class="order_____menu">
-          <p class="fw-bold">+ <span class="dollar">$</span>5.599</p>
-        </div>
-      </div>
+      {% endif %}
     </div>
     <!-- order menu end -->
 
@@ -177,17 +159,19 @@
       <div
         class="local____Service d-flex justify-content-between align-items-center"
       >
-        <p class="service">Service</p>
-        <p>+<span class="dollar">$</span>1.0000</p>
+        {% comment %} <p class="service">Service</p> {% endcomment %}
+        
       </div>
+      {% if request.session.cart %}
       <div
         class="local____Service d-flex justify-content-between align-items-center"
       >
         <p class="fw-bold">Total</p>
         <p style="font-size: 21px" class="fw-bold">
-          +<span class="dollar">$</span>1.0000
+          +<span class="dollar">$</span>{{ cart_products|get_grand_total:request.session.cart }}
         </p>
       </div>
+      {% endif %}
     </div>
     <!-- service and total end -->
 
@@ -209,3 +193,4 @@
     <!-- checkout btn end -->
   </div>
   <div class="admin____overlayyyy"></div>
+

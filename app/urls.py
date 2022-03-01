@@ -4,7 +4,10 @@ from app.views import *
 urlpatterns = [
     path("", HomePageView.as_view(), name="HomePageView"),
     # restaurant wise item
-    path("restaurant/", RestaurantWiseProduct.as_view(), name="RestaurantWiseItem"),
+    path("restaurant/<str:vendor_name>", RestaurantWiseProduct.as_view(), name="RestaurantWiseItem"),
     # category wise item
-    path("category-wise-item/", CategorywiseProduct.as_view(), name="CategoryWiseItem"),
+    path("category-wise-item/<str:title>/", CategorywiseProduct.as_view(), name="CategoryWiseItem"),
+    
+    # All Actions
+    path("add-to-cart/", add_to_cart, name="addTocart"),
 ]

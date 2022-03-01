@@ -109,7 +109,7 @@ def deleteCategory(request, vendor_id, cat_id):
 
 
 class VendorProductView(View):
-    template_name = "panel/productManagement/products.html"
+    template_name = "productManagement/products.html"
 
     def get(self, request, vendor_id):
         vendorId = get_object_or_404(VendorProfile, pk=vendor_id)
@@ -123,7 +123,7 @@ class VendorProductView(View):
 
 
 class AddVendorProduct(View):
-    template_name = "panel/productManagement/add_product.html"
+    template_name = "productManagement/add_product.html"
 
     def get(self, request, vendor_id):
         vendorId = get_object_or_404(VendorProfile, pk=vendor_id)
@@ -178,7 +178,7 @@ class AddVendorProduct(View):
     
 
 class EditVendorProduct(View):
-    template_name = "panel/productManagement/edit_product.html"
+    template_name = "productManagement/edit_product.html"
 
     def get(self ,request, vendor_id, product_id):
         vendorId = get_object_or_404(VendorProfile, pk=vendor_id)
@@ -257,8 +257,32 @@ class VendorAllSales(View):
         return render(request, self.template_name, args)
 
 
-
-
+class RoleManagement(View):
+    template_name = "roleManagement/roles.html"
+    def get(self, request, vendor_id):
+        vendorId = get_object_or_404(VendorProfile, pk=vendor_id)
+        args = {
+            "vendorId": vendorId,
+        }
+        return render(request, self.template_name, args)
+    
+class AddRole(View):
+    template_name = "roleManagement/add_role.html"
+    def get(self, request, vendor_id):
+        vendorId = get_object_or_404(VendorProfile, pk=vendor_id)
+        args = {
+            "vendorId": vendorId,
+        }
+        return render(request, self.template_name, args)
+    
+class EditRole(View):
+    template_name = "roleManagement/edit_role.html"
+    def get(self, request, vendor_id):
+        vendorId = get_object_or_404(VendorProfile, pk=vendor_id)
+        args = {
+            "vendorId": vendorId,
+        }
+        return render(request, self.template_name, args)
     
 
 
