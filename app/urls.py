@@ -10,4 +10,6 @@ urlpatterns = [
     
     # All Actions
     path("add-to-cart/", add_to_cart, name="addTocart"),
+    # checkout
+    path("checkout/", checkout, name="checkout")
 ]

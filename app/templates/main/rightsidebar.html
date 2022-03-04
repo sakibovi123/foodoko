@@ -81,7 +81,6 @@
         </div>
         <div class="change___btn">
           <!-- Get address from here -->
-          <input type="hidden" id="user__address" name="address" value="" />
           <button id="myBtn">Change</button>
         </div>
         <!-- The Modal -->
@@ -184,13 +183,56 @@
           </form>
           <input class="ms-3" type="text" placeholder="Have a coupon code?" />
         </div>
-        <form>
+        
         <div class="checkoutBTN d-flex justify-content-center mt-3">
-          <button>CHECKOUT</button>
+          <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            checkout
+          </button>
         </div>
-      </form>
+      
     </div>
     <!-- checkout btn end -->
   </div>
   <div class="admin____overlayyyy"></div>
 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'checkout' %}" method="POST">
+          {% csrf_token %}
+          {% comment %} Get address of user value from google map {% endcomment %}
+          <input type="hidden" id="user__address" name="address" value="" />
+          <input type="hidden" id="user__lat" name="user_lat" value="" />
+          <input type="hidden" id="user__long" name="user_long" value="" />
+
+          <label class="form-label">Apartment No.</label>
+          <input type="text" class="form-control" name="apartment_no">
+          <label class="form-label">Road No.</label>
+          <input type="text" class="form-control" name="road_no">
+          <label class="form-label">Flat No.</label>
+          <input type="text" class="form-control" name="flat_no">
+          <label class="form-label">Select payment method</label>
+          <select class="form-control" name="paymentmethod">
+            <option selected>Select</option>
+            {% for p in payment_methods %}
+              <option value="{{ p.id }}">{{ p.payment_title }}<option>
+            {% endfor %}
+          </select>
+          <br>
+          <button type="submit" class="btn btn-warning">Checkout now</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

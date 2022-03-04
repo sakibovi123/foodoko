@@ -285,4 +285,35 @@ class EditRole(View):
         return render(request, self.template_name, args)
     
 
+class VendorSettings(View):
+    template_name = "vendorSetting/settings.html"
+
+    def get(self, request, vendor_id):
+        vendorId = get_object_or_404(VendorProfile, pk=vendor_id)
+        args = {
+            "vendorId": vendorId
+        }
+        return render(request, self.template_name, args)
+
+
+class ContactAdmin(View):
+    template_name = "contactadmin/contact-admin.html"
+
+    def get(self, request, vendor_id):
+        vendorId = get_object_or_404(VendorProfile, pk=vendor_id)
+        args = {
+            "vendorId": vendorId
+        }
+        return render(request, self.template_name, args)
+
+
+class Addons(View):
+    template_name = "addons/addons.html"
+
+    def get(self, request, vendor_id):
+        vendorId = get_object_or_404(VendorProfile, pk=vendor_id)
+        args = {
+            "vendorId": vendorId
+        }
+        return render(request, self.template_name, args)
 

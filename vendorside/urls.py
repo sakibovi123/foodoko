@@ -24,4 +24,13 @@ urlpatterns = [
     path("role-management/<int:vendor_id>/", RoleManagement.as_view(), name="RoleManagement"),
     path("add-role/<int:vendor_id>/", AddRole.as_view(), name="AddRole"),
     path("edit-role/<int:vendor_id>/", EditRole.as_view(), name="EditRole"),
+
+    # Vendor settings url
+    path("vendor-settings/<int:vendor_id>/", VendorSettings.as_view(), name='VendorSettings'),
+
+    # contact admin
+    path("contact-admin/<int:vendor_id>/", ContactAdmin.as_view(), name="ContactAdmin"),
+
+    # addons
+    path("addons/<int:vendor_id>/", Addons.as_view(), name="Addons"),
 ]

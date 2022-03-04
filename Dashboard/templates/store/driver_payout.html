@@ -31,33 +31,43 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Driver</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Add Driver</a>
+                        <a href="{% url 'addDriver' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Add Driver</a>
                     </div>
 
                     <div class="main____dept____table table-responsive">
                         <table class="table">
                           <thead class="table_____head">
                             <tr>
+                                <th scope="col">Profile Picture</th>
                                 <th scope="col">Full Name</th>
                                 <th scope="col">Contact</th>
-                                <th scope="col">Address</th>
+                                
                                 <th scope="col">Total Earnings</th>
                             </tr>
                           </thead>
                           <tbody class="catgory__table">
-                        
+                            {% if drivers %}
+                            {% for d in drivers %}
                             <tr>
-                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">Foood</a></td>
-                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">Foood</a></td>
-                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">Foood</a></td>
+                            <td class="category__data"><a href="{% url 'DriverDetailView' d.full_name %}" class="w-100 d-flex text-dark category__name"><img src="{{ d.photo.url }}" style="height: 33px;"></a></td>
+                              <td class="category__data"><a href="{% url 'DriverDetailView' d.full_name %}" class="w-100 d-flex text-dark category__name">{{ d.full_name }}</a></td>
+                              <td class="category__data"><a href="{% url 'DriverDetailView' d.full_name %}" class="w-100 d-flex text-dark category__name">{{ d.contact_number }}</a></td>
+                              
                               <td class="d-flex align-items-center">
-                                <a href="#" class="w-100 d-flex text-dark">NO Vendor Name</a>
-                                <form method="POST" action="">
-                                
+                                <a href="{% url 'DriverDetailView' d.full_name %}" class="w-100 d-flex text-dark category__name">{{ d.total_earning }}</a>
+                                <form method="POST" action="{% url 'deleteDriver' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="driver_id" value="{{ d.id }}">
                                   <button class="border-0 bg-white" type="submit"><i class="fas fa-times-circle cross____icon"></i></button>
                                 </form>
+                               
+                                    
+                                  <a href="{% url 'editDriver' d.id %}" class="border-0 bg-white" type="submit"><i class="fas fa-edit cross____icon"></i></a>
+                                
                               </td>
                             </tr>
+                            {% endfor %}
+                            {% endif %}
                            
                           </tbody>
                         </table>

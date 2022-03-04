@@ -38,3 +38,28 @@
   border: #db0f83 !important;
   background-image: none !important;
 }
+
+
+/* addons */
+.price_______name p{
+  margin-block-end: 0;
+  margin-block-start: 0;
+}
+.price_______name p:first-child{
+  font-size: 25px;
+}
+.main____adons{
+  background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+/* settings */
+.vendor____pills .vendor____link.active{
+  color: #fff !important; 
+    background-color: #DB0F83 !important;
+}
+.vendor____link{
+  color: #DB0F83 !important;
+}

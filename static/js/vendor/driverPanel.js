@@ -1,74 +1,62 @@
-let userAddress = document.getElementById("orderedUser__address");
-let userAddressVal = document.getElementById("orderedUser__addressVal");
+let orderedUserLat = document.getElementById("ordered__userLat");
+let orderedUserLong = document.getElementById("ordered__userLong");
+let vendorLat = document.getElementById("vendor__lat");
+let vendorLong = document.getElementById("vendor__long");
+let totalDistance = document.getElementById("total__distance");
+
+console.log(Number(orderedUserLat.value));
+console.log(Number(orderedUserLong.value));
+console.log(Number(vendorLat.value));
+console.log(Number(vendorLong.value));
 
 function getLocation() {
   // Ordered User
-    const loc = navigator.geolocation;
-    loc.getCurrentPosition(success, failure);
 
-    function success(position) {
-      let userLat = position.coords.latitude;
-      let userLong = position.coords.longitude;
+  var map;
+  var directionsDisplay = new google.maps.DirectionsRenderer();
+  var directionsService = new google.maps.DirectionsService();
 
-      // console.log(userLat, userLong);
-      let coords = new google.maps.LatLng(userLat, userLong);
+  // var origin = new google.maps.LatLng(27.721503, 85.362072);
+  // var destination = new google.maps.LatLng(27.711360, 85.318781)
+  var origin = new google.maps.LatLng(Number(vendorLat.value), Number(vendorLong.value));
+  var destination = new google.maps.LatLng(Number(orderedUserLat.value), Number(orderedUserLong.value))
 
-      let mapOptions = {
-        zoom: 18,
-        center: coords,
-        draggable: true,
-      }
+  let mapOptions = {
+    zoom: 18,
+    center: origin,
+  }
 
-      let map = new google.maps.Map(document.getElementById("vendor__map"), mapOptions);
-      let marker = new google.maps.Marker({map: map, position: mapOptions.center, draggable: true});
+  map = new google.maps.Map(document.getElementById("driverPanelMap"), mapOptions);
 
-      let geocoder = new google.maps.Geocoder();
-      geocoder.geocode({latLng: marker.getPosition()}, function(result, status) {
-        // console.log(result);
-        if (status === "OK") {
-          // console.log(result[0].formatted_address); // --> Formatted address
-          userAddress.value = result[0].formatted_address;
-          userAddressVal.innerText = result[0].formatted_address;
-        }
-      })
-      // --> Draggable marker event
-      google.maps.event.addListener(marker, "dragend", function() {
-        // console.log(marker.getPosition().lat());
-        // console.log(marker.getPosition().lng());
-        geocoder.geocode({latLng: marker.getPosition()}, function(result, status) {
-          // console.log(result);
-          if (status === "OK") {
-            // console.log(result[0].formatted_address); // --> Formatted address
-            userAddress.value = result[0].formatted_address;
-            userAddressVal.innerText = result[0].formatted_address;
-          }
-        })
-      })
+  // For displaying direction
+  directionsDisplay.setMap(map);
 
-      // For displaying direction
-      // Vendor location
-      var directionsDisplay = new google.maps.DirectionsRenderer();
-      var directionsService = new google.maps.DirectionsService();
+  var request = {
+    origin: origin,
+    destination: destination,
+    travelMode: "DRIVING"
+  }
 
-      var destinationPoint = new google.maps.LatLng(23.6850, 90.3563);
-      directionsDisplay.setMap(map);
+  directionsService.route(request, function(result, status) {
+    if (status === "OK") {
+      // Showing direction
+      directionsDisplay.setDirections(result);
 
-      var request = {
-        origin: coords,
-        destination: destinationPoint,
-        travelMode: "DRIVING"
-      }
-
-      directionsService.route(request, function(result, status) {
-        if (status === "OK") {
-          directionsDisplay.setDirections(result);
-        }
-      })
+      const distance = google.maps.geometry.spherical.computeDistanceBetween(origin, destination);
+      console.log(distance);
+      const getDistance = distance / 1000;
+      totalDistance.innerText = Number(getDistance.toFixed(2));
     }
-
-    function failure() {
-      console.error("Cannot detect your location! Please try again...");
-    }
+  })
 }
 
-getLocation();
+setTimeout(() => {
+  if (orderedUserLat &&
+    orderedUserLong &&
+    vendorLat &&
+    vendorLong)
+    getLocation();
+  else {
+    console.error("ERROR!");
+  }
+}, 1000);

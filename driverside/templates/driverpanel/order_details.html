@@ -1,0 +1,26 @@
+{% load static %}
+
+{{ order_obj.id }} ||
+{{ order_obj.vendor }} | {{ order_obj.shop_name }} || {{ order_obj.address }} || 
+
+<input type="hidden" value="{{ order_obj.latitude }}" id="ordered__userLat"></p>
+<input type="hidden" value="{{ order_obj.longtitude }}" id="ordered__userLong"></p>
+<br>
+
+VENDor DETAILS
+
+<input type="hidden" id="vendor__lat" value="{{ order_obj.vendor.vendor_latitude }}" />
+<br />
+<input type="hidden" id="vendor__long" value="{{ order_obj.vendor.vendor_longtitude }}" />
+
+<div>
+    <div id="driverPanelMap" class="mx-auto" style="width: 600px; height: 400px; position: relative"></div>
+
+    <p id="total__distance"></p>
+
+    <script src="{% static 'js/vendor/driverPanel.js' %}" defer></script>
+    <script
+    src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places&key=AIzaSyCruA3SL5gsz0B3O6N9PyStxcpRqd0tWMo" async defer
+    ></script>
+
+</div>

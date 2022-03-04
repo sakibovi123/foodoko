@@ -1,0 +1,1101 @@
+{% load static %} {% include 'base.html' %}
+
+<link rel="stylesheet" href="{% static 'css/index.css' %}" />
+<link rel="stylesheet" href="{% static 'css/adminpanel/admin-settings.css' %}" />
+
+<!-- Page level plugins -->
+<script src="{% static 'admin-vendor/chart.js/Chart.min.js' %}" defer></script>
+
+<!-- Page level custom scripts -->
+<script src="{% static 'admin-js/demo/chart-area-demo.js' %}" defer></script>
+<script src="{% static 'admin-js/demo/chart-area-demo.js' %}" defer></script>
+
+<body id="page-top">
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+    <!-- sidebar -->
+
+    {% include 'panel/sidebar.html' %}
+
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+      <!-- Main Content -->
+      <div id="content">
+        {% include 'panel/navbar.html' %}
+
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+          <!-- Page Heading -->
+          <div
+            class="d-sm-flex align-items-center justify-content-between mb-4"
+          >
+            <h1 class="h3 mb-0 text-gray-800">Settings</h1>
+          </div>
+
+          <div class="main____tab___view">
+            <ul
+              class="nav nav-pills vendor____pills tab____ul mt-2"
+              id="pills-tab"
+              role="tablist"
+            >
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link vendor____link active"
+                  id="pills-site-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#pills-site"
+                  type="button"
+                  role="tab"
+                  aria-controls="pills-site"
+                  aria-selected="true"
+                >
+                  SITE SETTING
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link vendor____link"
+                  id="pills-image-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#pills-image"
+                  type="button"
+                  role="tab"
+                  aria-controls="pills-image"
+                  aria-selected="false"
+                >
+                  SITE IMAGES
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link vendor____link"
+                  id="pills-api-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#pills-api"
+                  type="button"
+                  role="tab"
+                  aria-controls="pills-api"
+                  aria-selected="false"
+                >
+                  API CREDENTIAL
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link vendor____link"
+                  id="pills-payment-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#pills-payment"
+                  type="button"
+                  role="tab"
+                  aria-controls="pills-payment"
+                  aria-selected="false"
+                >
+                  PAYMENT GATEWAY
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link vendor____link"
+                  id="pills-email-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#pills-email"
+                  type="button"
+                  role="tab"
+                  aria-controls="pills-email"
+                  aria-selected="false"
+                >
+                  EMAIL SETTINGS
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link vendor____link"
+                  id="pills-fees-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#pills-fees"
+                  type="button"
+                  role="tab"
+                  aria-controls="pills-fees"
+                  aria-selected="false"
+                >
+                  FEES
+                </button>
+              </li>
+            </ul>
+            <form>
+            <div class="tab-content" id="pills-tabContent">
+              
+                <div
+                  class="tab-pane fade show active"
+                  id="pills-site"
+                  role="tabpanel"
+                  aria-labelledby="pills-site-tab"
+                >
+                  <div class="all____site__settings main____style">
+                    <div class="mt-2">
+                      <label for="site-name" class="form-label"
+                        >Site Name</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="site-name"
+                        id="site-name"
+                        aria-describedby="site-name"
+                      />
+                    </div>
+                    <div class="mt-2">
+                      <label for="site-phone" class="form-label"
+                        >Site Support Phone</label
+                      >
+                      <input
+                        type="tel"
+                        class="form-control"
+                        name="site-phone"
+                        id="site-phone"
+                        aria-describedby="site-phone"
+                      />
+                    </div>
+                    <div class="mt-2">
+                      <label for="site-address" class="form-label"
+                        >Add Code To The ( Head ) (For Tracking Codes Such As
+                        Google Analytics)</label
+                      >
+                      <div class="form-floating">
+                        <textarea
+                          class="form-control"
+                          placeholder="Address"
+                          id="floatingTextarea2"
+                          style="height: 100px"
+                        ></textarea>
+                      </div>
+                    </div>
+                    <div class="mt-2">
+                      <label for="currency">Payment Currency</label>
+                      <select
+                        class="form-control"
+                        id="currency"
+                        name="currency"
+                      >
+                        <option value="1">USD</option>
+                        <option value="2">2</option>
+                      </select>
+                    </div>
+                    <div class="mt-2">
+                        <label for="currency">Default Currency Code</label>
+                        <select
+                          class="form-control"
+                          id="Code"
+                          name="Code"
+                        >
+                          <option value="1">USD</option>
+                          <option value="2">2</option>
+                        </select>
+                      </div>
+                      <div class="mt-2">
+                        <label for="mode">Maintenance Mode</label>
+                        <select
+                          class="form-control"
+                          id="mode"
+                          name="mode"
+                        >
+                          <option value="1">Yes</option>
+                          <option value="2">No</option>
+                        </select>
+                      </div>
+                      <div class="mt-2">
+                        <label for="contact-lesss">Contact Less Delivery </label>
+                        <select
+                          class="form-control"
+                          id="contact-less"
+                          name="contact-less"
+                        >
+                          <option value="1">Yes</option>
+                          <option value="2">No</option>
+                        </select>
+                      </div>
+                      <div class="mt-2">
+                        <label for="site-store" class="form-label"
+                          >Store Kilometer</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="site-store"
+                          id="site-store"
+                          aria-describedby="site-store"
+                        />
+                      </div>
+                      <div class="mt-2">
+                        <label for="site-driver" class="form-label"
+                          >Driver Kilometer</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="site-driver"
+                          id="site-driver"
+                          aria-describedby="site-driver"
+                        />
+                      </div>
+                      <div class="mt-2">
+                        <label for="site-max" class="form-label"
+                          >Maximum Number Of Delivery Per Driver</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="site-max"
+                          id="site-max"
+                          aria-describedby="site-max"
+                        />
+                      </div>
+                      <div class="mt-2">
+                        <label for="site-radius" class="form-label"
+                          >Multiple Delivery Radius</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="site-radius"
+                          id="site-radius"
+                          aria-describedby="site-radius"
+                        />
+                      </div>
+                      <div class="mt-2">
+                        <label for="site-assignment" class="form-label"
+                          >Preparation Time Interval For Mulitple Delivery Assignment</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="site-assignment"
+                          id="site-assignment"
+                          aria-describedby="site-assignment"
+                        />
+                      </div>
+                      <div class="mt-2">
+                        <div class="form-check switch____man form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="multi-delliver" checked>
+                            <label class="form-check-label" for="multi-delliver">Multiple Delivery</label>
+                          </div>
+                      </div>
+                      <div class="mt-2">
+                        <div class="form-check switch____man form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="multi-otp" checked>
+                            <label class="form-check-label" for="multi-otp">Otp Verification</label>
+                          </div>
+                      </div>
+                      <div class="mt-2">
+                        <label for="site-admin" class="form-label"
+                          >Admin Prefix</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="site-admin"
+                          id="site-admin"
+                          aria-describedby="site-admin"
+                        />
+                      </div>
+                      <div class="mt-2">
+                        <label for="site-version" class="form-label"
+                          >Version</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="site-version"
+                          id="site-version"
+                          aria-describedby="site-version"
+                        />
+                      </div>
+                      <div class="mt-2">
+                        <label for="site-copy" class="form-label"
+                          >Copyright Year</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="site-copy"
+                          id="site-copy"
+                          aria-describedby="site-copy"
+                        />
+                      </div>
+                      <div class="mt-2">
+                        <label for="site-copy-name" class="form-label"
+                          >Copyright Name</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="site-copy-name"
+                          id="site-copy-name"
+                          aria-describedby="site-copy-name"
+                        />
+                      </div>
+                      <div class="mt-2 mb-2">
+                       <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
+                  </div>
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="pills-image"
+                  role="tabpanel"
+                  aria-labelledby="pills-image-tab"
+                >
+                <div class="all____site__settings main____style">
+                  <div>
+                    <div class="upload_____section mt-2">
+                      <p>Site Logo &nbsp;&nbsp;</p>
+                      <img class="main-images-pro" src="{% static 'images/kacchi.jpeg' %}">
+                      <img id="product__img" class="after___new___upload" src="" alt="" />
+                    </div>
+                    <div id="two-btn" class="mt-3 two____btn" style="margin-left: 5.2rem;">
+                      <div class="upload_____img">
+                        <label for="createuploadImgChange" class="fw-bold">Change</label>
+                        <input
+                          type="file"
+                          id="createuploadImgChange"
+                          name="uploadImgchange"
+                          onchange="foruploadchange(this)"
+                          name="item_img_change"
+                          accept="image/*"
+                        />
+                      </div>
+                      <div class="cancel____btn">
+                        <p id="cancel" class="btn btn-danger cancel____btn__pro">Cancel</p>
+                      </div>
+                    </div>
+                    <div id="select-image" class="upload_____img final____select mt-3" style="margin-left: 5.2rem;">
+                      <label for="createuploadImg" class="fw-bold">Select Image</label>
+                      <input
+                        type="file"
+                        id="createuploadImg"
+                        name="uploadImg"
+                        onchange="forupload(this)"
+                        name="item_img"
+                        accept="image/*"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div class="upload_____img mt-3">
+                      <div class="upload_____section mt-2">
+                      <p>Site Favicon</p>
+                      <img id="main-images-fav" class="main-images-fav" src="{% static 'images/kacchi.jpeg' %}">
+                      <img id="product__img-drive" class="fav-logo" src="" alt="" />
+                    </div>
+
+
+                    <div id="two-btn-fav" class="mt-3 two____btn___fav" style="margin-left: 5.2rem;">
+                      <div class="upload_____img">
+                        <label for="createuploadImgChangeFav" class="fw-bold">Change</label>
+                        <input
+                          type="file"
+                          id="createuploadImgChangeFav"
+                          name="uploadImgchange"
+                          onchange="foruploadchangeFav(this)"
+                          accept="image/*"
+                        />
+                      </div>
+                      <div class="cancel____btn">
+                        <p class="btn btn-danger cancel____btn__pro fav-cancel">Cancel</p>
+                      </div>
+                    </div>
+
+                      <div id="fav-select-image">
+                      <label for="createuploadImgdrive" class="fw-bold mt-3" style="margin-left: 5.2rem;"style="margin-left: 5.2rem;">Select Image</label>
+                      <input
+                        type="file"
+                        id="createuploadImgdrive"
+                        name="uploadImgdrive"
+                        onchange="foruploaddrive(this)"
+                        accept="image/*"
+                      />
+                      </div>
+                   
+                  </div>
+                
+
+                  <div class="upload_____img mt-3">
+                    <div class="upload_____section mt-2">
+                    <p>Store Logo</p>
+                    <img id="main-images-store" class="main-images-store" src="{% static 'images/kacchi.jpeg' %}">
+                    <img id="product__img-store" class="store-logo" src="" alt="" />
+                  </div>
+
+
+                  <div id="two-btn-store" class="mt-3 two____btn___store" style="margin-left: 5.2rem;">
+                    <div class="upload_____img">
+                      <label for="createuploadImgChangestore" class="fw-bold">Change</label>
+                      <input
+                        type="file"
+                        id="createuploadImgChangestore"
+                        name="uploadImgchange"
+                        onchange="foruploadchangestore(this)"
+                        accept="image/*"
+                      />
+                    </div>
+                    <div class="cancel____btn">
+                      <p class="btn btn-danger cancel____btn__pro store-cancel">Cancel</p>
+                    </div>
+                  </div>
+
+                    <div id="store-select-image">
+                    <label for="createuploadImgstore" class="fw-bold mt-3" style="margin-left: 5.2rem;"style="margin-left: 5.2rem;">Select Image</label>
+                    <input
+                      type="file"
+                      id="createuploadImgstore"
+                      name="uploadImgstore"
+                      onchange="foruploadstore(this)"
+                      accept="image/*"
+                    />
+                    </div>
+                 
+                </div>
+
+                <div class="upload_____img mt-3">
+                  <div class="upload_____section mt-2">
+                  <p>Email Logo</p>
+                  <img id="main-images-em" class="main-images-em" src="{% static 'images/kacchi.jpeg' %}">
+                  <img id="product__img-em" class="em-logo" src="" alt="" />
+                </div>
+
+
+                <div id="two-btn-em" class="mt-3 two____btn___em" style="margin-left: 5.2rem;">
+                  <div class="upload_____img">
+                    <label for="createuploadImgChangeem" class="fw-bold">Change</label>
+                    <input
+                      type="file"
+                      id="createuploadImgChangeem"
+                      name="uploadImgchange"
+                      onchange="foruploadchangeem(this)"
+                      accept="image/*"
+                    />
+                  </div>
+                  <div class="cancel____btn">
+                    <p class="btn btn-danger cancel____btn__pro em-cancel">Cancel</p>
+                  </div>
+                </div>
+
+                  <div id="em-select-image">
+                  <label for="createuploadImgem" class="fw-bold mt-3" style="margin-left: 5.2rem;"style="margin-left: 5.2rem;">Select Image</label>
+                  <input
+                    type="file"
+                    id="createuploadImgem"
+                    name="uploadImgem"
+                    onchange="foruploadem(this)"
+                    accept="image/*"
+                  />
+                  </div>
+               
+              </div>
+
+              <div class="upload_____img mt-3">
+                <div class="upload_____section mt-2">
+                <p>Driver Logo</p>
+                <img id="main-images-dri" class="main-images-dri" src="{% static 'images/kacchi.jpeg' %}">
+                <img id="product__img-dri" class="em-logo" src="" alt="" />
+              </div>
+
+
+              <div id="two-btn-dri" class="mt-3 two____btn___dri" style="margin-left: 5.2rem;">
+                <div class="upload_____img">
+                  <label for="createuploadImgChangedri" class="fw-bold">Change</label>
+                  <input
+                    type="file"
+                    id="createuploadImgChangedri"
+                    name="uploadImgchange"
+                    onchange="foruploadchangedri(this)"
+                    accept="image/*"
+                  />
+                </div>
+                <div class="cancel____btn">
+                  <p class="btn btn-danger cancel____btn__pro dri-cancel">Cancel</p>
+                </div>
+              </div>
+
+                <div id="dri-select-image">
+                <label for="createuploadImgdri" class="fw-bold mt-3" style="margin-left: 5.2rem;"style="margin-left: 5.2rem;">Select Image</label>
+                <input
+                  type="file"
+                  id="createuploadImgdri"
+                  name="uploadImgdri"
+                  onchange="foruploaddri(this)"
+                  accept="image/*"
+                />
+                </div>
+                <div class="mt-2 mb-2">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                 </div>
+             
+            </div>
+
+
+
+                </div>
+                </div>
+              </div>
+                <div
+                  class="tab-pane fade"
+                  id="pills-api"
+                  role="tabpanel"
+                  aria-labelledby="pills-api-tab"
+                >
+                <div class="all____site__settings main____style">
+                  <div class="mt-2">
+                    <label for="site-g-api" class="form-label"
+                      >Google API Key</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-g-api"
+                      id="site-g-api"
+                      aria-describedby="site-g-api"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-server" class="form-label"
+                      >Google Server Key</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-server"
+                      id="site-server"
+                      aria-describedby="site-server"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-fcm" class="form-label"
+                      >FCM Server Key</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-fcm"
+                      id="site-fcm"
+                      aria-describedby="site-fcm"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-id" class="form-label"
+                      >FCM Sendder ID</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-id"
+                      id="site-id"
+                      aria-describedby="site-id"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-aaple" class="form-label"
+                      >Apple Service ID</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-apple"
+                      id="site-apple"
+                      aria-describedby="site-apple"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-team" class="form-label"
+                      >Apple Team ID</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-team"
+                      id="site-team"
+                      aria-describedby="site-team"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-a-key" class="form-label"
+                      >Apple Key ID</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-a-key"
+                      id="site-a-key"
+                      aria-describedby="site-a-key"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <div class="form-group apple___key">
+                      <label>Apple Key File</label>
+                      <label class="ms-2 select______file" for="Apple Key File">Select File</label>
+                      <input type="file" class="form-control-file" id="Apple Key File" style="visibility: hidden;">
+                    </div>
+                  </div>
+                  <div>
+                    <label for="site-fire" class="form-label"
+                      >Firebase Database URL</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-fire"
+                      id="site-fire"
+                      aria-describedby="site-fire"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-client" class="form-label"
+                      >Google Client Id</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-client"
+                      id="site-client"
+                      aria-describedby="site-client"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-secret" class="form-label"
+                      >Google Client Secret</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-secret"
+                      id="site-secret"
+                      aria-describedby="site-secret"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-fb" class="form-label"
+                      >FaceBook Client ID</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-fb"
+                      id="site-fb"
+                      aria-describedby="site-fb"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-a-fb" class="form-label"
+                      >FaceBook Client Secret</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-a-fb"
+                      id="site-a-fb"
+                      aria-describedby="site-a-fb"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <div class="form-group">
+                      <label for="Account">Firebase Service Account File (JSON) </label>
+                      <input type="file" class="form-control-file" id="Account">
+                    </div>
+                  </div>
+                  <div class="mt-2">
+                    <label for="storage">File Storage</label>
+                    <select
+                      class="form-control"
+                      id="storage"
+                      name="storage"
+                    >
+                      <option value="1">USD</option>
+                      <option value="2">2</option>
+                    </select>
+                  </div>
+                  <div class="mt-2 mb-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                   </div>
+                </div>
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="pills-payment"
+                  role="tabpanel"
+                  aria-labelledby="pills-payment-tab"
+                >
+                <div class="all____site__settings main____style">
+                  <div class="mt-2">
+                    <label class="fw-bold">
+                      Payment Methods
+                    </label>
+                    <div class="d-flex">
+                      <div class="form-check ">
+                        <input class="form-check-input" type="checkbox" value="" id="check1">
+                        <label class="form-check-label" for="check1">
+                          PayPal
+                        </label>
+                      </div>
+                      <div class="form-check new____check">
+                        <input class="form-check-input" type="checkbox" value="" id="check2">
+                        <label class="form-check-label" for="check2">
+                          Cash
+                        </label>
+                      </div>
+                      <div class="form-check new____check">
+                        <input class="form-check-input" type="checkbox" value="" id="check3">
+                        <label class="form-check-label" for="check3">
+                          Wallet
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mt-2">
+                    <label class="fw-bold">
+                      Card Payment Methods
+                    </label>
+                    <div class="d-flex">
+                      <div class="form-check ">
+                        <input class="form-check-input" type="checkbox" value="" id="check11">
+                        <label class="form-check-label" for="check11">
+                          Stripe
+                        </label>
+                      </div>
+                      <div class="form-check new____check">
+                        <input class="form-check-input" type="checkbox" value="" id="check22">
+                        <label class="form-check-label" for="check22">
+                          Braintree
+                        </label>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  <div class="mt-2">
+                    <label for="Braintree">Braintree Payment Mode</label>
+                    <select
+                      class="form-control"
+                      id="Braintree"
+                      name="Braintree"
+                    >
+                      <option value="1">USD</option>
+                      <option value="2">2</option>
+                    </select>
+                  </div>
+
+                  <div class="mt-2">
+                    <label for="site-Merchant" class="form-label"
+                      >Braintree Merchant ID</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-Merchant"
+                      id="site-Merchant"
+                      aria-describedby="site-Merchant"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-Braintree" class="form-label"
+                      >Braintree Merchant Account ID
+                      </label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-Braintree"
+                      id="site-Braintree"
+                      aria-describedby="site-Braintree"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-Public" class="form-label"
+                      >Braintree Public Key</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-Public"
+                      id="site-Public"
+                      aria-describedby="site-Public"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-Private" class="form-label"
+                      >Braintree Private Key
+                      </label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-Private"
+                      id="site-Private"
+                      aria-describedby="site-Private"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-Tokenization" class="form-label"
+                      >Braintree Tokenization Key</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-Tokenization"
+                      id="site-Tokenization"
+                      aria-describedby="site-Tokenization"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="webpayment">
+                      <label class="form-check-label" for="webpayment">
+                        Web Payment
+                      </label>
+                    </div>
+                  </div>
+                  <div class="mt-4">
+                    <label class="fw-bold">
+                      Card Payment Methods
+                    </label>
+                    <div class="d-flex">
+                      <div class="form-check ">
+                        <input class="form-check-input" type="checkbox" value="" id="check11" checked>
+                        <label class="form-check-label" for="check111">
+                          PayPal
+                        </label>
+                      </div>
+                      <div class="form-check new____check">
+                        <input class="form-check-input" type="checkbox" value="" id="check222" checked>
+                        <label class="form-check-label" for="check22">
+                          Stripe
+                        </label>
+                      </div>
+                      <div class="form-check new____check">
+                        <input class="form-check-input" type="checkbox" value="" id="check2222" checked>
+                        <label class="form-check-label" for="check2222">
+                          BankTransfer
+                        </label>
+                      </div>
+                      
+                    </div>
+                  </div>
+
+                  <div class="mt-2 mb-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                   </div>
+                  
+
+                </di>
+                </div>
+              </div>
+                <div
+                  class="tab-pane fade"
+                  id="pills-email"
+                  role="tabpanel"
+                  aria-labelledby="pills-email-tab"
+                >
+                <div class="all____site__settings main____style">
+                  <div class="mt-2">
+                    <label for="site-edriver" class="form-label"
+                      >Email Driver</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-edriver"
+                      id="site-edriver"
+                      aria-describedby="site-edriver"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-ehost" class="form-label"
+                      >Email Host</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-ehost"
+                      id="ssite-ehost"
+                      aria-describedby="site-ehost"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-eport" class="form-label"
+                      >Email Port</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-eport"
+                      id="site-eport"
+                      aria-describedby="site-eport"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-eaddress" class="form-label"
+                      >Email From Address</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-eaddress"
+                      id="site-eaddress"
+                      aria-describedby="site-eaddress"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-ename" class="form-label"
+                      >Email From Name</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-ename"
+                      id="site-ename"
+                      aria-describedby="site-ename"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-Encryption" class="form-label"
+                      >Email Encryption</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="site-Encryption"
+                      id="site-Encryption"
+                      aria-describedby="site-Encryption"
+                    />
+                  </div>
+                  <div class="mt-2 mb-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                   </div>
+                </div>
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="pills-fees"
+                  role="tabpanel"
+                  aria-labelledby="pills-fees-tab"
+                >
+                <div class="all____site__settings main____style">
+                  <div class="mt-2">
+                    <label for="Delivery">Delivery Fee Type</label>
+                    <select
+                      class="form-control"
+                      id="Delivery"
+                      name="Delivery"
+                    >
+                      <option value="1">USD</option>
+                      <option value="2">2</option>
+                    </select>
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-Deliveryfee" class="form-label"
+                      >Delivery Fee</label
+                    >
+                    <input
+                      type="number"
+                      class="form-control"
+                      name="site-Deliveryfee"
+                      id="site-Deliveryfee"
+                      aria-describedby="site-Deliveryfee"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-booking" class="form-label"
+                      >Booking Fee</label
+                    >
+                    <input
+                      type="number"
+                      class="form-control"
+                      name="site-booking"
+                      id="site-booking"
+                      aria-describedby="site-booking"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-Commission" class="form-label"
+                      >Store Commission Fee</label
+                    >
+                    <input
+                      type="number"
+                      class="form-control"
+                      name="site-Commission"
+                      id="site-Commission"
+                      aria-describedby="site-Commission"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="site-Drivercom" class="form-label"
+                      >Driver Commission Fee</label
+                    >
+                    <input
+                      type="number"
+                      class="form-control"
+                      name="site-Drivercom"
+                      id="site-Drivercom"
+                      aria-describedby="site-Drivercom"
+                    />
+                  </div>
+                  <div class="mt-2 mb-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                   </div>
+                </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+      </div>
+      <!-- End of Main Content -->
+    </div>
+    <!-- End of Content Wrapper -->
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div
+    class="modal fade"
+    id="logoutModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Select "Logout" below if you are ready to end your current session.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">
+            Cancel
+          </button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="{% static 'js/adminpanel/admin-settings.js' %}"></script>
+
+</body>

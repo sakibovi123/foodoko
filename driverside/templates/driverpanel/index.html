@@ -1,0 +1,5 @@
+<ul>
+    {% for o in orders %}
+    <li><a href="{% url 'OrderDetailView' o.id %}">{{ o.id }}</a></li>
+    {% endfor %}
+</ul>

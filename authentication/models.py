@@ -10,6 +10,8 @@ class VendorProfile(models.Model):
     contact_number = models.CharField(max_length=255)
     address = models.TextField(null=True)
     total_sale = models.DecimalField(decimal_places=2, max_digits=19, default=0.00)
+    vendor_longtitude = models.CharField(max_length=255, null=True, blank=True)
+    vendor_latitude = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
         ordering = ["-id"]

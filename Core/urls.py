@@ -25,6 +25,7 @@ urlpatterns = [
     path("home/", include("app.urls")),
     path("adminpanel/", include("Dashboard.urls")),
     path("vendor/", include("vendorside.urls")),
+    path("driver/", include("driverside.urls")),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

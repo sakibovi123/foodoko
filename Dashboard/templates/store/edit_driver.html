@@ -34,19 +34,29 @@
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Go Back</a>
                     </div>
 
-                    <form>
+                    <form action="" method="POST">
+                      {% csrf_token %}
                     <div class="add___cat___form">
+                      <div class="mb-3">
+                        <label for="full_name" class="form-label">User</label>
+                        <select name="user" class="form-control">
+                          {% for u in users %}
+                          <option selected>{{ driver_obj.user }}</option>
+                          <option value="{{ u.id }}">{{ u.username }}</option>
+                          {% endfor %}
+                        </select>
+                    </div>
                         <div class="mb-3">
                             <label for="full_name" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="full_name" aria-describedby="full_name">
-                    </div>
+                            <input type="text" name="full_name" value="{{ driver_obj.full_name }}" class="form-control" id="full_name" aria-describedby="full_name">
+                        </div>
                     <div class="mt-2">
                         <label for="contact" class="form-label">Contact</label>
-                        <input type="number" class="form-control" id="contact" aria-describedby="contact">
+                        <input type="number" name="contact_number" value="{{ driver_obj.contact_number }}" class="form-control" id="contact" aria-describedby="contact">
                 </div>
                 <div class="form-floating mt-2">
                     <label for="address">Address</label>
-                    <textarea class="form-control" placeholder="Your Addess.." id="address"></textarea>
+                    <textarea class="form-control" name="address" value="{{ driver_obj.address }}" placeholder="Your Addess.." id="address"></textarea>
                   </div>
                   <div class="mt-2">
                     <label for="tot-earning" class="form-label">Total Earning</label>

@@ -37,14 +37,16 @@ urlpatterns = [
     # Driver path
     path("drivers/", DriverPayoutView.as_view(), name="driverView"),
     path("add-driver/", AddDriver.as_view(), name="addDriver"),
-    path("edit-driver/", EditDriver.as_view(), name="editDriver"),
+    path("edit-driver/<int:driver_id>/", EditDriver.as_view(), name="editDriver"),
     path("delete-driver/", deleteDriver, name="deleteDriver"),
+    path("driver-details/<str:full_name>/", DriverDetailView.as_view(), name="DriverDetailView"),
 
     # Penalty path
     path("penalty/", Penalty.as_view(), name="penaltyview"),
     path("add-penalty/", AddPenalty.as_view(), name="addPenalty"),
     path("edit-penalty/<int:pen_id>/", EditPenalty.as_view(), name="editPenalty"),
     path("delete-penalty/", deletePenalty, name="deletePenalty"),
+    
 
     #vehicles types path
     path("vehicles/", VehicleTypes.as_view(), name="vehicleView"),

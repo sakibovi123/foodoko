@@ -1,11 +1,12 @@
 from itertools import product
 from turtle import title
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views import View
 from authentication.models import VendorProfile
 from .models import *
 from vendorside.models import Category, Product
+
 # Create your views here.
 
 
@@ -379,7 +380,10 @@ class DriverPayoutView(View):
     template_name = "store/driver_payout.html"
 
     def get(self, request):
-        args = {}
+        drivers = DriverProfile.objects.all()
+        args = {
+            "drivers": drivers,
+        }
         return render(request, self.template_name, args)
 
 
@@ -387,25 +391,88 @@ class AddDriver(View):
     template_name = "store/add_driver.html"
     
     def get(self, request):
-        args = {}
+        users = User.objects.exclude(username=request.user)
+        args = {
+            "users": users,
+        }
         return render(request, self.template_name, args)
 
+    def post(self, request):
+        if request.method == "POST":
+            post = request.POST
+            files = request.FILES
+            user = post.get("user")
+            full_name = post.get("full_name")
+            contact_number = post.get("contact_number")
+            photo = files.get("photo")
+            driving_license_photo = files.get("driving_license_photo")
+            address = post.get("address")
+
+            existing_user = User.objects.filter(username=user)
+            
+            try:
+                driver = DriverProfile.objects.create(
+                    user=User.objects.get(id=user),
+                    full_name = full_name,
+                    contact_number = contact_number,
+                    photo = photo,
+                    driving_license_photo = driving_license_photo,
+                    address = address
+                )
+                driver.save()
+                return redirect("driverView")
+            except:
+                return HttpResponse("already exists")
 
 class EditDriver(View):
     template_name = "store/edit_driver.html"
 
-    def get(self, request):
-        args = {}
-        return render(request, self.template_name, args)
+    def get_object(self, request, driver_id):
+        try:
+            driver_obj = DriverProfile.objects.get(pk=driver_id)
+            return driver_obj
+        except DriverProfile.DoesNotExist:
+            return Http404
+
+    def get(self, request, driver_id):
+        users = User.objects.exclude(username=request.user)
+        if driver_id is not None:
+            driver_obj = self.get_object(request, driver_id)
+            args = {
+                "driver_obj": driver_obj,
+                "users": users,
+            }
+            return render(request, self.template_name, args)
+        else:
+            return Http404
 
     def post(self, request):
-        pass
+        if request.method == "POST":
+            pass
 
 
-def deleteDriver(request, d_id):
-    driverId = get_object_or_404(DriverProfile, pk=d_id)
+def deleteDriver(request):
+    driver_id = request.POST.get("driver_id")
+    driverId = get_object_or_404(DriverProfile, pk=driver_id)
     driverId.delete()
-    return redirect()
+    return redirect("driverView")
+
+
+class DriverDetailView(View):
+    template_name = "store/driver_details.html"
+
+    def get_queryset(self, request, full_name):
+        try:
+            driver_obj = DriverProfile.objects.get(full_name=full_name)
+        except DriverProfile.DoesNotExist:
+            return Http404
+    
+    def get(self, request, full_name):
+        driver_obj = self.get_queryset(request, full_name)
+        args = {
+            "driver_obj": driver_obj,
+        }
+        return render(request, self.template_name, args)
 
 
 class Penalty(View):
@@ -494,6 +561,8 @@ class AddVendor(View):
             shop_logo = request.FILES.get("uploadImg")
             contact_number = request.POST.get("contact_number")
             address = request.POST.get("address")
+            vendor_longtitude = request.POST.get("vendor_longtitude")
+            vendor_latitude = request.POST.get("vendor_latitude")
 
             if user is not None:
                 VendorProfile.objects.create(
@@ -502,7 +571,9 @@ class AddVendor(View):
                     shop_logo=shop_logo,
                     shop_name=shop_name,
                     contact_number=contact_number,
-                    address=address
+                    address=address,
+                    vendor_longtitude=vendor_longtitude,
+                    vendor_latitude=vendor_latitude
                 )
                 return redirect("VendorView")
             else:
@@ -583,6 +654,13 @@ class EditCoupon(View):
 
 class Settings(View):
     template_name = "settings/settings.html"
+    def get_object(self, settings_id):
+        try:
+            object = Settings.objects.get(id=settings_id)
+            return object
+        except Settings.DoesNotExist:
+            return Http404
+
     def get(self, request):
         payment_methods = PaymentMethods.objects.all()
         payout_methods = PayoutMethod.objects.all()

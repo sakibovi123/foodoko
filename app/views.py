@@ -29,6 +29,8 @@ class HomePageView(View):
         rec_ord_prods = Product.objects.filter(recently_ordered=True)
 
         restaurants = VendorProfile.objects.all()
+        # payment methods
+        payment_methods = PaymentMethod.objects.all()
         args = {
             "all_vendors": all_vendors,
             "pop_prods": pop_prods,
@@ -38,6 +40,7 @@ class HomePageView(View):
             "all_category": all_category,
             "restaurants": restaurants,
             "rec_ord_prods": rec_ord_prods,
+            "payment_methods": payment_methods,
         }
         return render(request, self.template_name, args)
 
@@ -164,41 +167,48 @@ def removeCart(request):
             return HttpResponse("Backend Error")
 
 
-def checkout(self, request):
+def checkout(request):
     if request.method == "POST":
         cart = request.session.get("cart", None)
         ids = list(request.session.get("cart").keys())
         cart_products = Product.get_items(ids)
         user = request.user
-        first_name = request.POST.get("first_name")
-        last_name = request.POST.get("last_name")
-        customer_gmail = request.POST.get("customer_gmail")
-        customer_phone = request.POST.get("customer_phone")
         address = request.POST.get("address")
+        latitude = request.POST.get("user_lat")
+        longtitude = request.POST.get("user_long")
         paymentmethod = request.POST.get("paymentmethod")
+        apartment_no = request.POST.get("apartment_no")
+        road_no = request.POST.get("road_no")
+        flat_no = request.POST.get("flat_no")
 
         order = Order(
             user=user,
-            first_name=first_name,
-            last_name=last_name,
-            customer_gmail=customer_gmail,
-            customer_phone=customer_phone,
             address=address,
-            paymentmethod=paymentmethod,
+            paymentmethod=PaymentMethod.objects.get(id=paymentmethod),
+            latitude=latitude,
+            longtitude=longtitude,
+            apartment_no=apartment_no,
+            road_no=road_no,
+            flat_no=flat_no,
         )
 
-        order.save()
+        
         total = 0
         for p in cart_products:
             quantity = cart.get(str(p.id))
             total += p.regular_price * quantity
-
+            p.recently_ordered = True
+            print(f"VENDORRRRRRR>>>>> {p.vendor}")
+            order.vendor = VendorProfile.objects.get(id=p.vendor.id)
+            
+            p.save()
             cartItems = CartItems(
                 product=p,
                 quantity=quantity
             )
             cartItems.save()
-            Order.items.add(cartItems)
+            order.save()
+            order.items.add(cartItems)
         order.total = total
         order.vendor.total_sale += total
         order.vendor.save()

@@ -38,7 +38,7 @@ class CartItems(models.Model):
         ordering = ["-id"]
 
     def __str__(self):
-        return f"{self.product.product_name}"
+        return f"{self.product.id}"
 
 
 class PaymentMethod(models.Model):
@@ -64,19 +64,25 @@ class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     vendor = models.ForeignKey(VendorProfile, on_delete=models.CASCADE)
     address = models.CharField(max_length=255)
+    latitude = models.CharField(max_length=255, null=True, blank=True)
+    longtitude = models.CharField(max_length=255, null=True, blank=True)
+    items = models.ManyToManyField(CartItems)
     total = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
     driver = models.ForeignKey(DriverProfile, on_delete=models.DO_NOTHING, null=True, blank=True)
     add_coupon = models.CharField(max_length=255, null=True, blank=True)
     status = models.CharField(max_length=255, null=True, default="Restaurant accepted your order")
 
     paymentmethod = models.ForeignKey(PaymentMethod, on_delete=models.CASCADE, null=True)
+    apartment_no = models.CharField(max_length=255, null=True, blank=True)
+    road_no = models.CharField(max_length=255, null=True, blank=True)
+    flat_no = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
         ordering = ["-id"]
         verbose_name = "Order"
 
     def __str__(self):
-        return self.invoice_no
+        return str(self.id)
 
 
 

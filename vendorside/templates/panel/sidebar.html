@@ -71,12 +71,12 @@
             <span>Roles Management</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{% url 'Addons' vendorId.id %}">
             <i class="fas fa-ticket-alt"></i>
             <span>Addons</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{% url 'ContactAdmin' vendorId.id %}">
             <i class="fas fa-user-shield"></i>
             <span>Contact Admin</span></a>
     </li>
@@ -86,7 +86,7 @@
     <hr class="sidebar-divider d-none d-md-block">
 
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{% url 'VendorSettings' vendorId.id %}">
             <i class="fa fa-bus"></i>
             <span>Settings</span></a>
     </li>

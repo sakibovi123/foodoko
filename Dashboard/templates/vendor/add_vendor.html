@@ -60,7 +60,14 @@
             </div>
             <div class="form-floating mt-2">
                 <label for="address">Address</label>
-                <textarea name="address" class="form-control" placeholder="Your Address.." id="address"></textarea>
+                <textarea name="address" class="form-control vendor__textarea" placeholder="Your Address.." id="address"></textarea>
+                <div onclick="locationAddress()" class="btn btn-primary my-2">Get Address</div>
+
+                {% comment %}Vendor address from google map{% endcomment %}
+                <input type="hidden" id="vendor__address" name="vendor_address" />
+                <input type="hidden" id="vendor__userLat" name="vendor_latitude" />
+                <input type="hidden" id="vendor__userLong" name="vendor_longtitude" />
+
               </div>
               <div class="mt-2">
                 <label for="total_sale" class="form-label">Total Sale</label>
@@ -128,6 +135,14 @@
             </div>
         </div>
     </div>
+
+    <div id="addVendorMap" class="mx-auto" style="width: 600px; height: 400px; position: relative"></div>
+    <input id="add__vendorMapInput" class="form-control" />
+
+    <script src="{% static 'js/addVendor.js' %}" defer></script>
+    <script
+    src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCruA3SL5gsz0B3O6N9PyStxcpRqd0tWMo" async defer
+    ></script>
 
     <script>
         const image = document.getElementById("product__img")
