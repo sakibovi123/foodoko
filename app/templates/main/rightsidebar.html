@@ -126,6 +126,7 @@
     <!-- address end -->
 
     <!-- order menu start -->
+    {% if user.is_authenticated %}
     <div class="main____order___menu___container mt-3">
       <p class="fw-bold fs-5">Cart</p>
       {% if request.session.cart %}
@@ -151,6 +152,7 @@
         </div>
       {% endif %}
     </div>
+    
     <!-- order menu end -->
 
     <!-- service and total start -->
@@ -170,6 +172,7 @@
           +<span class="dollar">$</span>{{ cart_products|get_grand_total:request.session.cart }}
         </p>
       </div>
+      {% endif %}
       {% endif %}
     </div>
     <!-- service and total end -->
