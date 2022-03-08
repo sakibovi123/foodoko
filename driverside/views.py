@@ -39,3 +39,10 @@ class Payments(View):
         args = {}
         return render(request, self.template_name, args)
 
+
+class DriverSettings(View):
+    template_name = ""
+
+    def get(self, request):
+        args = {}
+        return render(request, self.template_name, args)

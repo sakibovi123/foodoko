@@ -12,4 +12,6 @@ admin.site.register([
     Category,
     Product,
     SiteSettings,
+    Vehicle,
+    Addons
 ])

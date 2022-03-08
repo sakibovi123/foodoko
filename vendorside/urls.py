@@ -18,7 +18,7 @@ urlpatterns = [
     path("delete-vendor-product/<int:vendor_id>/<int:product_id>/", deleteVendorProduct, name="deletevendorProduct"),
 
     # All Saled path
-    path("all-saled/<int:vendor_id>/", VendorAllSales.as_view(), name="allSales"),
+    path("all-sales/<int:vendor_id>/", VendorAllSales.as_view(), name="allSales"),
     
     # roles path
     path("role-management/<int:vendor_id>/", RoleManagement.as_view(), name="RoleManagement"),

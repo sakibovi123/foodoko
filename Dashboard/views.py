@@ -475,11 +475,14 @@ class DriverDetailView(View):
         return render(request, self.template_name, args)
 
 
-class Penalty(View):
+class PenaltyView(View):
     template_name = "penalty/penalty.html"
     
     def get(self, request):
-        args = {}
+        penals = Penalty.objects.all()
+        args = {
+            "penals": penals,
+        }
         return render(request, self.template_name, args)
 
 
@@ -487,7 +490,12 @@ class AddPenalty(View):
     template_name = "penalty/add_penalty.html"
 
     def get(self, request):
-        args = {}
+        all_drivers = DriverProfile.objects.all()
+        if len(all_drivers) > 0:
+            drivers = DriverProfile.objects.all()
+        args = {
+            "drivers": drivers,
+        }
         return render(request, self.template_name, args)
 
     def post(self, request):
@@ -500,7 +508,7 @@ class AddPenalty(View):
                 status = status
             )
             penalty.save()
-            return redirect("")
+            return redirect("penaltyview")
 
 
 class EditPenalty(View):
@@ -522,14 +530,15 @@ class EditPenalty(View):
 
         penId.save()
 
-        return redirect()
+        return redirect("penaltyview")
 
 
 # Delete Method
-def deletePenalty(request, pen_id):
+def deletePenalty(request):
+    pen_id = request.POST.get("pen_id")
     penId = get_object_or_404(Penalty, id=pen_id)
     penId.delete()
-    return redirect("")
+    return redirect("penaltyview")
 
 
 class VendorView(View):
@@ -608,7 +617,10 @@ class VehicleTypes(View):
     template_name = "vehicles/vehicles.html"
 
     def get(self, request):
-        args = {}
+        vehicles = Vehicle.objects.all()
+        args = {
+            "vehicles": vehicles,
+        }
         return render(request, self.template_name, args)
 
 
@@ -619,13 +631,57 @@ class AddVehicle(View):
         args = {}
         return render(request, self.template_name, args)
 
+    def post(self, request):
+        post = request.POST
+
+        if request.method == "POST":
+            vehicle_type = post["vehicle_type"]
+            status = post["status"]
+
+            vehicle = Vehicle(
+                vehicle_type=vehicle_type,
+                status=status
+            )
+            vehicle.save()
+
+            return redirect("vehicleView")
+        else:
+            return HttpResponse("POST NOT FOUND")
+
 
 class EditVehicle(View):
     template_name = "vehicles/edit_vehicle.html"
 
-    def get(self, request):
-        args = {}
+    def get_object(self, vehicle_id):
+        try:
+            vehicle_obj = Vehicle.objects.get(pk=vehicle_id)
+            return vehicle_obj
+        except Vehicle.DoesNotExist:
+            return Http404
+
+    def get(self, request, vehicle_id):
+        vehicle_obj = self.get_object(vehicle_id)
+        args = {
+            "vehicle_obj": vehicle_obj,
+        }
         return render(request, self.template_name, args)
+
+    def post(self, request, vehicle_id):
+        post = request.POST
+        vehicle_obj = self.get_object(vehicle_id)
+
+        vehicle_obj.vehicle_type = post["vehicle_type"]
+        vehicle_obj.status = post["status"]
+
+        vehicle_obj.save()
+        return redirect("vehicleView")
+
+def delete_vehicle(request):
+    if request.method == "POST":
+        vehicle_id = request.POST.get("vehicle_id")
+        vehicle_obj = get_object_or_404(Vehicle, id=vehicle_id)
+        vehicle_obj.delete()
+        return redirect("vehicleView")
 
 
 class Coupons(View):

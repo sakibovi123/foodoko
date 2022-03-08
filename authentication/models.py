@@ -13,6 +13,8 @@ class VendorProfile(models.Model):
     vendor_longtitude = models.CharField(max_length=255, null=True, blank=True)
     vendor_latitude = models.CharField(max_length=255, null=True, blank=True)
 
+    is_penalized = models.BooleanField(default=False)
+
     class Meta:
         ordering = ["-id"]
         verbose_name = "Vendor Profile"
@@ -30,6 +32,8 @@ class DriverProfile(models.Model):
     address = models.CharField(max_length=255)
     total_earning = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
     total_paid = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
+
+    is_penalized = models.BooleanField(default=False)
     
     class Meta:
         ordering = ["-id"]

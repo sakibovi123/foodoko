@@ -1,5 +1,154 @@
-<ul>
+<!-- <ul>
     {% for o in orders %}
     <li><a href="{% url 'OrderDetailView' o.id %}">{{ o.id }}</a></li>
     {% endfor %}
-</ul>
+</ul> -->
+
+
+{% load static %}
+{% include 'driverpanel/base.html' %}
+
+<!-- Page level plugins -->
+<script src="{% static 'admin-vendor/chart.js/Chart.min.js' %}" defer></script>
+
+<!-- Page level custom scripts -->
+<script src="{% static 'admin-js/demo/chart-area-demo.js' %}" defer></script>
+<script src="{% static 'admin-js/demo/chart-area-demo.js' %}" defer></script>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- sidebar -->
+        
+        {% include 'driverpanel/sidebar.html' %}
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+
+               {% include 'panel/navbar.html' %}
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm driver____color"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                    </div>
+
+                    <div class="driver_____card">
+                        <div class="driver_____indi___card">
+                            <p class="fw-bold fs-4">Total Orders</p>
+                            <p>Lorem lorem</p>
+                        </div>
+                        <div class="driver_____indi___card">
+                            <p class="fw-bold fs-4">Total Income</p>
+                            <p>Lorem lorem</p>
+                        </div>
+                        <div class="driver_____indi___card">
+                            <p class="fw-bold fs-4">Total Profit</p>
+                            <p>Lorem lorem</p>
+                        </div>
+                        <div class="driver_____indi___card">
+                            <p class="fw-bold fs-4">Total Reviews</p>
+                            <p>Lorem lorem</p>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive main____table mt-4">
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">ORDER ID</th>
+                                <th scope="col">QUANTITY</th>
+                                <th scope="col">TOTAL</th>
+                                <th scope="col">ACTION</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+                                {% for o in orders %}
+                                    <tr>
+                                        <th scope="row">{{ o.invoice_no }}</th>
+                                        <td>{{ o.id }}</td>
+                                        <td>
+                                            {{ o.items.quantity|length }}
+                                            {% comment %} {% for i in o.items.all %}
+                                                {{ i.quantity|length }}
+                                            {% endfor %} {% endcomment %}
+                                        </td>
+                                        <td>{{ o.total }}</td>
+                                        <td>
+                                            <a href="{% url 'OrderDetailView' o.id %}" class="btn btn-success">View</button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                              
+                            </tbody>
+                          </table>
+
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google map -->
+    <!-- <div id="vendor__map" style="width: 50vw; height: 50vh; display: block; margin: 0 auto;"></div>
+    <p id="orderedUser__addressVal"></p>
+    <input id="orderedUser__address" type="hidden" /> -->
+</body>
+
+<script src="{% static 'js/vendor/vendorPanel.js' %}"></script>
+<script
+src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places&key=AIzaSyCruA3SL5gsz0B3O6N9PyStxcpRqd0tWMo" async defer
+></script>

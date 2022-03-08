@@ -44,19 +44,24 @@
                             </tr>
                           </thead>
                           <tbody class="catgory__table">
-                        
+                            {% if penals %}
+                            {% for p in penals %}
                             <tr>
-                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">Foood</a></td>
-                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">Foood</a></td>
+                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">{{ p.created_at }}</a></td>
+                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">{{ p.driver }}</a></td>
 
                               <td class="d-flex align-items-center">
-                                <a href="#" class="w-100 d-flex text-dark">NO Vendor Name</a>
-                                <form method="POST" action="">
-                                
+                                <a href="#" class="w-100 d-flex text-dark">{{ p.status }}</a>
+                                <form method="POST" action="{% url 'deletePenalty' %}">
+                                  {% csrf_token %}
+                                  <input type="hidden" name="pen_id" value="{{ p.id }}">
                                   <button class="border-0 bg-white" type="submit"><i class="fas fa-times-circle cross____icon"></i></button>
                                 </form>
+                                <a class="border-0 bg-white" type="submit"><i class="fas fa-edit cross____icon"></i></a>
                               </td>
                             </tr>
+                            {% endfor %}
+                            {% endif %}
                            
                           </tbody>
                         </table>

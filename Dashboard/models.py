@@ -164,3 +164,22 @@ class SiteSettings(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+
+class Addons(models.Model):
+    STATUS_CHOICE = (
+        ("Active", "Active"),
+        ("Deactive", "Deactive")
+    )
+
+    title = models.CharField(max_length=255)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+
+    class Meta:
+        ordering = ["-id"]
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return f"/{self.id}/"

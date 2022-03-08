@@ -11,5 +11,8 @@ urlpatterns = [
     # All Actions
     path("add-to-cart/", add_to_cart, name="addTocart"),
     # checkout
-    path("checkout/", checkout, name="checkout")
+    path("checkout/", checkout, name="checkout"),
+
+    # user settings
+    path("user-settings/", UserSettings.as_view(), name="UserSettings"),
 ]

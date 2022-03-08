@@ -92,6 +92,14 @@ class SettingsView(View):
         userId.save()
         return redirect("home")
 
+
+class UserSettings(View):
+    template_name = "main/settings.html"
+
+    def get(self, request):
+        args = {}
+        return render(request, self.template_name, args)
+
 """
 All Actions
 """
@@ -114,8 +122,9 @@ def add_to_cart(request):
             cart = {}
             cart[product_id] = 1
         request.session["cart"] = cart
-
-        return redirect(f"HomePageView")
+        return redirect("HomePageView")
+    else:
+        return HttpResponse("Eror 404")
 
 
 def plusButton(request):
@@ -132,7 +141,7 @@ def plusButton(request):
             cart = {}
             cart[product_id] = 1
         request.session["cart"] = cart
-        return redirect(f"")
+        return redirect("HomePageView")
 
 
 def minus_button(request):
@@ -213,8 +222,10 @@ def checkout(request):
         order.vendor.total_sale += total
         order.vendor.save()
         order.save()
-        request.session.cart = {}
-        return redirect(f"/")
+        # clearing session
+        cart = {}
+        request.session["cart"] = cart
+        return redirect(f"HomePageView")
 
 
 def use_coupon(self, request):

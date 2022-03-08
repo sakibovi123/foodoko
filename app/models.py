@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from authentication.models import *
 from datetime import date, datetime
 from vendorside.models import *
+import random
 
 
 class Coupon(models.Model):
@@ -60,7 +61,7 @@ class Order(models.Model):
         ("Cancelled", "Cancelled"),
         ("Restaurant rejected your order", "Restaurant rejected your order")
     )
-    invoice_no = models.CharField(max_length=255)
+    invoice_no = models.CharField(max_length=255, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     vendor = models.ForeignKey(VendorProfile, on_delete=models.CASCADE)
     address = models.CharField(max_length=255)
@@ -83,11 +84,22 @@ class Order(models.Model):
 
     def __str__(self):
         return str(self.id)
+    
+    def generate_random_number(self):
+        list = []
+        for i in range(1,100):
+            i = random.randint(1, 10000)
+            list.append(i)
+        return i
 
+    def save(self, *args, **kwargs):
+        self.invoice_no = self.generate_random_number()
+        super(Order, self).save(*args, **kwargs)
 
 
 class FavoriteRestaurants(models.Model):
     created_at = models.DateField(default=date.today)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     restaurant = models.ForeignKey(VendorProfile, on_delete=models.DO_NOTHING)
 
 

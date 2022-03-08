@@ -34,16 +34,17 @@
                         <a href="{% url 'vehicleView' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Go Back</a>
                     </div>
 
-                    <form>
+                    <form action="" method="POST">
+                        {% csrf_token %}
                     <div class="add___cat___form">
                         <div class="mb-3">
                             <label for="vehi-title" class="form-label">Vehicle Type</label>
-                            <input type="text" class="form-control" id="vehi-title" aria-describedby="vehicle">
+                            <input type="text" name="vehicle_type" value="{{ vehicle_obj.vehicle_type }}" class="form-control" id="vehi-title" aria-describedby="vehicle">
                     </div>
                     <label for="status">Select Status</label>
                     <select class="form-control" id="status" name="status">
-                        <option>Yes</option>
-                        <option>No</option>
+                        <option value="Active">Active</option>
+                        <option value="Closed">Closed</option>
                       </select>
                      
                       </div>

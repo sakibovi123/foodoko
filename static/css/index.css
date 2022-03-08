@@ -3,6 +3,13 @@ body {
   background-color: var(--lite-white);
 }
 
+/* setting */
+.user____info{
+  background: var(--white);
+  padding: 1rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}  
+
 #map__searchInput {
   display: flex;
   justify-content: flex-end;
@@ -324,7 +331,7 @@ body {
   transition: 0.2s all ease-in-out;
   background: var(--white);
   width: 16rem;
-  height: 17rem;
+  height: 20rem;
   position: relative;
   border-radius: 5px;
 }
@@ -365,6 +372,12 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+.card____price > div{
+  width: 123px;
+}
+.card____price > div p:first-child{
+  word-break: break-all;
+}
 .add_____btn {
   color: var(--white);
   background-color: var(--orange);
@@ -378,7 +391,7 @@ body {
 .add____btn___div {
   position: absolute;
   top: 35px;
-  left: 206%;
+  left: 153%;
 }
 .add____btn___div:hover button {
   background-color: var(--white);
@@ -896,8 +909,13 @@ body {
 @media (max-width: 1724px) {
   .individual____dishes {
     width: 15rem;
-    height: 16rem;
+    height: 19rem;
   }
+  .add____btn___div {
+    position: absolute;
+    top: 35px;
+    left: 138%;
+}
   .restaurant____card {
     width: 15rem;
     height: 16rem;
@@ -922,7 +940,7 @@ body {
   .add____btn___div {
     position: absolute;
     top: 35px;
-    left: 181%;
+    left: 120%;
   }
   .hart___icon {
     position: absolute;
@@ -933,7 +951,7 @@ body {
 @media (max-width: 1403px) {
   .individual____dishes{
     width: 12rem;
-    height: 14rem;
+    height: 16rem;
   }
   .restaurant____card{
     width: 12rem;
@@ -952,7 +970,7 @@ body {
 @media (max-width: 1301px) {
   .individual____dishes {
     width: 14rem;
-    height: 15rem;
+    height: 16rem;
   }
   .restaurant____card {
     width: 14rem;
@@ -969,7 +987,7 @@ body {
   }
   .add____btn___div {
     position: absolute;
-    left: 154%;
+    left: 142%;
   }
   .hart___icon {
     position: absolute;
@@ -980,7 +998,7 @@ body {
 @media (max-width: 1211px) {
   .add____btn___div {
     position: absolute;
-    left: 208%;
+    left: 142%;
   }
   .hart___icon {
     position: absolute;
@@ -1025,7 +1043,7 @@ body {
   }
   .add____btn___div {
     position: absolute;
-    left: 174%;
+    left: 119%;
   }
 }
 @media (max-width: 1092px) {
@@ -1078,7 +1096,7 @@ body {
     transition: 0.2s all ease-in-out;
     background: var(--white);
     width: 16rem;
-    height: 17rem;
+    height: 19rem;
     position: relative;
     border-radius: 5px;
   }
@@ -1095,7 +1113,7 @@ body {
   .add____btn___div {
     position: absolute;
     top: 35px;
-    left: 234%;
+    left: 156%;
   }
   .popular____card_____details {
     position: absolute;
@@ -1215,7 +1233,7 @@ body {
   }
   .add____btn___div {
     position: absolute;
-    left: 193%;
+    left: 143%;
   }
 }
 @media (max-width: 828px) {
@@ -1231,7 +1249,7 @@ body {
     width: 12rem;
   }
   .add____btn___div {
-    left: 166%;
+    left: 112%;
   }
   .popular____card_____details___recent {
     left: 23%;
@@ -1252,6 +1270,7 @@ body {
 @media (max-width: 520px) {
   .individual____dishes {
     width: 90%;
+    height: 21rem;
   }
   .restaurant____card {
     width: 90%;
@@ -1262,7 +1281,7 @@ body {
     left: 20.5%;
   }
   .add____btn___div {
-    left: 327%;
+    left: 272%;
   }
   .popular____card_____details {
     position: absolute;
@@ -1285,17 +1304,17 @@ body {
 }
 @media (max-width: 494px) {
   .add____btn___div {
-    left: 301%;
+    left: 247%;
   }
 }
 @media (max-width: 446px) {
   .add____btn___div {
-    left: 281%;
+    left: 233%;
   }
 }
 @media (max-width: 414px) {
   .add____btn___div {
-    left: 262%;
+    left: 207%;
   }
 }
 @media (max-width: 390px) {
@@ -1305,12 +1324,12 @@ body {
 }
 @media (max-width: 362px) {
   .add____btn___div {
-    left: 221%;
+    left: 170%;
   }
 }
 @media (max-width: 336px) {
   .add____btn___div {
-    left: 239%;
+    left: 183%;
   }
   .individual____dishes {
     width: 100%;
@@ -1321,17 +1340,17 @@ body {
 }
 @media (max-width: 328px) {
   .add____btn___div {
-    left: 222%;
+    left: 177%;
   }
 }
 @media (max-width: 308px) {
   .add____btn___div {
-    left: 208%;
+    left: 160%;
   }
 }
 @media (max-width: 292px) {
   .add____btn___div {
-    left: 197%;
+    left: 150%;
   }
 }
 @media (max-width: 520px) {

@@ -1,0 +1,33 @@
+{% load static %} {% include 'main/base.html' %}
+<!-- css link -->
+<link rel="stylesheet" href="{% static 'css/index.css' %}" />
+<link rel="stylesheet" href="{% static 'css/restaurantwise.css' %}" />
+
+{% include 'main/leftsidebar.html' %}
+
+<div class="hello" id="hello1">
+  <div class="main_____content">
+
+    <div class="user____info mt-3">
+        <h2>User Information</h2>
+        <div class="mb-3">
+            <label for="Username" class="form-label">Username</label>
+            <input type="text" name="Username" class="form-control" id="Username" aria-describedby="Username">
+    </div>
+    <div class="mb-3">
+        <label for="emil" class="form-label">Email</label>
+        <input type="emil" name="emil" class="form-control" id="emil" aria-describedby="emil">
+</div>
+<div class="mb-3">
+    <button class="btn btn-primary">Upgrade</button>
+</div>
+    </div>
+
+
+  {% include 'main/rightsidebar.html' %}
+
+  </div>
+</div>
+
+<script src="{% static 'js/index-nav.js' %}"></script>
+<script src="{% static 'js/index-nav-right.js' %}"></script>

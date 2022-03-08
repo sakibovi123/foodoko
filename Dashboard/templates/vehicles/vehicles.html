@@ -31,7 +31,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Vehicles</h1>
-                        <a href="{% url 'addVehicle' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Add Category</a>
+                        <a href="{% url 'addVehicle' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Add Vehicle</a>
                     </div>
 
                     <div class="main____dept____table table-responsive">
@@ -44,18 +44,23 @@
                             </tr>
                           </thead>
                           <tbody class="catgory__table">
-                        
+                        {% if vehicles %}
+                        {% for v in vehicles %}
                             <tr>
-                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">Foood</a></td>
-                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">Foood</a></td>
+                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">{{ v.created_at }}</a></td>
+                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">{{ v.vehicle_type }}</a></td>
                               <td class="d-flex align-items-center">
-                                <a href="#" class="w-100 d-flex text-dark">NO Vendor Name</a>
-                                <form method="POST" action="">
-                                
+                                <a href="#" class="w-100 d-flex text-dark">{{ v.status }}</a>
+                                <form method="POST" action="{% url 'delete_vehicle' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="vehicle_id" value="{{ v.id }}">
                                   <button class="border-0 bg-white" type="submit"><i class="fas fa-times-circle cross____icon"></i></button>
                                 </form>
+                                <a href="{% url 'editVehicle' v.id %}" class="border-0 bg-white" type="submit"><i class="fas fa-edit cross____icon"></i></a>
                               </td>
                             </tr>
+                            {% endfor %}
+                          {% endif %}
                            
                           </tbody>
                         </table>
