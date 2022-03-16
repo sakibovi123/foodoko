@@ -4,6 +4,7 @@ from authentication.models import *
 from datetime import date, datetime
 from vendorside.models import *
 import random
+import string
 
 
 class Coupon(models.Model):
@@ -121,3 +122,24 @@ class CancelReason(models.Model):
     
     def __str__(self):
         return self.title
+
+
+class TransferWalletBalance(models.Model):
+    invoice_no = models.CharField(max_length=255, null=True, blank=True)
+    created_at = models.DateTimeField(default=datetime.now)
+    user1 = models.ForeignKey(User, on_delete=models.CASCADE, related_name="sender")
+    user2 = models.ForeignKey(User, on_delete=models.CASCADE, related_name="receiver")
+    amount = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
+
+    class Meta:
+        ordering = ["-id"]
+
+    def __str__(self):
+        return self.invoice_no
+    
+    def save(self, *args, **kwargs):
+        length = 11
+        chars = string.ascii_lowercase
+        random_invoice = "".join(random.choice(chars) for i in range(length))
+        self.invoice_no = random_invoice
+        super(TransferWalletBalance, self).save(*args, **kwargs)

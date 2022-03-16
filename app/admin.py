@@ -9,4 +9,5 @@ admin.site.register([
     CartItems,
     PaymentMethod,
     Order,
+    TransferWalletBalance
 ])

@@ -12,6 +12,7 @@ urlpatterns = [
     path("add-to-cart/", add_to_cart, name="addTocart"),
     # checkout
     path("checkout/", checkout, name="checkout"),
+    path("send-money/", send_money, name="send_money"),
 
     # user settings
     path("user-settings/", UserSettings.as_view(), name="UserSettings"),

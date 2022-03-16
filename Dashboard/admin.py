@@ -13,5 +13,7 @@ admin.site.register([
     Product,
     SiteSettings,
     Vehicle,
-    Addons
+    Addons,
+    Country,
+    City
 ])

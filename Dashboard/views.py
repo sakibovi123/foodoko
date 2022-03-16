@@ -1,4 +1,5 @@
-from itertools import product
+
+from itertools import count, product
 from turtle import title
 from django.http import Http404, HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render, redirect
@@ -809,3 +810,146 @@ class Settings(View):
             return redirect("settingsView")
         else:
             return HttpResponse("Something went Wrong!")
+
+
+class CountryManagement(View):
+    template_name = "country/country.html"
+
+    def get(self, request):
+        country = Country.objects.all()
+        args = {
+            "country": country,
+        }
+        return render(request, self.template_name, args)
+
+    def post(self, request):
+        if request.method == "POST":
+            country_id = request.POST.get("country_id")
+            country_obj = get_object_or_404(Country, id=country_id)
+
+            country_obj.delete()
+            return redirect("CountryManagement")
+
+
+class AddCountry(View):
+    template_name = "country/add-country.html"
+
+    def get(self, request):
+        args = {}
+        return render(request, self.template_name, args)
+
+    def post(self, request):
+        post = request.POST
+        slug = post["slug"]
+        country_name = post["country_name"]
+        flag = request.FILES.get("flag")
+
+        if flag != "":
+            Country.objects.create(
+                slug=slug,
+                country_name=country_name,
+                flag=flag
+            )
+            return redirect("CountryManagement")
+        else:
+            Country.objects.create(
+                slug=slug,
+                country_name=country_name,
+            )
+            return redirect("CountryManagement")
+
+
+class EditCountry(View):
+    template_name = "country/edit-country.html"
+
+    def get_object(self, slug):
+        try:
+            return Country.objects.get(slug=slug)
+        except Country.DoesNotExist:
+            return Http404
+
+    def get(self, request, slug):
+        country_obj = self.get_object(slug)
+        args = {
+            "country_obj": country_obj,
+        }
+        return render(request, self.template_name, args)
+
+    def post(self, request, slug):
+        country_obj = self.get_object(slug)
+        if country_obj.flag:
+            country_obj.flag = request.FILES.get("flag")
+        else:
+            country_obj.flag = None
+        country_obj.slug = request.POST["slug"]
+        country_obj.country_name = request.POST["country_name"]
+
+        country_obj.save()
+        return redirect('CountryManagement')
+
+
+class CityManagement(View):
+    template_name = "city/city.html"
+
+    def get(self, request):
+        city = City.objects.all()
+        args = {
+            "city": city,
+        }
+        return render(request, self.template_name, args)
+
+    def post(self, request):
+        post = request.POST
+        city_id = post["city_id"]
+        city_obj = get_object_or_404(City, id=city_id)
+        city_obj.delete()
+
+        return redirect("CityManagement")
+
+
+class AddCity(View):
+    template_name = "city/add_city.html"
+
+    def get(self ,request):
+        args = {}
+        return render(request, self.template_name, args)
+
+    def post(self, request):
+        post = request.POST
+        if request.method == "POST":
+            slug = post["slug"]
+            city_name = post["city_name"]
+
+            City.objects.create(
+                slug=slug,
+                city_name=city_name,
+            )
+            return redirect("CityManagement")
+
+
+class EditCity(View):
+    template_name = "city/edit_city.html"
+
+    def get_object(self, city_slug):
+        try:
+            return City.objects.get(slug=city_slug)
+        except City.DoesNotExist:
+            return Http404
+
+    def get(self, request, city_slug):
+        city_obj = self.get_object(city_slug)
+        args = {
+            "city_obj": city_obj,
+        }
+        return render(request, self.template_name, args)
+
+    def post(self, request, city_slug):
+        post = request.POST
+        city_obj = self.get_object(city_slug)
+
+        city_obj.slug = post["slug"]
+        city_obj.city_name = post["city_name"]
+
+        city_obj.save()
+
+        return redirect("CityManagement")

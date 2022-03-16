@@ -31,6 +31,8 @@ class HomePageView(View):
         restaurants = VendorProfile.objects.all()
         # payment methods
         payment_methods = PaymentMethod.objects.all()
+        # all available users
+        users = User.objects.exclude(username=request.user)
         args = {
             "all_vendors": all_vendors,
             "pop_prods": pop_prods,
@@ -41,6 +43,7 @@ class HomePageView(View):
             "restaurants": restaurants,
             "rec_ord_prods": rec_ord_prods,
             "payment_methods": payment_methods,
+            "users": users,
         }
         return render(request, self.template_name, args)
 
@@ -238,3 +241,25 @@ def pay_with_wallet(self, request, order_id):
     if request.method == "POST":
         user = request.user
         
+
+def send_money(request):
+    user1 = request.user
+    post = request.POST
+    if request.method == "POST":
+        user2 = post["receiver"]
+        amount = post["amount"]
+
+        trx = TransferWalletBalance(
+            user1=user1,
+            user2=User.objects.get(id=user2),
+            amount=amount
+        )
+
+        trx.save()
+
+        user1.wallet.balance -= trx.amount
+        user1.wallet.save()
+        trx.user2.wallet.balance += trx.amount
+        trx.user2.wallet.save()
+
+        return redirect("HomePageView")

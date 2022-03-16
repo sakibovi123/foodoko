@@ -63,4 +63,14 @@ urlpatterns = [
     # Settings path
     path("settings/", Settings.as_view(), name="settingsView"),
 
+    # Country path
+    path("country-management/", CountryManagement.as_view(), name="CountryManagement"),
+    path("add-country/", AddCountry.as_view(), name="AddCountry"),
+    path("edit-country/", EditCountry.as_view(), name="EditCountry"),
+
+    # City path
+    path("city-management/", CityManagement.as_view(), name="CityManagement"),
+    path("add-city/", AddCity.as_view(), name="AddCity"),
+    path("edit-city/<slug:city_slug>/", EditCity.as_view(), name="EditCity"),
+
 ]

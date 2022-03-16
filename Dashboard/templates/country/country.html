@@ -1,0 +1,115 @@
+{% load static %}
+{% include 'base.html' %}
+
+<!-- Page level plugins -->
+<script src="{% static 'admin-vendor/chart.js/Chart.min.js' %}" defer></script>
+
+<!-- Page level custom scripts -->
+<script src="{% static 'admin-js/demo/chart-area-demo.js' %}" defer></script>
+<script src="{% static 'admin-js/demo/chart-area-demo.js' %}" defer></script>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- sidebar -->
+        
+        {% include 'admin-sidebar.html' %}
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+               {% include 'admin-nav.html' %}
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Country</h1>
+                        <a href="{% url 'AddCountry' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Add Country</a>
+                    </div>
+
+                    <div class="main____dept____table table-responsive">
+                        <table class="table">
+                          <thead class="table_____head">
+                            <tr>
+                              <th scope="col">Flag</th>
+                              <th scope="col">Country Name</th>
+                            </tr>
+                          </thead>
+                          <tbody class="catgory__table">
+                            {% if country %}
+                            {% for c in country %}
+                            <tr>
+                              <td class="category__data"><a href="#" class="w-100 d-flex text-dark category__name">
+                                {% if c.flag %}
+                                  <img src="{{ c.flag.url }}" style="height:30px;">
+                                {% else %}<img src="{% static 'images/no_image.png' %}" style="height: 30px;">{% endif %}
+                              </a></td>
+                              <td class="d-flex align-items-center">
+                                <a href="{% url 'editCategory' c.id %}" class="w-100 d-flex text-dark">{{ c.country_name }}</a>
+                                <form method="POST" action="">
+                                  {% csrf_token %}
+                                  <input type="hidden" name="catId" value="{{ c.id }}">
+                                  <button class="border-0 bg-white" type="submit"><i class="fas fa-times-circle cross____icon"></i></button>
+                                </form>
+                                
+                                  
+                                  
+                                <a class="border-0 bg-white" href="{% url 'editCategory' c.id %}"><i class="fas fa-edit cross____icon"></i></a>
+                                
+                              </td>
+                               
+                            </tr>
+                            {% endfor %}
+                          {% else %}
+                          <div class="alert alert-warning" role="alert">
+                            No Category Found!
+                          </div>
+                           {% endif %}
+                          </tbody>
+                        </table>
+                      </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

@@ -123,6 +123,10 @@ class SiteSettings(models.Model):
         ("Yes", "Yes"),
         ("No", "No")
     )
+    DELIVERY_FEE_CHOICE = (
+        ("Fixed", "Fixed"),
+        ("Distance Wise", "Distance Wise")
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     site_name = models.CharField(max_length=255, null=True)
     site_logo = models.ImageField(upload_to="images/", null=True, blank=True)
@@ -156,11 +160,16 @@ class SiteSettings(models.Model):
     email_port = models.CharField(max_length=255, null=True, blank=True)
     email_from = models.EmailField(null=True, blank=True)
     # Fees
-    delivery_fee_type = models.CharField(max_length=255, null=True, blank=True)
+    delivery_fee_type = models.CharField(max_length=255, null=True, blank=True, choices=DELIVERY_FEE_CHOICE)
     delivery_fee = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
-    booking_fee = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
-    store_comission = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
-    driver_comission = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
+    booking_fee = models.FloatField(null=True, blank=True)
+    store_comission = models.FloatField(null=True, blank=True)
+    driver_comission = models.FloatField(null=True, blank=True)
+
+    # usefulllinks
+    terms_conditions = models.TextField(null=True, blank=True)
+    about_us = models.TextField(null=True, blank=True)
+    privacy_policy = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return str(self.id)
@@ -183,3 +192,32 @@ class Addons(models.Model):
 
     def get_absolute_url(self):
         return f"/{self.id}/"
+
+
+class Country(models.Model):
+    slug = models.SlugField()
+    country_name = models.CharField(max_length=255)
+    flag = models.ImageField(upload_to="images/", null=True, blank=True)
+
+    class Meta:
+        ordering = ["-id"]
+
+    def __str__(self):
+        return self.country_name
+
+    def get_absolute_url(self):
+        return f"/{self.slug}/"
+
+
+class City(models.Model):
+    slug = models.SlugField()
+    city_name = models.CharField(max_length=255)
+
+    class Meta:
+        ordering = ["-id"]
+
+    def __str__(self):
+        return self.city_name
+    
+    def get_absolute_url(self):
+        return f"/{self.slug}/"
