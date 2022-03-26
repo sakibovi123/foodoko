@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import get_object_or_404, render, redirect, HttpResponse
 from django.views import View
 from vendorside.models import *
@@ -102,6 +103,28 @@ class UserSettings(View):
     def get(self, request):
         args = {}
         return render(request, self.template_name, args)
+
+class OrderView(View):
+    template_name = "restaurant/order.html"
+
+    def get(self, request):
+        order = Order.objects.filter(user=request.user)
+        args = {
+            "order": order,
+        }
+        return render(request, self.template_name, args)
+
+
+class UserOrderDetail(View):
+    template_name = "restaurant/user_order_details.html"
+    def get_object(self, invoice_no):
+        try:
+            return Order.objects.get(invoice_no=invoice_no)
+        except Order.DoesNotExist:
+            return Http404
+
+    def get(self, request, invoice_no):
+        pass
 
 """
 All Actions

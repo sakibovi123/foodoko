@@ -62,6 +62,7 @@ class Order(models.Model):
         ("Cancelled", "Cancelled"),
         ("Restaurant rejected your order", "Restaurant rejected your order")
     )
+    created_at = models.DateField(default=date.today)
     invoice_no = models.CharField(max_length=255, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     vendor = models.ForeignKey(VendorProfile, on_delete=models.CASCADE)

@@ -1,0 +1,66 @@
+{% load static %}
+<link href="{% static 'css/order.css' %}" rel="stylesheet">
+{% include 'main/base.html' %}
+{% include 'main/leftsidebar.html' %}
+<div class="d-flex justify-content-center m-5">
+    
+    <div class="col col-lg-5">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">INVOICE NUMBER</th>
+                <th scope="col">DATE</th>
+                <th scope="col">RESTAURANT NAME</th>
+                <th scope="col">GRAND TOTAL</th>
+                <th scope="col">STATUS</th>
+                <th scope="col">ACTIONS</th>
+
+              </tr>
+            </thead>
+            <tbody>
+                {% if order %}
+                {% for o in order %}
+                    <tr>
+                        <th scope="row">{{ o.invoice_no }}</th>
+                        <td>{{ o.created_at }}</td>
+                        <td>{{ o.vendor }}</td>
+                        
+                        <td>{{ o.total }}</td>
+                        <td><small>{{ o.status }}</small></td>
+                        <td>
+                            <a href="" class="badge bg-primary">View</a>
+                            
+                        </td>
+                    </tr>
+                {% endfor %}
+                {% else %}
+                <div class="alert alert-danger" role="alert">
+                    A simple danger alert—check it out!
+                </div>
+                {% endif %}
+            </tbody>
+          </table>
+          
+   
+    </div>
+   
+</div>
+
+
+{% include 'main/rightsidebar.html' %}
+
+
+
+{% comment %} <form action="" method="POST" class="">
+    {% csrf_token %}
+    <label class="form">Username</label>
+    <input type="text" class="form-control lg-12" placholder="Enter User name">
+    <label class="form">First Name</label>
+    <input type="text" class="form-control lg-12" placholder="Enter User name">
+    <label class="form">Last Name</label>
+    <input type="text" class="form-control lg-12" placholder="Enter User name">
+    <label class="form">Email</label>
+    <input type="text" class="form-control lg-12" placholder="Enter User name">
+    <br>
+    <button type="submit" class="btn btn-success w-100">Save</button>
+</form> {% endcomment %}

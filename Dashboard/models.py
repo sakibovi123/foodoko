@@ -105,6 +105,16 @@ class PayoutMethod(models.Model):
         return self.title
 
 
+class TimeZone(models.Model):
+    zone = models.CharField(max_length=255, null=True, blank=True)
+
+    class Meta:
+        ordering = ["-id"]
+
+    def __str__(self):
+        return self.zone
+
+
 class SiteSettings(models.Model):
     CURRENCY_CHOICES = (
         ("$", "$"),
@@ -170,6 +180,12 @@ class SiteSettings(models.Model):
     terms_conditions = models.TextField(null=True, blank=True)
     about_us = models.TextField(null=True, blank=True)
     privacy_policy = models.TextField(null=True, blank=True)
+
+    # Extra fields
+    phone_code = models.CharField(max_length=255, null=True, blank=True)
+    timezone = models.ForeignKey(TimeZone, on_delete=models.CASCADE, null=True, blank=True)
+    schedule_order_time = models.CharField(max_length=255, null=True, blank=True)
+    default_rating = models.PositiveIntegerField(null=True, blank=True)
 
     def __str__(self):
         return str(self.id)

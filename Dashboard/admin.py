@@ -15,5 +15,6 @@ admin.site.register([
     Vehicle,
     Addons,
     Country,
-    City
+    City,
+    TimeZone
 ])

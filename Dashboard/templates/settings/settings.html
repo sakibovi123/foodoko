@@ -123,7 +123,8 @@
                 </button>
               </li>
             </ul>
-            <form>
+            <form action="" method="POST">
+              {% csrf_token %}
             <div class="tab-content" id="pills-tabContent">
               
                 <div
@@ -147,7 +148,7 @@
                     </div>
                     <div class="mt-2">
                       <label for="site-phone" class="form-label"
-                        >Site Support Phone</label
+                        >Site Phone</label
                       >
                       <input
                         type="tel"
@@ -158,19 +159,18 @@
                       />
                     </div>
                     <div class="mt-2">
-                      <label for="site-address" class="form-label"
-                        >Add Code To The ( Head ) (For Tracking Codes Such As
-                        Google Analytics)</label
+                      <label for="site-phone" class="form-label"
+                        >Site Support Phone</label
                       >
-                      <div class="form-floating">
-                        <textarea
-                          class="form-control"
-                          placeholder="Address"
-                          id="floatingTextarea2"
-                          style="height: 100px"
-                        ></textarea>
-                      </div>
+                      <input
+                        type="tel"
+                        class="form-control"
+                        name="support_phone"
+                        id="site-phone"
+                        aria-describedby="site-phone"
+                      />
                     </div>
+                 
                     <div class="mt-2">
                       <label for="currency">Payment Currency</label>
                       <select
@@ -178,21 +178,12 @@
                         id="currency"
                         name="currency"
                       >
-                        <option value="1">USD</option>
-                        <option value="2">2</option>
+                        <option value="1">$</option>
+                        <option value="2">৳</option>
+                        <option value="€">€</option>
                       </select>
                     </div>
-                    <div class="mt-2">
-                        <label for="currency">Default Currency Code</label>
-                        <select
-                          class="form-control"
-                          id="Code"
-                          name="Code"
-                        >
-                          <option value="1">USD</option>
-                          <option value="2">2</option>
-                        </select>
-                      </div>
+                   
                       <div class="mt-2">
                         <label for="mode">Maintenance Mode</label>
                         <select
@@ -200,8 +191,8 @@
                           id="mode"
                           name="mode"
                         >
-                          <option value="1">Yes</option>
-                          <option value="2">No</option>
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
                         </select>
                       </div>
                       <div class="mt-2">
@@ -211,8 +202,8 @@
                           id="contact-less"
                           name="contact-less"
                         >
-                          <option value="1">Yes</option>
-                          <option value="2">No</option>
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
                         </select>
                       </div>
                       <div class="mt-2">
@@ -222,7 +213,7 @@
                         <input
                           type="number"
                           class="form-control"
-                          name="site-store"
+                          name="store_kilo"
                           id="site-store"
                           aria-describedby="site-store"
                         />
@@ -234,7 +225,7 @@
                         <input
                           type="number"
                           class="form-control"
-                          name="site-driver"
+                          name="driver_kilo"
                           id="site-driver"
                           aria-describedby="site-driver"
                         />
@@ -246,23 +237,12 @@
                         <input
                           type="number"
                           class="form-control"
-                          name="site-max"
+                          name="max_delivery"
                           id="site-max"
                           aria-describedby="site-max"
                         />
                       </div>
-                      <div class="mt-2">
-                        <label for="site-radius" class="form-label"
-                          >Multiple Delivery Radius</label
-                        >
-                        <input
-                          type="number"
-                          class="form-control"
-                          name="site-radius"
-                          id="site-radius"
-                          aria-describedby="site-radius"
-                        />
-                      </div>
+                    
                       <div class="mt-2">
                         <label for="site-assignment" class="form-label"
                           >Preparation Time Interval For Mulitple Delivery Assignment</label
@@ -270,35 +250,37 @@
                         <input
                           type="number"
                           class="form-control"
-                          name="site-assignment"
+                          name="preparation_time"
                           id="site-assignment"
                           aria-describedby="site-assignment"
                         />
                       </div>
                       <div class="mt-2">
-                        <div class="form-check switch____man form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="multi-delliver" checked>
-                            <label class="form-check-label" for="multi-delliver">Multiple Delivery</label>
-                          </div>
-                      </div>
-                      <div class="mt-2">
-                        <div class="form-check switch____man form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="multi-otp" checked>
-                            <label class="form-check-label" for="multi-otp">Otp Verification</label>
-                          </div>
-                      </div>
-                      <div class="mt-2">
-                        <label for="site-admin" class="form-label"
-                          >Admin Prefix</label
-                        >
-                        <input
-                          type="text"
+                        <label for="site-assignment" class="form-label"
+                          >Multiple Delivery</label>
+                          <select
                           class="form-control"
-                          name="site-admin"
-                          id="site-admin"
-                          aria-describedby="site-admin"
-                        />
+                          id="mode"
+                          name="multiple_delivery"
+                        >
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </select>
+                         
                       </div>
+                      <div class="mt-2">
+                        <label for="site-assignment" class="form-label"
+                          >Otp Verification</label>
+                        <select
+                        class="form-control"
+                        id="mode"
+                        name="otp_verification"
+                      >
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                      </select>
+                       
+                    </div>
                       <div class="mt-2">
                         <label for="site-version" class="form-label"
                           >Version</label
@@ -312,29 +294,40 @@
                         />
                       </div>
                       <div class="mt-2">
+                        <label for="site-version" class="form-label"
+                          >Phone Code</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="phone_code"
+                          id="site-version"
+                          aria-describedby="site-version"
+                        />
+                      </div>
+                      <div class="mt-2">
+                        <label for="site-version" class="form-label"
+                          >Timezone</label
+                        >
+                        <select class="form-control" name="timezone">
+                          {% for t in timezones %}
+                            <option value="{{ t.id }}">{{ t.zone }}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                      <div class="mt-2">
                         <label for="site-copy" class="form-label"
                           >Copyright Year</label
                         >
                         <input
                           type="text"
                           class="form-control"
-                          name="site-copy"
+                          name="copyright_year"
                           id="site-copy"
                           aria-describedby="site-copy"
                         />
                       </div>
-                      <div class="mt-2">
-                        <label for="site-copy-name" class="form-label"
-                          >Copyright Name</label
-                        >
-                        <input
-                          type="text"
-                          class="form-control"
-                          name="site-copy-name"
-                          id="site-copy-name"
-                          aria-describedby="site-copy-name"
-                        />
-                      </div>
+                   
                       <div class="mt-2 mb-2">
                        <button type="submit" class="btn btn-primary">Submit</button>
                       </div>
@@ -532,7 +525,7 @@
                   <button type="submit" class="btn btn-primary">Submit</button>
                  </div>
              
-            </div>
+                </div>
 
 
 

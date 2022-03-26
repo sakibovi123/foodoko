@@ -7,6 +7,11 @@ urlpatterns = [
     path("restaurant/<str:vendor_name>", RestaurantWiseProduct.as_view(), name="RestaurantWiseItem"),
     # category wise item
     path("category-wise-item/<str:title>/", CategorywiseProduct.as_view(), name="CategoryWiseItem"),
+
+    # User Order page
+    path("user-orders/", OrderView.as_view(), name="orderView"),
+    # User Order Detail View
+    path("<str:invoice_no>/", UserOrderDetail.as_view(), name="UserOrderDetails"),
     
     # All Actions
     path("add-to-cart/", add_to_cart, name="addTocart"),

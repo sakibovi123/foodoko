@@ -721,9 +721,11 @@ class Settings(View):
     def get(self, request):
         payment_methods = PaymentMethods.objects.all()
         payout_methods = PayoutMethod.objects.all()
+        timezones = TimeZone.objects.all()
         args = {
             "payment_methods": payment_methods,
             "payout_methods": payout_methods,
+            "timezones": timezones,
         }
         return render(request, self.template_name, args)
 
@@ -762,6 +764,7 @@ class Settings(View):
 
             payment_methods = request.POST.get("payment_methods")
             payout_methods = request.POST.get("payout_methods")
+            timezone = request.POST.get("timezone")
             
             settings = SiteSettings(
                 user=user,
@@ -794,6 +797,7 @@ class Settings(View):
                 booking_fee=booking_fee,
                 store_comission=store_comission,
                 driver_comission=driver_comission,
+                timezone = TimeZone.objects.get(id=timezone)
             )
 
             # settings.save()
@@ -946,10 +950,7 @@ class EditCity(View):
     def post(self, request, city_slug):
         post = request.POST
         city_obj = self.get_object(city_slug)
-
         city_obj.slug = post["slug"]
         city_obj.city_name = post["city_name"]
-
         city_obj.save()
-
         return redirect("CityManagement")
